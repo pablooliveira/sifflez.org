@@ -1,0 +1,104 @@
+<h1>arithmetic.bib</h1><a name="Kiar2020Comparing"></a><pre>
+@article{<a href="/publications/#Kiar2020Comparing">Kiar2020Comparing</a>,
+  author = {Gregory Kiar and Pablo de Oliveira Castro and Pierre Rioux and Eric Petit and Shawn T Brown and Alan C Evans and Tristan Glatard},
+  title = {Comparing perturbation models for evaluating stability of neuroimaging pipelines},
+  journal = {The International Journal of High Performance Computing Applications},
+  volume = {0},
+  number = {0},
+  pages = {1094342020926237},
+  year = {0},
+  doi = {10.1177/1094342020926237},
+  url = { https://doi.org/10.1177/1094342020926237 },
+  abstract = { With an increase in awareness regarding a troubling lack of reproducibility in analytical software tools, the degree of validity in scientific derivatives and their downstream results has become unclear. The nature of reproducibility issues may vary across domains, tools, data sets, and computational infrastructures, but numerical instabilities are thought to be a core contributor. In neuroimaging, unexpected deviations have been observed when varying operating systems, software implementations, or adding negligible quantities of noise. In the field of numerical analysis, these issues have recently been explored through Monte Carlo Arithmetic, a method involving the instrumentation of floating-point operations with probabilistic noise injections at a target precision. Exploring multiple simulations in this context allows the characterization of the result space for a given tool or operation. In this article, we compare various perturbation models to introduce instabilities within a typical neuroimaging pipeline, including (i) targeted noise, (ii) Monte Carlo Arithmetic, and (iii) operating system variation, to identify the significance and quality of their impact on the resulting derivatives. We demonstrate that even low-order models in neuroimaging such as the structural connectome estimation pipeline evaluated here are sensitive to numerical instabilities, suggesting that stability is a relevant axis upon which tools are compared, alongside more traditional criteria such as biological feasibility, computational efficiency, or, when possible, accuracy. Heterogeneity was observed across participants which clearly illustrates a strong interaction between the tool and data set being processed, requiring that the stability of a given tool be evaluated with respect to a given cohort. We identify use cases for each perturbation method tested, including quality assurance, pipeline error detection, and local sensitivity analysis, and make recommendations for the evaluation of stability in a practical and analytically focused setting. Identifying how these relationships and recommendations scale to higher order computational tools, distinct data sets, and their implication on biological feasibility remain exciting avenues for future work. }
+}
+</pre>
+
+<a name="Defour2020CustomPrecision"></a><pre>
+@inproceedings{<a href="/publications/#Defour2020CustomPrecision">Defour2020CustomPrecision</a>,
+  author = {Defour, David and de Oliveira Castro, Pablo and Istoan, Matei and Petit, Eric},
+  title = {Custom-Precision Mathematical Library Explorations for Code Profiling and Optimization},
+  booktitle = {27th {IEEE} Symposium on Computer Arithmetic, {ARITH} 2020},
+  year = {(to appear) 2020},
+  abstract = {The typical processors used for scientific computing have fixed-width data-paths. This implies that mathematical libraries were specifically developed to target each of these fixed precisions (binary16, binary32, binary64). However, to address the increasing energy consumption and throughput requirements of scientific applications, library and hardware designers are moving beyond this one-size-fits-all approach. In this article we propose to study the effects and benefits of using user-defined floating-point formats and target accuracies in calculations involving mathematical functions. Our tool collects input-data profiles and iteratively explores lower precisions for each call-site of a mathematical function in user applications. This profiling data will be a valuable asset for specializing and fine-tuning mathematical function implementations for a given application. We demonstrate the tool's capabilities on SGP4, a satellite tracking application. The profile data shows the potential for specialization and provides insight into answering where it is useful to provide variable-precision designs for elementary function evaluation.},
+  pdf = {https://hal.archives-ouvertes.fr/hal-02563852/document}
+}
+</pre>
+
+<a name="Chatelain2019automatic"></a><pre>
+@inproceedings{<a href="/publications/#Chatelain2019automatic">Chatelain2019automatic</a>,
+  title = {Automatic exploration of reduced floating-point representations in iterative methods},
+  author = {Chatelain, Yohan and Petit, Eric and de Oliveira Castro, Pablo and Lartigue, Ghislain and Defour, David},
+  booktitle = {Euro-Par 2019 Parallel Processing - 25th International Conference},
+  year = {2019},
+  publisher = {Springer},
+  series = {Lecture Notes in Computer Science},
+  abstract = {With the ever-increasing need for computation of scientific applications, new application domains, and major energy constraints, the landscape of floating-point computation is changing.  New floating-point representation formats are emerging and there is a need for tools to simulate their impact in legacy codes.  In this paper, we propose an automatic tool to evaluate the effect of adapting the floating point precision for each operation over time, which is particularly useful in iterative schemes.  We present a backend to emulate any IEEE-754 floating-point operation in lower precision.  We tested the numerical errors resilience of our solutions thanks to Monte Carlo Arithmetic and  demonstrated the effectiveness of this methodology on YALES2, a large Combustion-CFD HPC code, by achieving 28\% to 67\% reduction in communication volume by lowering precision.},
+  pdf = {dyn_adapt_precision19.pdf},
+  documenturl = {dyn_adapt_slides19.pdf}
+}
+</pre>
+
+<a name="Sohier2018confidence"></a><pre>
+@unpublished{<a href="/publications/#Sohier2018confidence">Sohier2018confidence</a>,
+  title = {{Confidence Intervals for Stochastic Arithmetic}},
+  author = {Sohier, Devan and de Oliveira Castro, Pablo and F{\'e}votte, Fran{\c c}ois and Lathuili{\`e}re, Bruno and Petit, Eric and Jamond, Olivier},
+  url = {https://hal.archives-ouvertes.fr/hal-01827319},
+  note = {(2020) accepted for publication in ACM Transactions on Mathematical Software (ACM TOMS), preprint},
+  year = {2018},
+  month = jul,
+  abstract = {
+    Quantifying errors and losses due to the use of Floating-Point (FP) calculations in industrial scientific computing codes is an important part of the Verification, Validation and Uncertainty Quantification (VVUQ) process. Stochastic Arithmetic is one way to model and estimate FP losses of accuracy, which scales well to large, industrial codes. It exists in different flavors, such as CESTAC or MCA, implemented in various tools such as CADNA, Verificarlo or Verrou. These methodologies and tools are based on the idea that FP losses of accuracy can be modeled via randomness. Therefore, they share the same need to perform a statistical analysis of programs results in order to estimate the significance of the results. In this paper, we propose a framework to perform a solid statistical analysis of Stochastic Arithmetic. This framework unifies all existing definitions of the number of significant digits (CESTAC and MCA), and also proposes a new quantity of interest: the number of digits contributing to the accuracy of the results. Sound confidence intervals are provided for all estimators, both in the case of normally distributed results, and in the general case. The use of this framework is demonstrated by two case studies of large, industrial codes: Europlexus and code_aster.
+  },
+  pdf = {https://hal.archives-ouvertes.fr/hal-01827319/file/confidence.pdf},
+  documenturl = {confidence_interval_slides.pdf}
+}
+</pre>
+
+<a name="Chatelain2018veritracer"></a><pre>
+@inproceedings{<a href="/publications/#Chatelain2018veritracer">Chatelain2018veritracer</a>,
+  author = {Yohan Chatelain and
+             Pablo de Oliveira Castro and
+             Eric Petit and
+             David Defour and
+             Jordan Bieder and
+             Marc Torrent},
+  title = {{VeriTracer: Context-enriched tracer for floating-point arithmetic analysis}},
+  booktitle = {25th {IEEE} Symposium on Computer Arithmetic, {ARITH} 2018, Amherst, MA, USA. June 25th-27th, 2018},
+  pages = {65--72},
+  publisher = {IEEE},
+  year = {2018},
+  abstract = {VeriTracer automatically instruments a code and
+    traces the accuracy of floating-point variables over
+    time. VeriTracer enriches the visual traces with contextual
+    information such as the call site path in which
+    a value was modified. Contextual information is important
+    to understand how the floating-point errors
+    propagate in complex codes. VeriTracer is implemented
+    as an LLVM compiler tool on top of Verificarlo.
+    We demonstrate how VeriTracer can detect accuracy
+    loss and quantify the impact of using a compensated
+    algorithm on ABINIT, an industrial HPC application
+    for Ab Initio quantum computation.},
+  pdf = {arith2018veritracer.pdf},
+  documenturl = {arith2018slides.pdf}
+}
+</pre>
+
+<a name="Denis2016verificarlo"></a><pre>
+@inproceedings{<a href="/publications/#Denis2016verificarlo">Denis2016verificarlo</a>,
+  author = {Christophe Denis and
+             Pablo de Oliveira Castro and
+             Eric Petit},
+  title = {Verificarlo: Checking Floating Point Accuracy through Monte Carlo
+             Arithmetic},
+  booktitle = {23nd {IEEE} Symposium on Computer Arithmetic, {ARITH} 2016, Silicon
+             Valley, CA, USA, July 10-13, 2016},
+  pages = {55--62},
+  year = {2016},
+  url = {<a href="http://dx.doi.org/10.1109/ARITH.2016.31">http://dx.doi.org/10.1109/ARITH.2016.31</a>},
+  doi = {10.1109/ARITH.2016.31},
+  abstract = {Numerical accuracy of floating point computation is a well studied topic which has not made its way to the end-user in scientific computing. Yet, it has become a critical issue with the recent requirements for code modernization to harness new highly parallel hardware and perform higher resolution computation. To democratize numerical accuracy analysis, it is important to propose tools and methodologies to study large use cases in a reliable and automatic way. In this paper, we propose verificarlo, an extension to the LLVM compiler to automatically use Monte Carlo Arithmetic in a transparent way for the end-user. It supports all the major languages including C, C++, and Fortran. Unlike source-to-source approaches, our implementation captures the influence of compiler optimizations on the numerical accuracy. We illustrate how Monte Carlo Arithmetic using the verificarlo tool outperforms the existing approaches on various use cases and is a step toward automatic numerical analysis.},
+  pdf = {https://hal.archives-ouvertes.fr/hal-01192668/file/verificarlo-preprint.pdf}
+}
+</pre>
+

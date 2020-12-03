@@ -1,0 +1,285 @@
+<h1>performance.bib</h1><a name="Fontenaille2018scalable"></a><pre>
+@inproceedings{<a href="/publications/#Fontenaille2018scalable">Fontenaille2018scalable</a>,
+  title = {Scalable Work-Stealing Load-Balancer for HPC Distributed Memory Systems},
+  author = {Clement Fontenaille and Eric Petit and Pablo de Oliveira Castro and Seijilo Uemura and Devan Sohier and Piotr Lesnicki and Ghislain Lartigue and Vincent Moureau},
+  booktitle = {COLOC: 2nd Workshop on Data Locality, in conjunction with Euro-Par 2018},
+  year = {2018}
+}
+</pre>
+
+<a name="Popov2017piecewise"></a><pre>
+@article{<a href="/publications/#Popov2017piecewise">Popov2017piecewise</a>,
+  author = {Popov, Mihail and Akel, Chadi and Chatelain, Yohan and Jalby, William and de Oliveira Castro, Pablo},
+  title = {Piecewise holistic autotuning of parallel programs with CERE},
+  journal = {Concurrency and Computation: Practice and Experience},
+  year = {2017},
+  issn = {1532-0634},
+  url = {<a href="http://dx.doi.org/10.1002/cpe.4190">http://dx.doi.org/10.1002/cpe.4190</a>},
+  doi = {10.1002/cpe.4190},
+  pages = {e4190},
+  abstract = {Current architecture complexity requires fine tuning of compiler and runtime parameters to achieve best performance. Autotuning substantially improves default parameters in many scenarios, but it is a costly process requiring long iterative evaluations. We propose an automatic piecewise autotuner based on CERE (Codelet Extractor and REplayer). CERE decomposes applications into small pieces called codelets: Each codelet maps to a loop or to an OpenMP parallel region and can be replayed as a standalone program. Codelet autotuning achieves better speedups at a lower tuning cost. By grouping codelet invocations with the same performance behavior, CERE reduces the number of loops or OpenMP regions to be evaluated. Moreover, unlike whole-program tuning, CERE customizes the set of best parameters for each specific OpenMP region or loop. We demonstrate the CERE tuning of compiler optimizations, number of threads, thread affinity, and scheduling policy on both nonuniform memory access and heterogeneous architectures. Over the NAS benchmarks, we achieve an average speedup of 1.08x after tuning. Tuning a codelet is 13x cheaper than whole-program evaluation and predicts the tuning impact with a 94.7\% accuracy. Similarly, exploring thread configurations and scheduling policies for a Black‐Scholes solver on an heterogeneous big.LITTLE architecture is over 40x faster using CERE.},
+  documenturl = {https://hal-uvsq.archives-ouvertes.fr/hal-01542912/document}
+}
+</pre>
+
+<a name="Popov2016piecewise"></a><pre>
+@inproceedings{<a href="/publications/#Popov2016piecewise">Popov2016piecewise</a>,
+  title = {Piecewise Holistic Autotuning of Compiler and Runtime Parameters},
+  author = {Popov, Mihail and Akel, Chadi and Jalby, William and Castro, Pablo de Oliveira},
+  booktitle = {Euro-Par 2016 Parallel Processing - 22nd International Conference},
+  year = {2016},
+  pages = {238-250},
+  ee = {<a href="http://dx.doi.org/10.1007/978-3-319-43659-3_18">http://dx.doi.org/10.1007/978-3-319-43659-3_18</a>},
+  editor = {Christos Kaklamanis and Theodore S. Papatheodorou and Paul G. Spirakis},
+  publisher = {Springer},
+  series = {Lecture Notes in Computer Science},
+  volume = {9833},
+  isbn = {978-3-319-43659-3},
+  publisher = {Springer},
+  abstract = {Current architecture complexity requires fine tuning of compiler and runtime parameters to achieve full potential performance.  Autotuning substantially improves default parameters in many scenarios but it is a costly process requiring a long iterative evaluation.  We propose an automatic piecewise autotuner based on CERE (Codelet Extractor and REplayer). CERE decomposes applications into small pieces called codelets: each codelet maps to a loop or to an OpenMP parallel region and can be replayed as a standalone program.  Codelet autotuning achieves better speedups at a lower tuning cost. By grouping codelet invocations with the same performance behavior, CERE reduces the number of loops or OpenMP regions to be evaluated. Moreover unlike whole-program tuning, CERE customizes the set of best parameters for each specific OpenMP region or loop.  We demonstrate CERE tuning of compiler optimizations, number of threads and thread affinity on a NUMA architecture. On average over the NAS 3.0 benchmarks, we achieve a speedup of 1.08x after tuning.  Tuning a single codelet is 13x cheaper than whole-program evaluation and estimates the tuning impact on the original region with a 94.7% accuracy. On a Reverse Time Migration (RTM) proto-application we achieve a 1.11x speedup with a 200x cheaper exploration.},
+  pdf = {europar16.pdf},
+  documenturl = {europar16-slides.pdf}
+}
+</pre>
+
+<a name="Popov2015pcere"></a><pre>
+@inproceedings{<a href="/publications/#Popov2015pcere">Popov2015pcere</a>,
+  title = {PCERE: Fine-grained Parallel Benchmark Decomposition for Scalability Prediction},
+  author = {Popov, Mihail and Akel, Chadi and Conti, Florent and Jalby, William and Castro, Pablo de Oliveira},
+  booktitle = {Parallel and Distributed Processing Symposium (IPDPS), 2015 IEEE International},
+  pages = {1151--1160},
+  year = {2015},
+  organization = {IEEE},
+  abstract = {
+Evaluating the strong scalability of OpenMP applications is a costly and time-consuming process. It traditionally requires executing the whole application multiple times with different number of threads. We propose the Parallel Codelet Extractor and REplayer (PCERE), a tool to reduce the cost of scalability evaluation. PCERE decomposes applications into small pieces called codelets: each codelet maps to an OpenMP parallel region and can be replayed as a standalone program. To accelerate scalability prediction, PCERE replays codelets while varying the number of threads. Prediction speedup comes from two key ideas. First, the number of invocations during replay can be significantly reduced. Invocations that have the same performance are grouped together and a single representative is replayed. Second, sequential parts of the programs do not need to be replayed for each different thread configuration. PCERE codelets can be captured once and replayed accurately on multiple architectures, enabling cross-architecture parallel performance prediction. We evaluate PCERE on a C version of the NAS 3.0 Parallel Benchmarks (NPB). We achieve an average speed-up of 25 times on evaluating OpenMP applications scalability with an average error of 4.9\% (median error of 1.7\%).
+    },
+  pdf = {pcere15.pdf},
+  documenturl = {pcere15-slides.pdf}
+}
+</pre>
+
+<a name="Oliveira2015CERE"></a><pre>
+@article{<a href="/publications/#Oliveira2015CERE">Oliveira2015CERE</a>,
+  title = {{CERE: LLVM Based Codelet Extractor and REplayer for Piecewise Benchmarking and Optimization}},
+  author = {de Oliveira Castro, Pablo and Akel, Chadi and Petit, Eric and Popov, Mihail and Jalby, William},
+  journal = {ACM Transactions on Architecture and Code Optimization (TACO)},
+  volume = {12},
+  number = {1},
+  pages = {6},
+  year = {2015},
+  publisher = {ACM},
+  doi = {10.1145/2724717},
+  abstract = {
+        This article presents Codelet Extractor and REplayer (CERE), an
+        open-source framework for code isolation. CERE finds
+        and extracts the hotspots of an application as
+        isolated fragments of code, called
+        codelets. Codelets can be modified, compiled, run,
+        and measured independently from the original
+        application. Code isolation reduces benchmarking
+        cost and allows piecewise optimization of an
+        application. Unlike previous approaches, CERE
+        isolates codes at the compiler Intermediate
+        Representation (IR) level. Therefore CERE is
+        language agnostic and supports many input languages
+        such as C, C++, Fortran, and D. CERE automatically
+        detects codelets invocations that have the same
+        performance behavior. Then, it selects a reduced set
+        of representative codelets and invocations, much
+        faster to replay, which still captures accurately
+        the original application. In addition, CERE supports
+        recompiling and retargeting the extracted
+        codelets. Therefore, CERE can be used for
+        cross-architecture performance prediction or
+        piecewise code optimization. On the SPEC 2006 FP
+        benchmarks, CERE codelets cover 90.9\% and accurately
+        replay 66.3\% of the execution time. We use CERE
+        codelets in a realistic study to evaluate three
+        different architectures on the NAS benchmarks. CERE
+        accurately estimates each architecture performance
+        and is 7.3x to 46.6x cheaper than running the full
+        benchmark.
+    },
+  pdf = {cere15.pdf}
+}
+</pre>
+
+<a name="Oliveira2014finegrained"></a><pre>
+@inproceedings{<a href="/publications/#Oliveira2014finegrained">Oliveira2014finegrained</a>,
+  title = {{Fine-grained Benchmark Subsetting for System Selection}},
+  author = {de Oliveira Castro, Pablo and Kashnikov, Yuriy and Akel, Chadi and Popov, Mihail and Jalby, William},
+  booktitle = {Proceedings of Annual IEEE/ACM International Symposium on Code Generation and Optimization},
+  series = {CGO '14},
+  year = {2014},
+  isbn = {978-1-4503-2670-4},
+  location = {Orlando, FL, USA},
+  pages = {132:132--132:142},
+  numpages = {11},
+  url = {<a href="http://doi.acm.org/10.1145/2544137.2544144">http://doi.acm.org/10.1145/2544137.2544144</a>},
+  doi = {10.1145/2544137.2544144},
+  publisher = {ACM},
+  address = {New York, NY, USA},
+  abstract = {
+        System selection aims at finding the best architecture for a set of
+        programs and workloads. It traditionally requires long running
+        benchmarks. We propose a method to reduce the cost of system
+        selection. We break down benchmarks into elementary fragments of
+        source code, called codelets. Then, we identify two causes of
+        redundancy: first, similar codelets; second, codelets called
+        repeatedly. The key idea is to minimize redundancy inside the
+        benchmark suite to speed it up. For each group of similar codelets,
+        only one representative is kept. For codelets called repeatedly and for
+        which the performance does not vary across calls, the number of
+        invocations is reduced. Given an initial benchmark suite, our
+        method produces a set of reduced benchmarks that can be used in
+        place of the original one for system selection.
+
+        We evaluate our method on the NAS SER benchmarks, producing a reduced
+        benchmark suite 30 times faster in average than the original suite,
+        with a maximum of 44 times. The reduced suite predicts the execution
+        time on three target architectures with a median error between 3.9\%
+        and 8\%.
+    },
+  pdf = {finegrained-cgo14.pdf},
+  documenturl = {finegrained-slides.pdf}
+}
+</pre>
+
+<a name="Oliveira2013Adaptive"></a><pre>
+@article{<a href="/publications/#Oliveira2013Adaptive">Oliveira2013Adaptive</a>,
+  title = {Adaptive Sampling for Performance Characterization of Application Kernels},
+  author = {de Oliveira Castro, Pablo and Petit, Eric and Farjallah, Asma and Jalby, William},
+  journal = {Concurrency and Computation: Practice and Experience},
+  year = {2013},
+  publisher = {Wiley},
+  issn = {1532-0634},
+  doi = {10.1002/cpe.3097},
+  keywords = {performance, sampling, modeling, stencil},
+  abstract = {
+
+    Characterizing performance is essential to optimize programs and architectures.
+    The open source Adaptive Sampling Kit (ASK) measures the performance
+    trade-off in large design spaces. Exhaustively sampling all sets of
+    parameters is computationally intractable. Therefore, ASK concentrates
+    exploration in the most irregular regions of the design space through
+    multiple adaptive sampling strategies. The paper presents the ASK
+    architecture and a set of adaptive sampling strategies, including a new
+    approach called Hierarchical Variance Sampling. ASK's usage is demonstrated
+    on three performance characterization problems: memory stride accesses,
+    Jacobian stencil code, and an industrial seismic application using 3D stencils.
+    ASK builds accurate models of performance with a small number of measures.
+    It considerably reduces the cost of performance exploration. For instance,
+    the Jacobian stencil code design space, which has more than 31 × 10^8
+    combinations of parameters, is accurately predicted using only 1500
+    combinations.
+
+    },
+  pdf = {ASK-cpe13.pdf}
+}
+</pre>
+
+<a name="Akel2013sourcecode"></a><pre>
+@inproceedings{<a href="/publications/#Akel2013sourcecode">Akel2013sourcecode</a>,
+  title = {{Is Source-code Isolation Viable for Performance Characterization?}},
+  author = {Akel, Chadi and Kashnikov, Yuriy and de Oliveira Castro, Pablo and Jalby, William},
+  booktitle = {International Workshop on Parallel Software Tools and Tool Infrastructures (PSTI)},
+  year = {2013},
+  publisher = {IEEE Computer Society},
+  abstract = {
+
+Source-code isolation finds and extracts the hotspots of an application as
+independent isolated fragments of code, called codelets. Codelets can be
+modified, compiled, run, and measured independently from the original
+application. Source-code isolation reduces benchmarking cost and allows
+piece-wise optimization of an application. Source-code isolation is faster
+than whole-program benchmarking and optimization since the user can
+concentrate only on the bottlenecks. This paper examines the viability of
+using isolated codelets in place of the original application for
+performance characterization and optimization. On the NAS benchmarks, we
+show that codelets capture 92.3\% of the original execution time. We present
+a set of techniques for keeping codelets as faithful as possible to the
+original hotspots: 63.6\% of the codelets have the same assembly as the
+original hotspots and 81.6\% of the codelets have the same run time
+performance as the original hotspots.
+
+},
+  pdf = {psti13.pdf},
+  documenturl = {psti13-slides.pdf}
+}
+</pre>
+
+<a name="Kashnikov2013evaluating"></a><pre>
+@conference{<a href="/publications/#Kashnikov2013evaluating">Kashnikov2013evaluating</a>,
+  title = {{Evaluating Architecture and Compiler Design through Static Loop Analysis}},
+  author = {Kashnikov, Yuriy and de Oliveira Castro, Pablo and Oseret, Emmanuel and Jalby, William},
+  booktitle = {High Performance Computing and Simulation (HPCS), 2013 International Conference on},
+  pages = {535 - 544},
+  doi = {10.1109/HPCSim.2013.6641465},
+  isbn = {978-1-4799-0836-3},
+  year = {2013},
+  publisher = {IEEE Computer Society},
+  abstract = {
+      Using the MAQAO loop static analyzer, we characterize a corpus of binary
+          loops extracted from common benchmark suits such as SPEC, NAS, etc.
+          and several industrial applications. For each loop, MAQAO extracts
+          low-level assembly features such as: integer and floating-point
+          vectorization ratio, number of registers used and spill-fill, number
+          of concurrent memory streams accessed, etc. The distributions of
+          these features on a large representative code corpus can be used to
+          evaluate compilers and architectures and tune them for the most
+          frequently used assembly patterns. In this paper, we present the
+          MAQAO loop analyzer and a characterization of the 4857 binary loops.
+          We evaluate register allocation and vectorization on two compilers
+          and propose a method to tune loop buffer size and stream prefetcher
+          based on static analysis of benchmarks.
+  },
+  pdf = {hpcs13.pdf}
+}
+</pre>
+
+<a name="Oliveira2012ASK"></a><pre>
+@inproceedings{<a href="/publications/#Oliveira2012ASK">Oliveira2012ASK</a>,
+  title = {{ASK: Adaptive Sampling Kit for Performance Characterization}},
+  author = {de Oliveira Castro, Pablo and Petit, Eric and Beyler, Jean Christophe and Jalby, William},
+  year = {2012},
+  pages = {89-101},
+  ee = {<a href="http://dx.doi.org/10.1007/978-3-642-32820-6_11">http://dx.doi.org/10.1007/978-3-642-32820-6_11</a>},
+  editor = {Christos Kaklamanis and Theodore S. Papatheodorou and Paul G. Spirakis},
+  booktitle = {Euro-Par 2012 Parallel Processing - 18th International Conference},
+  publisher = {Springer},
+  series = {Lecture Notes in Computer Science},
+  volume = {7484},
+  isbn = {978-3-642-32819-0},
+  abstract = {
+    Characterizing performance is essential to optimize programs
+    and architectures. The open source Adaptive Sampling Kit (ASK) measures
+    the performance trade-offs in large design spaces. Exhaustively
+    sampling all points is computationally intractable. Therefore, ASK
+    concentrates exploration in the most irregular regions of the design space
+    through multiple adaptive sampling methods. The paper presents the
+    ASK architecture and a set of adaptive sampling strategies, including a
+    new approach: Hierarchical Variance Sampling. ASK’s usage is demonstrated
+    on two performance characterization problems: memory stride
+    accesses and stencil codes. ASK builds precise models of performance
+    with a small number of measures. It considerably reduces the cost of
+    performance exploration. For instance, the stencil code design space,
+    which has more than 31.10^8 points, is accurately predicted using only
+    1500 points.
+    },
+  pdf = {ASK-europar12.pdf},
+  documenturl = {ASK-europar12-slides.pdf}
+}
+</pre>
+
+<a name="Petit2012computing"></a><pre>
+@inproceedings{<a href="/publications/#Petit2012computing">Petit2012computing</a>,
+  title = {Computing-Kernels Performance Prediction Using DataFlow Analysis and
+Microbenchmarking},
+  author = {Petit, Eric and de Oliveira Castro, Pablo and Menour, Tarek and Krammer,
+Bettina and
+Jalby, William},
+  booktitle = {International Workshop on Compilers for Parallel Computers},
+  year = {2012}
+}
+</pre>
+

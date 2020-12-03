@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name=viewport content="width=device-width, initial-scale=1">
+   <link rel="stylesheet" href="/css/site.css" type="text/css" />
+   <!--[if lt IE 9]>
+       <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/r29/html5.min.js"></script>
+   <![endif]-->
+   <link rel="shortcut icon" href="/favicon.ico" />
+   <title>Architecture des Systèmes Embarqués</title>
+</head>
+<body>
+
+<header>
+    <a  class="to_nav" href="#menu">Menu</a>
+</header>
+
+<div id="wrapper">
+  <article>
+    <h2>Architecture des Systèmes Embarqués</h2>
+
+<p>This lecture is about embedded system programming. Some of the topics we'll cover include:</p>
+
+<ul>
+<li><a href="C1.pdf">ARM Assembly programming</a></li>
+<li>Using Floating point and Fixed point in embedded systems</li>
+<li><a href="C3.pdf">Implementing a Forth interpreter from scratch</a></li>
+<li><a href="C4.pdf">How to schedule real-time tasks ?</a></li>
+<li><a href="C5.pdf">What are Dataflow languages ?</a></li>
+</ul>
+
+
+<p>The full class material is available <a href="https://github.com/pablooliveira/ase_lectures">here</a>.</p>
+
+<p>The 2013 project was to port JonesForth interpreter to ARM. During one month
+the students translated the x86 original version to ARM assembly using linux
+EABI. Their interpreters were tested on <a href="http://www.raspberrypi.org/">Raspberry-Pi ModelB
+cards</a>.  At the end of the project, we used the
+last class session to combine the different base codes and release a
+<a href="https://github.com/M2IHP13-admin/JonesForth-arm">functional open-source port</a>.</p>
+
+<p>Our JonesForth port has since been forked and has served as the starting point
+of the cool <a href="https://github.com/organix/pijFORTHos">pijFORTHos</a> project: a
+bare-metal Forth interpreter that runs directly on the Raspberry board without
+any other OS.</p>
+
+  </article>
+
+  <nav id="menu">
+    
+    <ul>
+<li><a href="/">Contact</a></li>
+<li><a href="/publications/">Research</a></li>
+<li><a href="/lectures/">Lectures</a>
+
+<ul>
+<li><a href="/lectures/archi-ord/">Architecture</a></li>
+<li><a href="/lectures/Java-SE/">Java &amp; SE</a></li>
+<li><a href="/lectures/tp-ifips/">OpenMP/MPI</a></li>
+<li><a href="/lectures/ASE/">ASE</a></li>
+<li><a href="/lectures/SEA/">SEA</a></li>
+<li><a href="/lectures/compil/">Compilers</a></li>
+</ul>
+</li>
+<li><a href="/#misc">Misc</a>
+
+<ul>
+<li><a href="/misc/tronbot">Tron bot</a></li>
+<li><a href="/squeak_nds">Squeak NDS</a></li>
+<li><a href="http://github.com/pablooliveira/bibjekyll/">Bibjekyll</a></li>
+<li><a href="http://github.com/pablooliveira/similar/">Similar</a></li>
+<li><a href="https://github.com/benchmark-subsetting/adaptive-sampling-kit">ASK</a></li>
+<li><a href="http://github.com/pablooliveira/irvm/">IRVM</a></li>
+<li><a href="https://github.com/verificarlo/verificarlo">Verificarlo</a></li>
+<li><a href="https://benchmark-subsetting.github.io/cere/">CERE</a></li>
+</ul>
+</li>
+</ul>
+
+
+  <img id="menudecoration" src="/pulley.png" title="First principles of physics by
+    Carhart, Henry S. and Chute, Horatio N. 1912. Fig 132, Fixed and movable pulley." \>
+  </nav>
+</div>
+
+<footer>
+Last modified the
+2014-06-17
+<br /> Pablo de
+Oliveira Castro &lt;pablo@sifflez.org&gt;
+</footer>
+
+</body>
+</html>

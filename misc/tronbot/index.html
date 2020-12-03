@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name=viewport content="width=device-width, initial-scale=1">
+   <link rel="stylesheet" href="/css/site.css" type="text/css" />
+   <!--[if lt IE 9]>
+       <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/r29/html5.min.js"></script>
+   <![endif]-->
+   <link rel="shortcut icon" href="/favicon.ico" />
+   <title>A simple Tron bot</title>
+</head>
+<body>
+
+<header>
+    <a  class="to_nav" href="#menu">Menu</a>
+</header>
+
+<div id="wrapper">
+  <article>
+    <h1>A simple Tron bot</h1>
+
+<p>The University of Waterloo Computer Science Club
+runs an interesting <a href="http://csclub.uwaterloo.ca/contest/">AI challenge</a>
+sponsored by Google. The aim of the challenge is to write
+a computer program that plays Tron.</p>
+
+<p>Tron is a two-player game where each player controls a snake trapped inside
+a maze. When a player moves her snake, it grows leaving a solid wall
+behind. The last player to crash on a wall or on a snake's trail wins.
+If the two players crash simultaneously, it is a draw.</p>
+
+<p>I was attracted by the simplicity of the rules, so I decided to write
+a <a href="https://github.com/pablooliveira/SimpleTronBot">bot</a>.</p>
+
+<h2>Minimax</h2>
+
+<div class="floatimage">
+<a href="minimax.svg"><img src="minimax.png" alt="minimax tree example" /></a>
+</div>
+
+
+<p>The bot is based on the well known minimax algorithm for
+<a href="http://en.wikipedia.org/wiki/Zero-sum_(game_theory)">zero-sum games</a>.</p>
+
+<p>The idea of minimax is to consider all the possibles outcomes given
+a starting state of the board, until a given depth.
+To achieve this, it starts by considering our bot's admissible moves.
+Each move considered creates a possible future, that is represented as
+a node in a search tree. For each future (or node) we then consider each
+one of the opponent's possible moves. We iterate this process until
+the maximum depth is reached.</p>
+
+<p>As an example, we are going to consider the following game position,
+our bot is represented in green, the opponent in red:</p>
+
+<center>
+<img src="startingboard.png" alt="game position where green may entrap red" />
+</center>
+
+
+<p>If we apply minimax search to this position with a <em>depth of 3</em>,
+we produce the search tree to the right.
+We start with the initial position at the root of the tree.
+It is our turn to play, moving to the east would kill us,
+so we are left with three valid moves: west, south and north,
+that produce the three boards in the first blue area.</p>
+
+<p>Then our opponent considers her available moves
+for each one of the boards. Depending on her move, and on our
+next move, we arrive to one of the 14 leaf positions.</p>
+
+<h2>Evaluation</h2>
+
+<p>Now that we have outlined all the possible futures after 3 turns, we would
+like to chose the move that drives us to the most advantageous position
+(possibly a winning position).</p>
+
+<p>We start by evaluating each  leaf position.
+When the position is an end game position the evaluation is simple.
+A position is graded:</p>
+
+<ul>
+<li>-100 points if the opponent has won</li>
+<li>100 points if we have won</li>
+<li>-50 points for a draw</li>
+</ul>
+
+
+<p>When the position is not an end game position, we have to evaluate
+whether our position is a strong one. We consider two scenarios:</p>
+
+<ul>
+<li><p>When our bot and the opponent's are separated by a wall, we
+evaluate the free space that each bot has. Strong positions
+are the ones where our bot has more free space.</p></li>
+<li><p>When we are not separated, we prefer the positions where the
+two bots are close. We choose this strategy because our bot
+is better at close combat. Indeed when the bots are very far
+apart, the exploration depth needed to consider attacks on
+the opponent is too deep for our minimax algorithm. On the
+other hand when the bots are close, the minimax algorithm
+can find clever attacks to entrap our enemy!</p></li>
+</ul>
+
+
+<h2>Propagating the evaluation</h2>
+
+<p>Now that we can grade each one of the leaf positions, we want
+to propagate these evaluations back to the first level of the
+tree, so we can decide what the best available move in the
+initial position is.</p>
+
+<p>In our turn we make the best possible move. Therefore the evaluation of a board
+in a white region (just before our turn), is the <em>maximum</em> of the evaluation of
+its children. Similarly, when our adversary plays, we predict that she will make
+the worst possible move (from our point of view).  Therefore the evaluation of a
+board in a blue region, is the <em>minimum</em> of the evaluation of its children.</p>
+
+<p>For example consider the leaf positions <strong>s-e-w</strong> and <strong>s-e-e</strong>:</p>
+
+<ul>
+<li><p><strong>s-e-w</strong> is a very bad position, we are trapped with little
+space around us, so its grade is -75.2</p></li>
+<li><p><strong>s-e-e</strong> is better, the opponent is trapped, so its grade is 47.0</p></li>
+</ul>
+
+
+<p>Because both positions are the result of one of <em>our</em> moves,
+to compute the grade of <strong>s-e</strong>, we take the maximum of 75.2 and 47.0.</p>
+
+<p>By iterating this process, we are able to grade the positions at
+level one. Our bot will move to the position with the
+greater grade, in this case <strong>w</strong> , which entraps the enemy.</p>
+
+<h2>Speed considerations</h2>
+
+<p>The challenge has an additional rule: a bot is disqualified if it takes more
+than one second to compute its move.  It is thus very important to be
+efficient in the second that is alloted to us. We apply different optimizations to
+the basic minimax algorithm:</p>
+
+<h3><a href="http://en.wikipedia.org/wiki/Alpha-beta_pruning">Alpha-Beta Pruning</a></h3>
+
+<p>   This is a cutting technique which discards suboptimal branches of the minimax
+   search.
+   In our example, when we explore the branch <strong>s-n</strong> we grade it 45.0.
+   So we know that the branch <strong>s</strong> will be graded at <em>maximum</em> 45.0,
+   since the opponent chooses the worst possible outcome.
+   We also know that the branch <strong>w</strong> is graded 47.0 (more than 45.0),
+   therefore branch <strong>s</strong> will never be taken. By this line of reasoning,
+   branch <strong>s-e</strong> can be cut.</p>
+
+<p>   Below is the alpha-beta pruned search tree of the above example,
+   as you see alpha-beta can cut many branches, giving us more time
+   to explore the worthy ones.</p>
+
+<center>
+<a href="alphabeta.svg"><img src="alphabeta.png" alt="alpha-beta pruning" /></a>
+</center>
+
+
+<h3><a href="http://en.wikipedia.org/wiki/Iterative_deepening_depth-first_search">Iterative Deepening</a></h3>
+
+<p>   The efficiency of alpha-beta pruning depends on the order in which the
+   positions are explored. The idea behind iterative deepening is to first
+   explore <em>depth 1</em>, then order the moves according to their grades. Then explore
+   <em>depth 2</em>, in the order found during the previous exploration, and so on.</p>
+
+<p>   Iterative deepening repeats some of its work since for each exploration
+   it has to start back at <em>depth 1</em>. But the gains that it provides by correctly
+   ordering the nodes outweight the cost of the repetition.</p>
+
+<p>   Iterative deepening is also useful, since it allows us to refine the
+   solution gradually. That means that when we are exploring <em>depth d</em>, we
+   already have a good solution for <em>depth (d-1)</em>.
+   What we do with our bot, is keep track of the time remaining to
+   return a solution. When we are almost out of time, we stop iterative
+   deepening and return the last best solution.</p>
+
+  </article>
+
+  <nav id="menu">
+    
+    <ul>
+<li><a href="/">Contact</a></li>
+<li><a href="/publications/">Research</a></li>
+<li><a href="/lectures/">Lectures</a>
+
+<ul>
+<li><a href="/lectures/archi-ord/">Architecture</a></li>
+<li><a href="/lectures/Java-SE/">Java &amp; SE</a></li>
+<li><a href="/lectures/tp-ifips/">OpenMP/MPI</a></li>
+<li><a href="/lectures/ASE/">ASE</a></li>
+<li><a href="/lectures/SEA/">SEA</a></li>
+<li><a href="/lectures/compil/">Compilers</a></li>
+</ul>
+</li>
+<li><a href="/#misc">Misc</a>
+
+<ul>
+<li><a href="/misc/tronbot">Tron bot</a></li>
+<li><a href="/squeak_nds">Squeak NDS</a></li>
+<li><a href="http://github.com/pablooliveira/bibjekyll/">Bibjekyll</a></li>
+<li><a href="http://github.com/pablooliveira/similar/">Similar</a></li>
+<li><a href="https://github.com/benchmark-subsetting/adaptive-sampling-kit">ASK</a></li>
+<li><a href="http://github.com/pablooliveira/irvm/">IRVM</a></li>
+<li><a href="https://github.com/verificarlo/verificarlo">Verificarlo</a></li>
+<li><a href="https://benchmark-subsetting.github.io/cere/">CERE</a></li>
+</ul>
+</li>
+</ul>
+
+
+  <img id="menudecoration" src="/pulley.png" title="First principles of physics by
+    Carhart, Henry S. and Chute, Horatio N. 1912. Fig 132, Fixed and movable pulley." \>
+  </nav>
+</div>
+
+<footer>
+Last modified the
+2013-11-15
+<br /> Pablo de
+Oliveira Castro &lt;pablo@sifflez.org&gt;
+</footer>
+
+</body>
+</html>

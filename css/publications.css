@@ -1,0 +1,12 @@
+blockquote {
+  margin-top : 10px;
+  margin-left : 20px;
+  /*background-color: #f6ebc1;*/
+  border-left: 5px solid #fce27c;
+  padding: .5em 1em;
+}
+blockquote font {
+  font-size:15px;
+}
+
+dl { margin-bottom: 2em;}

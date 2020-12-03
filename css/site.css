@@ -1,0 +1,215 @@
+/* Reset margin and paddings */
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+}
+
+h1,h2,h3,h4,h5,p,ul { margin-bottom: 1em;}
+
+body {
+  font-family: 'Georgia', serif;
+  font-size:17px;
+  line-height:1.4;
+}
+
+.floatimage a {
+  border: none;
+  text-decoration: none !important;
+  border-bottom: none !important;
+}
+
+article a:link, a:visited, a:active {
+  color: #444;
+  text-decoration: none;
+  border-bottom: 1px dotted #999;
+}
+article a:hover {
+  border-bottom: 1px solid #999;
+}
+
+article {
+  padding-left:10px;
+  padding-right:10px;
+  padding-bottom:40px;
+  color: #3E4349;
+  max-width: 50em;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  font-family: 'Garamond', 'Hoefler Text', 'Georgia', serif;
+}
+
+pre, tt { font-family: 'Consolas', 'Menlo', 'Deja Vu Sans Mono',
+    'Bitstream Vera Sans Mono', monospace; font-size: 0.9em; }
+
+h1 {
+  display: inline-block;
+  font-size:200%;
+}
+h2 {
+  font-size:140%;
+}
+article ul {
+  padding-left:2em;
+  list-style-type: square;
+}
+
+
+/* Header */
+
+header {
+  background: #1c1c1c;
+  padding: 15px 20px;
+}
+
+/*shorter clearfix http://nicolasgallagher.com/micro-clearfix-hack/*/
+header:before,
+header:after {
+  content:"";
+  display:table;
+}
+
+header:after {
+  clear:both;
+}
+
+/* For IE 6/7 (trigger hasLayout) */
+header {
+  zoom:1;
+}
+
+a.to_nav {
+  float: right;
+  color: #fff;
+  background: #4e4e4e;
+  text-decoration: none;
+  padding: 0 10px;
+  font-size: 12px;
+  font-weight: bold;
+  line-height: 22px;
+  height: 22px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  border-radius: 2px;
+}
+
+a.to_nav:hover,
+a.to_nav:focus {
+  color: #1c1;
+  background: #ccc;
+}
+
+/*menu*/
+
+#menu ul {
+    list-style: none;
+    background: #eee;
+    margin-bottom:0;
+}
+
+#menu a {
+    text-decoration: none !important;
+    border-bottom: none !important;
+}
+
+#menu li a {
+    color: #444;
+    display: block;
+    padding: 0 20px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    letter-spacing: 0.1em;
+    line-height: 2em;
+    height: 2em;
+    border-top: 1px solid #ddd;
+}
+
+#menu ul ul li a {
+    border-top: none;
+    font-weight: normal;
+    text-transform: none;
+}
+
+#menu li a:hover,
+#menu li a:focus {
+    color: #1c1c1c;
+    background: #ccc;
+}
+
+#menudecoration {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+
+}
+
+/* footer */
+
+footer {
+  padding-top: 10px;
+  color: gray;
+  font: normal 12px "Lucida Grande", Verdana, Tahoma, Century, sans-serif;
+  font-style: italic;
+}
+
+/* media queries */
+
+@media only screen and (min-width: 800px) {
+  header {
+    display: none;
+  }
+  #menu {
+    padding-top : 20px;
+    display: inline-block;
+    vertical-align: top;
+    float: left;
+    font-size:small;
+  }
+  article {
+    padding-top : 20px;
+    padding-left:40px;
+    padding-right:40px;
+    display: inline-block;
+    vertical-align: top;
+    width: 65%; /* Fallback for browsers (eg. IE8) without calc support */
+    width: calc(100% - 250px);
+  }
+  html, body {
+    height:100%;
+  }
+  #wrapper {
+    min-height: 100%;
+    margin-bottom: -40px;
+  }
+  footer {
+    clear: both;
+    size:40px;
+  }
+  .floatimage {
+    float: right;
+    padding-left: 40px;
+    padding-bottom: 10px;
+  }
+  #menudecoration {
+    margin-right:-10px;
+  }
+}

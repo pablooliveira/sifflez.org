@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name=viewport content="width=device-width, initial-scale=1">
+   <link rel="stylesheet" href="/css/normalize.css" type="text/css" />
+   <link rel="stylesheet" href="/css/site.css" type="text/css" />
+   <link rel="stylesheet" href="/css/publications.css" type="text/css" />
+   <!--[if lt IE 9]>
+       <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/r29/html5.min.js"></script>
+   <![endif]-->
+   <link rel="shortcut icon" href="/favicon.ico" />
+   <title>Publications</title>
+</head>
+<body>
+
+<header>
+    <a  class="to_nav" href="#menu">Menu</a>
+</header>
+
+<div id="wrapper">
+<article>
+<h1> Publications </h1>
+<h2>Computer Arithmetic</h2>
+
+<dl>
+
+<dt>
+<a name="Kiar2020Comparing">&nbsp;</a>
+</dt>
+<dd>
+<b>Comparing perturbation models for evaluating stability of neuroimaging
+  pipelines</b>.
+ Gregory Kiar, Pablo de&nbsp;Oliveira&nbsp;Castro, Pierre Rioux, Eric Petit,
+  Shawn&nbsp;T Brown, Alan&nbsp;C Evans, and Tristan Glatard.
+ <em>The International Journal of High Performance Computing
+  Applications</em>, 0(0):1094342020926237, 0.
+[&nbsp;<a href="arithmetic_bib.html#Kiar2020Comparing">bib</a>&nbsp;| 
+<a href="http://dx.doi.org/10.1177/1094342020926237">DOI</a>&nbsp;| 
+<a href=" https://doi.org/10.1177/1094342020926237 ">www:</a>&nbsp;]
+<blockquote><font size="-1">
+ With an increase in awareness regarding a troubling lack of reproducibility in analytical software tools, the degree of validity in scientific derivatives and their downstream results has become unclear. The nature of reproducibility issues may vary across domains, tools, data sets, and computational infrastructures, but numerical instabilities are thought to be a core contributor. In neuroimaging, unexpected deviations have been observed when varying operating systems, software implementations, or adding negligible quantities of noise. In the field of numerical analysis, these issues have recently been explored through Monte Carlo Arithmetic, a method involving the instrumentation of floating-point operations with probabilistic noise injections at a target precision. Exploring multiple simulations in this context allows the characterization of the result space for a given tool or operation. In this article, we compare various perturbation models to introduce instabilities within a typical neuroimaging pipeline, including (i) targeted noise, (ii) Monte Carlo Arithmetic, and (iii) operating system variation, to identify the significance and quality of their impact on the resulting derivatives. We demonstrate that even low-order models in neuroimaging such as the structural connectome estimation pipeline evaluated here are sensitive to numerical instabilities, suggesting that stability is a relevant axis upon which tools are compared, alongside more traditional criteria such as biological feasibility, computational efficiency, or, when possible, accuracy. Heterogeneity was observed across participants which clearly illustrates a strong interaction between the tool and data set being processed, requiring that the stability of a given tool be evaluated with respect to a given cohort. We identify use cases for each perturbation method tested, including quality assurance, pipeline error detection, and local sensitivity analysis, and make recommendations for the evaluation of stability in a practical and analytically focused setting. Identifying how these relationships and recommendations scale to higher order computational tools, distinct data sets, and their implication on biological feasibility remain exciting avenues for future work. 
+</font></blockquote>
+
+</dd>
+
+
+<dt>
+<a name="Defour2020CustomPrecision">&nbsp;</a>
+</dt>
+<dd>
+<b>Custom-Precision Mathematical Library Explorations for Code Profiling and
+  Optimization</b>.
+ David Defour, Pablo de&nbsp;Oliveira&nbsp;Castro, Matei Istoan, and Eric Petit.
+ In <em>27th IEEE Symposium on Computer Arithmetic, ARITH 2020</em>,
+  (to appear) 2020.
+[&nbsp;<a href="arithmetic_bib.html#Defour2020CustomPrecision">bib</a>&nbsp;| 
+<a href="https://hal.archives-ouvertes.fr/hal-02563852/document">http</a>&nbsp;]
+<blockquote><font size="-1">
+The typical processors used for scientific computing have fixed-width data-paths. This implies that mathematical libraries were specifically developed to target each of these fixed precisions (binary16, binary32, binary64). However, to address the increasing energy consumption and throughput requirements of scientific applications, library and hardware designers are moving beyond this one-size-fits-all approach. In this article we propose to study the effects and benefits of using user-defined floating-point formats and target accuracies in calculations involving mathematical functions. Our tool collects input-data profiles and iteratively explores lower precisions for each call-site of a mathematical function in user applications. This profiling data will be a valuable asset for specializing and fine-tuning mathematical function implementations for a given application. We demonstrate the tool's capabilities on SGP4, a satellite tracking application. The profile data shows the potential for specialization and provides insight into answering where it is useful to provide variable-precision designs for elementary function evaluation.
+</font></blockquote>
+
+</dd>
+
+
+<dt>
+<a name="Chatelain2019automatic">&nbsp;</a>
+</dt>
+<dd>
+<b>Automatic exploration of reduced floating-point representations in
+  iterative methods</b>.
+ Yohan Chatelain, Eric Petit, Pablo de&nbsp;Oliveira&nbsp;Castro, Ghislain
+  Lartigue, and David Defour.
+ In <em>Euro-Par 2019 Parallel Processing - 25th International
+  Conference</em>, Lecture Notes in Computer Science. Springer, 2019.
+[&nbsp;<a href="arithmetic_bib.html#Chatelain2019automatic">bib</a>&nbsp;| 
+<a href="dyn_adapt_precision19.pdf">.pdf</a>&nbsp;| 
+<a href="dyn_adapt_slides19.pdf">.pdf</a>&nbsp;]
+<blockquote><font size="-1">
+With the ever-increasing need for computation of scientific applications, new application domains, and major energy constraints, the landscape of floating-point computation is changing.  New floating-point representation formats are emerging and there is a need for tools to simulate their impact in legacy codes.  In this paper, we propose an automatic tool to evaluate the effect of adapting the floating point precision for each operation over time, which is particularly useful in iterative schemes.  We present a backend to emulate any IEEE-754 floating-point operation in lower precision.  We tested the numerical errors resilience of our solutions thanks to Monte Carlo Arithmetic and  demonstrated the effectiveness of this methodology on YALES2, a large Combustion-CFD HPC code, by achieving 28% to 67% reduction in communication volume by lowering precision.
+</font></blockquote>
+
+</dd>
+
+
+<dt>
+<a name="Sohier2018confidence">&nbsp;</a>
+</dt>
+<dd>
+<b>Confidence Intervals for Stochastic Arithmetic</b>.
+ Devan Sohier, Pablo de&nbsp;Oliveira&nbsp;Castro, Fran&#x00E7;ois F&eacute;votte,
+  Bruno Lathuili&egrave;re, Eric Petit, and Olivier Jamond.
+ (2020) accepted for publication in ACM Transactions on Mathematical
+  Software (ACM TOMS), preprint, July 2018.
+[&nbsp;<a href="arithmetic_bib.html#Sohier2018confidence">bib</a>&nbsp;| 
+<a href="https://hal.archives-ouvertes.fr/hal-01827319">http</a>&nbsp;| 
+<a href="https://hal.archives-ouvertes.fr/hal-01827319/file/confidence.pdf">.pdf</a>&nbsp;| 
+<a href="confidence_interval_slides.pdf">.pdf</a>&nbsp;]
+<blockquote><font size="-1">
+
+    Quantifying errors and losses due to the use of Floating-Point (FP) calculations in industrial scientific computing codes is an important part of the Verification, Validation and Uncertainty Quantification (VVUQ) process. Stochastic Arithmetic is one way to model and estimate FP losses of accuracy, which scales well to large, industrial codes. It exists in different flavors, such as CESTAC or MCA, implemented in various tools such as CADNA, Verificarlo or Verrou. These methodologies and tools are based on the idea that FP losses of accuracy can be modeled via randomness. Therefore, they share the same need to perform a statistical analysis of programs results in order to estimate the significance of the results. In this paper, we propose a framework to perform a solid statistical analysis of Stochastic Arithmetic. This framework unifies all existing definitions of the number of significant digits (CESTAC and MCA), and also proposes a new quantity of interest: the number of digits contributing to the accuracy of the results. Sound confidence intervals are provided for all estimators, both in the case of normally distributed results, and in the general case. The use of this framework is demonstrated by two case studies of large, industrial codes: Europlexus and code_aster.
+  
+</font></blockquote>
+
+</dd>
+
+
+<dt>
+<a name="Chatelain2018veritracer">&nbsp;</a>
+</dt>
+<dd>
+<b>VeriTracer: Context-enriched tracer for floating-point arithmetic
+  analysis</b>.
+ Yohan Chatelain, Pablo de&nbsp;Oliveira&nbsp;Castro, Eric Petit, David Defour,
+  Jordan Bieder, and Marc Torrent.
+ In <em>25th IEEE Symposium on Computer Arithmetic, ARITH 2018,
+  Amherst, MA, USA. June 25th-27th, 2018</em>, pages 65--72. IEEE, 2018.
+[&nbsp;<a href="arithmetic_bib.html#Chatelain2018veritracer">bib</a>&nbsp;| 
+<a href="arith2018veritracer.pdf">.pdf</a>&nbsp;| 
+<a href="arith2018slides.pdf">.pdf</a>&nbsp;]
+<blockquote><font size="-1">
+VeriTracer automatically instruments a code and
+    traces the accuracy of floating-point variables over
+    time. VeriTracer enriches the visual traces with contextual
+    information such as the call site path in which
+    a value was modified. Contextual information is important
+    to understand how the floating-point errors
+    propagate in complex codes. VeriTracer is implemented
+    as an LLVM compiler tool on top of Verificarlo.
+    We demonstrate how VeriTracer can detect accuracy
+    loss and quantify the impact of using a compensated
+    algorithm on ABINIT, an industrial HPC application
+    for Ab Initio quantum computation.
+</font></blockquote>
+
+</dd>
+
+
+<dt>
+<a name="Denis2016verificarlo">&nbsp;</a>
+</dt>
+<dd>
+<b>Verificarlo: Checking Floating Point Accuracy through Monte Carlo
+  Arithmetic</b>.
+ Christophe Denis, Pablo de&nbsp;Oliveira&nbsp;Castro, and Eric Petit.
+ In <em>23nd IEEE Symposium on Computer Arithmetic, ARITH 2016,
+  Silicon Valley, CA, USA, July 10-13, 2016</em>, pages 55--62, 2016.
+[&nbsp;<a href="arithmetic_bib.html#Denis2016verificarlo">bib</a>&nbsp;| 
+<a href="http://dx.doi.org/10.1109/ARITH.2016.31">DOI</a>&nbsp;| 
+<a href="http://dx.doi.org/10.1109/ARITH.2016.31">http</a>&nbsp;| 
+<a href="https://hal.archives-ouvertes.fr/hal-01192668/file/verificarlo-preprint.pdf">.pdf</a>&nbsp;]
+<blockquote><font size="-1">
+Numerical accuracy of floating point computation is a well studied topic which has not made its way to the end-user in scientific computing. Yet, it has become a critical issue with the recent requirements for code modernization to harness new highly parallel hardware and perform higher resolution computation. To democratize numerical accuracy analysis, it is important to propose tools and methodologies to study large use cases in a reliable and automatic way. In this paper, we propose verificarlo, an extension to the LLVM compiler to automatically use Monte Carlo Arithmetic in a transparent way for the end-user. It supports all the major languages including C, C++, and Fortran. Unlike source-to-source approaches, our implementation captures the influence of compiler optimizations on the numerical accuracy. We illustrate how Monte Carlo Arithmetic using the verificarlo tool outperforms the existing approaches on various use cases and is a step toward automatic numerical analysis.
+</font></blockquote>
+
+</dd>
+</dl>
+
+
+<h2>Performance Characterization</h2>
+
+<dl>
+
+<dt>
+<a name="Fontenaille2018scalable">&nbsp;</a>
+</dt>
+<dd>
+<b>Scalable Work-Stealing Load-Balancer for HPC Distributed Memory Systems</b>.
+ Clement Fontenaille, Eric Petit, Pablo de&nbsp;Oliveira&nbsp;Castro, Seijilo
+  Uemura, Devan Sohier, Piotr Lesnicki, Ghislain Lartigue, and Vincent Moureau.
+ In <em>COLOC: 2nd Workshop on Data Locality, in conjunction with
+  Euro-Par 2018</em>, 2018.
+[&nbsp;<a href="performance_bib.html#Fontenaille2018scalable">bib</a>&nbsp;]
+
+</dd>
+
+
+<dt>
+<a name="Popov2017piecewise">&nbsp;</a>
+</dt>
+<dd>
+<b>Piecewise holistic autotuning of parallel programs with CERE</b>.
+ Mihail Popov, Chadi Akel, Yohan Chatelain, William Jalby, and Pablo
+  de&nbsp;Oliveira&nbsp;Castro.
+ <em>Concurrency and Computation: Practice and Experience</em>, page
+  e4190, 2017.
+[&nbsp;<a href="performance_bib.html#Popov2017piecewise">bib</a>&nbsp;| 
+<a href="http://dx.doi.org/10.1002/cpe.4190">DOI</a>&nbsp;| 
+<a href="http://dx.doi.org/10.1002/cpe.4190">http</a>&nbsp;| 
+<a href="https://hal-uvsq.archives-ouvertes.fr/hal-01542912/document">http</a>&nbsp;]
+<blockquote><font size="-1">
+Current architecture complexity requires fine tuning of compiler and runtime parameters to achieve best performance. Autotuning substantially improves default parameters in many scenarios, but it is a costly process requiring long iterative evaluations. We propose an automatic piecewise autotuner based on CERE (Codelet Extractor and REplayer). CERE decomposes applications into small pieces called codelets: Each codelet maps to a loop or to an OpenMP parallel region and can be replayed as a standalone program. Codelet autotuning achieves better speedups at a lower tuning cost. By grouping codelet invocations with the same performance behavior, CERE reduces the number of loops or OpenMP regions to be evaluated. Moreover, unlike whole-program tuning, CERE customizes the set of best parameters for each specific OpenMP region or loop. We demonstrate the CERE tuning of compiler optimizations, number of threads, thread affinity, and scheduling policy on both nonuniform memory access and heterogeneous architectures. Over the NAS benchmarks, we achieve an average speedup of 1.08x after tuning. Tuning a codelet is 13x cheaper than whole-program evaluation and predicts the tuning impact with a 94.7% accuracy. Similarly, exploring thread configurations and scheduling policies for a Black‐Scholes solver on an heterogeneous big.LITTLE architecture is over 40x faster using CERE.
+</font></blockquote>
+
+</dd>
+
+
+<dt>
+<a name="Popov2016piecewise">&nbsp;</a>
+</dt>
+<dd>
+<b>Piecewise Holistic Autotuning of Compiler and Runtime Parameters</b>.
+ Mihail Popov, Chadi Akel, William Jalby, and Pablo de&nbsp;Oliveira
+  Castro.
+ In Christos Kaklamanis, Theodore&nbsp;S. Papatheodorou, and Paul&nbsp;G.
+  Spirakis, editors, <em>Euro-Par 2016 Parallel Processing - 22nd
+  International Conference</em>, volume 9833 of <em>Lecture Notes in Computer
+  Science</em>, pages 238--250. Springer, 2016.
+[&nbsp;<a href="performance_bib.html#Popov2016piecewise">bib</a>&nbsp;| 
+<a href="europar16.pdf">.pdf</a>&nbsp;| 
+<a href="europar16-slides.pdf">.pdf</a>&nbsp;]
+<blockquote><font size="-1">
+Current architecture complexity requires fine tuning of compiler and runtime parameters to achieve full potential performance.  Autotuning substantially improves default parameters in many scenarios but it is a costly process requiring a long iterative evaluation.  We propose an automatic piecewise autotuner based on CERE (Codelet Extractor and REplayer). CERE decomposes applications into small pieces called codelets: each codelet maps to a loop or to an OpenMP parallel region and can be replayed as a standalone program.  Codelet autotuning achieves better speedups at a lower tuning cost. By grouping codelet invocations with the same performance behavior, CERE reduces the number of loops or OpenMP regions to be evaluated. Moreover unlike whole-program tuning, CERE customizes the set of best parameters for each specific OpenMP region or loop.  We demonstrate CERE tuning of compiler optimizations, number of threads and thread affinity on a NUMA architecture. On average over the NAS 3.0 benchmarks, we achieve a speedup of 1.08x after tuning.  Tuning a single codelet is 13x cheaper than whole-program evaluation and estimates the tuning impact on the original region with a 94.7% accuracy. On a Reverse Time Migration (RTM) proto-application we achieve a 1.11x speedup with a 200x cheaper exploration.
+</font></blockquote>
+
+</dd>
+
+
+<dt>
+<a name="Popov2015pcere">&nbsp;</a>
+</dt>
+<dd>
+<b>PCERE: Fine-grained Parallel Benchmark Decomposition for Scalability
+  Prediction</b>.
+ Mihail Popov, Chadi Akel, Florent Conti, William Jalby, and Pablo
+  de&nbsp;Oliveira Castro.
+ In <em>Parallel and Distributed Processing Symposium (IPDPS), 2015
+  IEEE International</em>, pages 1151--1160. IEEE, 2015.
+[&nbsp;<a href="performance_bib.html#Popov2015pcere">bib</a>&nbsp;| 
+<a href="pcere15.pdf">.pdf</a>&nbsp;| 
+<a href="pcere15-slides.pdf">.pdf</a>&nbsp;]
+<blockquote><font size="-1">
+
+Evaluating the strong scalability of OpenMP applications is a costly and time-consuming process. It traditionally requires executing the whole application multiple times with different number of threads. We propose the Parallel Codelet Extractor and REplayer (PCERE), a tool to reduce the cost of scalability evaluation. PCERE decomposes applications into small pieces called codelets: each codelet maps to an OpenMP parallel region and can be replayed as a standalone program. To accelerate scalability prediction, PCERE replays codelets while varying the number of threads. Prediction speedup comes from two key ideas. First, the number of invocations during replay can be significantly reduced. Invocations that have the same performance are grouped together and a single representative is replayed. Second, sequential parts of the programs do not need to be replayed for each different thread configuration. PCERE codelets can be captured once and replayed accurately on multiple architectures, enabling cross-architecture parallel performance prediction. We evaluate PCERE on a C version of the NAS 3.0 Parallel Benchmarks (NPB). We achieve an average speed-up of 25 times on evaluating OpenMP applications scalability with an average error of 4.9% (median error of 1.7%).
+    
+</font></blockquote>
+
+</dd>
+
+
+<dt>
+<a name="Oliveira2015CERE">&nbsp;</a>
+</dt>
+<dd>
+<b>CERE: LLVM Based Codelet Extractor and REplayer for Piecewise
+  Benchmarking and Optimization</b>.
+ Pablo de&nbsp;Oliveira&nbsp;Castro, Chadi Akel, Eric Petit, Mihail Popov, and
+  William Jalby.
+ <em>ACM Transactions on Architecture and Code Optimization (TACO)</em>,
+  12(1):6, 2015.
+[&nbsp;<a href="performance_bib.html#Oliveira2015CERE">bib</a>&nbsp;| 
+<a href="http://dx.doi.org/10.1145/2724717">DOI</a>&nbsp;| 
+<a href="cere15.pdf">.pdf</a>&nbsp;]
+<blockquote><font size="-1">
+
+        This article presents Codelet Extractor and REplayer (CERE), an
+        open-source framework for code isolation. CERE finds
+        and extracts the hotspots of an application as
+        isolated fragments of code, called
+        codelets. Codelets can be modified, compiled, run,
+        and measured independently from the original
+        application. Code isolation reduces benchmarking
+        cost and allows piecewise optimization of an
+        application. Unlike previous approaches, CERE
+        isolates codes at the compiler Intermediate
+        Representation (IR) level. Therefore CERE is
+        language agnostic and supports many input languages
+        such as C, C++, Fortran, and D. CERE automatically
+        detects codelets invocations that have the same
+        performance behavior. Then, it selects a reduced set
+        of representative codelets and invocations, much
+        faster to replay, which still captures accurately
+        the original application. In addition, CERE supports
+        recompiling and retargeting the extracted
+        codelets. Therefore, CERE can be used for
+        cross-architecture performance prediction or
+        piecewise code optimization. On the SPEC 2006 FP
+        benchmarks, CERE codelets cover 90.9% and accurately
+        replay 66.3% of the execution time. We use CERE
+        codelets in a realistic study to evaluate three
+        different architectures on the NAS benchmarks. CERE
+        accurately estimates each architecture performance
+        and is 7.3x to 46.6x cheaper than running the full
+        benchmark.
+    
+</font></blockquote>
+
+</dd>
+
+
+<dt>
+<a name="Oliveira2014finegrained">&nbsp;</a>
+</dt>
+<dd>
+<b>Fine-grained Benchmark Subsetting for System Selection</b>.
+ Pablo de&nbsp;Oliveira&nbsp;Castro, Yuriy Kashnikov, Chadi Akel, Mihail Popov,
+  and William Jalby.
+ In <em>Proceedings of Annual IEEE/ACM International Symposium on
+  Code Generation and Optimization</em>, CGO '14, pages 132:132--132:142, New York,
+  NY, USA, 2014. ACM.
+[&nbsp;<a href="performance_bib.html#Oliveira2014finegrained">bib</a>&nbsp;| 
+<a href="http://dx.doi.org/10.1145/2544137.2544144">DOI</a>&nbsp;| 
+<a href="http://doi.acm.org/10.1145/2544137.2544144">http</a>&nbsp;| 
+<a href="finegrained-cgo14.pdf">.pdf</a>&nbsp;| 
+<a href="finegrained-slides.pdf">.pdf</a>&nbsp;]
+<blockquote><font size="-1">
+
+        System selection aims at finding the best architecture for a set of
+        programs and workloads. It traditionally requires long running
+        benchmarks. We propose a method to reduce the cost of system
+        selection. We break down benchmarks into elementary fragments of
+        source code, called codelets. Then, we identify two causes of
+        redundancy: first, similar codelets; second, codelets called
+        repeatedly. The key idea is to minimize redundancy inside the
+        benchmark suite to speed it up. For each group of similar codelets,
+        only one representative is kept. For codelets called repeatedly and for
+        which the performance does not vary across calls, the number of
+        invocations is reduced. Given an initial benchmark suite, our
+        method produces a set of reduced benchmarks that can be used in
+        place of the original one for system selection.<p>
+        We evaluate our method on the NAS SER benchmarks, producing a reduced
+        benchmark suite 30 times faster in average than the original suite,
+        with a maximum of 44 times. The reduced suite predicts the execution
+        time on three target architectures with a median error between 3.9%
+        and 8%.
+    
+</font></blockquote>
+
+</dd>
+
+
+<dt>
+<a name="Oliveira2013Adaptive">&nbsp;</a>
+</dt>
+<dd>
+<b>Adaptive Sampling for Performance Characterization of Application
+  Kernels</b>.
+ Pablo de&nbsp;Oliveira&nbsp;Castro, Eric Petit, Asma Farjallah, and William
+  Jalby.
+ <em>Concurrency and Computation: Practice and Experience</em>, 2013.
+[&nbsp;<a href="performance_bib.html#Oliveira2013Adaptive">bib</a>&nbsp;| 
+<a href="http://dx.doi.org/10.1002/cpe.3097">DOI</a>&nbsp;| 
+<a href="ASK-cpe13.pdf">.pdf</a>&nbsp;]
+<blockquote><font size="-1">
+<p>
+    Characterizing performance is essential to optimize programs and architectures.
+    The open source Adaptive Sampling Kit (ASK) measures the performance
+    trade-off in large design spaces. Exhaustively sampling all sets of
+    parameters is computationally intractable. Therefore, ASK concentrates
+    exploration in the most irregular regions of the design space through
+    multiple adaptive sampling strategies. The paper presents the ASK
+    architecture and a set of adaptive sampling strategies, including a new
+    approach called Hierarchical Variance Sampling. ASK's usage is demonstrated
+    on three performance characterization problems: memory stride accesses,
+    Jacobian stencil code, and an industrial seismic application using 3D stencils.
+    ASK builds accurate models of performance with a small number of measures.
+    It considerably reduces the cost of performance exploration. For instance,
+    the Jacobian stencil code design space, which has more than 31 × 10^8
+    combinations of parameters, is accurately predicted using only 1500
+    combinations.<p>
+    
+</font></blockquote>
+
+</dd>
+
+
+<dt>
+<a name="Akel2013sourcecode">&nbsp;</a>
+</dt>
+<dd>
+<b>Is Source-code Isolation Viable for Performance Characterization?</b>
+ Chadi Akel, Yuriy Kashnikov, Pablo de&nbsp;Oliveira&nbsp;Castro, and William
+  Jalby.
+ In <em>International Workshop on Parallel Software Tools and Tool
+  Infrastructures (PSTI)</em>. IEEE Computer Society, 2013.
+[&nbsp;<a href="performance_bib.html#Akel2013sourcecode">bib</a>&nbsp;| 
+<a href="psti13.pdf">.pdf</a>&nbsp;| 
+<a href="psti13-slides.pdf">.pdf</a>&nbsp;]
+<blockquote><font size="-1">
+<p>
+Source-code isolation finds and extracts the hotspots of an application as
+independent isolated fragments of code, called codelets. Codelets can be
+modified, compiled, run, and measured independently from the original
+application. Source-code isolation reduces benchmarking cost and allows
+piece-wise optimization of an application. Source-code isolation is faster
+than whole-program benchmarking and optimization since the user can
+concentrate only on the bottlenecks. This paper examines the viability of
+using isolated codelets in place of the original application for
+performance characterization and optimization. On the NAS benchmarks, we
+show that codelets capture 92.3% of the original execution time. We present
+a set of techniques for keeping codelets as faithful as possible to the
+original hotspots: 63.6% of the codelets have the same assembly as the
+original hotspots and 81.6% of the codelets have the same run time
+performance as the original hotspots.<p>
+
+</font></blockquote>
+
+</dd>
+
+
+<dt>
+<a name="Kashnikov2013evaluating">&nbsp;</a>
+</dt>
+<dd>
+<b>Evaluating Architecture and Compiler Design through Static Loop
+  Analysis</b>.
+ Yuriy Kashnikov, Pablo de&nbsp;Oliveira&nbsp;Castro, Emmanuel Oseret, and
+  William Jalby.
+ In <em>High Performance Computing and Simulation (HPCS), 2013
+  International Conference on</em>, pages 535 -- 544. IEEE Computer Society, 2013.
+[&nbsp;<a href="performance_bib.html#Kashnikov2013evaluating">bib</a>&nbsp;| 
+<a href="http://dx.doi.org/10.1109/HPCSim.2013.6641465">DOI</a>&nbsp;| 
+<a href="hpcs13.pdf">.pdf</a>&nbsp;]
+<blockquote><font size="-1">
+
+      Using the MAQAO loop static analyzer, we characterize a corpus of binary
+          loops extracted from common benchmark suits such as SPEC, NAS, etc.
+          and several industrial applications. For each loop, MAQAO extracts
+          low-level assembly features such as: integer and floating-point
+          vectorization ratio, number of registers used and spill-fill, number
+          of concurrent memory streams accessed, etc. The distributions of
+          these features on a large representative code corpus can be used to
+          evaluate compilers and architectures and tune them for the most
+          frequently used assembly patterns. In this paper, we present the
+          MAQAO loop analyzer and a characterization of the 4857 binary loops.
+          We evaluate register allocation and vectorization on two compilers
+          and propose a method to tune loop buffer size and stream prefetcher
+          based on static analysis of benchmarks.
+  
+</font></blockquote>
+
+</dd>
+
+
+<dt>
+<a name="Oliveira2012ASK">&nbsp;</a>
+</dt>
+<dd>
+<b>ASK: Adaptive Sampling Kit for Performance Characterization</b>.
+ Pablo de&nbsp;Oliveira&nbsp;Castro, Eric Petit, Jean&nbsp;Christophe Beyler, and
+  William Jalby.
+ In Christos Kaklamanis, Theodore&nbsp;S. Papatheodorou, and Paul&nbsp;G.
+  Spirakis, editors, <em>Euro-Par 2012 Parallel Processing - 18th
+  International Conference</em>, volume 7484 of <em>Lecture Notes in Computer
+  Science</em>, pages 89--101. Springer, 2012.
+[&nbsp;<a href="performance_bib.html#Oliveira2012ASK">bib</a>&nbsp;| 
+<a href="ASK-europar12.pdf">.pdf</a>&nbsp;| 
+<a href="ASK-europar12-slides.pdf">.pdf</a>&nbsp;]
+<blockquote><font size="-1">
+
+    Characterizing performance is essential to optimize programs
+    and architectures. The open source Adaptive Sampling Kit (ASK) measures
+    the performance trade-offs in large design spaces. Exhaustively
+    sampling all points is computationally intractable. Therefore, ASK
+    concentrates exploration in the most irregular regions of the design space
+    through multiple adaptive sampling methods. The paper presents the
+    ASK architecture and a set of adaptive sampling strategies, including a
+    new approach: Hierarchical Variance Sampling. ASK’s usage is demonstrated
+    on two performance characterization problems: memory stride
+    accesses and stencil codes. ASK builds precise models of performance
+    with a small number of measures. It considerably reduces the cost of
+    performance exploration. For instance, the stencil code design space,
+    which has more than 31.10^8 points, is accurately predicted using only
+    1500 points.
+    
+</font></blockquote>
+
+</dd>
+
+
+<dt>
+<a name="Petit2012computing">&nbsp;</a>
+</dt>
+<dd>
+<b>Computing-Kernels Performance Prediction Using DataFlow Analysis and
+  Microbenchmarking</b>.
+ Eric Petit, Pablo de&nbsp;Oliveira&nbsp;Castro, Tarek Menour, Bettina Krammer,
+  and William Jalby.
+ In <em>International Workshop on Compilers for Parallel Computers</em>,
+  2012.
+[&nbsp;<a href="performance_bib.html#Petit2012computing">bib</a>&nbsp;]
+
+</dd>
+</dl>
+
+
+<h2>Dataflow Parallelism</h2>
+
+<dl>
+
+<dt>
+<a name="Oliveira12DSL">&nbsp;</a>
+</dt>
+<dd>
+<b>DSL Stream Programming on Multicore Architectures</b>.
+ Pablo de&nbsp;Oliveira&nbsp;Castro, St&eacute;phane Louise, and Denis Barthou.
+ In Sabri Pllana and Fatos Xhafa, editors, <em>Programming Multi-core
+  and Many-core Computing Systems</em>, to appear. John Wiley and Sons, 2012.
+[&nbsp;<a href="dataflow_bib.html#Oliveira12DSL">bib</a>&nbsp;| 
+<a href="dsl-preprint11.pdf">.pdf</a>&nbsp;]
+<blockquote><font size="-1">
+
+    To effectively program parallel architectures it is important to combine a
+    simple expression of the parallelism with efficient compiler optimizations. We
+    propose a novel stream programming framework based on two domain specific
+    languages that separate these two issues. A high-level declarative language
+    allows to describe data dependencies between filters while an intermediate
+    language enables powerful optimizations through a set of stream graph
+    transformations. This two level approach offers a clean separation between the
+    issue of programming complexity and the issue of target specific optimization.
+    
+</font></blockquote>
+
+</dd>
+
+
+<dt>
+<a name="Oliveira2010automatic">&nbsp;</a>
+</dt>
+<dd>
+<b>Automatic mapping of stream programs on multicore architectures</b>.
+ Pablo de&nbsp;Oliveira&nbsp;Castro, St&eacute;phane Louise, and Denis Barthou.
+ In <em>International Workshop on Compilers for Parallel Computers</em>,
+  2010.
+[&nbsp;<a href="dataflow_bib.html#Oliveira2010automatic">bib</a>&nbsp;]
+
+</dd>
+
+
+<dt>
+<a name="Oliveira10multidimensional">&nbsp;</a>
+</dt>
+<dd>
+<b>A Multidimensional Array Slicing DSL for Stream Programming</b>.
+ Pablo de&nbsp;Oliveira&nbsp;Castro, St&eacute;phane Louise, and Denis Barthou.
+ In <em>Complex, Intelligent and Software Intensive Systems,
+  International Conference</em>, pages 913--918. IEEE Computer Society, 2010.
+[&nbsp;<a href="dataflow_bib.html#Oliveira10multidimensional">bib</a>&nbsp;| 
+<a href="http://doi.ieeecomputersociety.org/10.1109/CISIS.2010.135">DOI</a>&nbsp;| 
+<a href="mucocos10.pdf">.pdf</a>&nbsp;]
+<blockquote><font size="-1">
+
+Stream languages offer a simple multi-core programming model and achieve good performance. Yet expressing data rearrangement patterns (like a matrix block decomposition) in these languages is verbose and error prone. In this paper, we propose a high-level programming language to elegantly describe n-dimensional data reorganization patterns. We show how to compile it to stream languages.
+
+</font></blockquote>
+
+</dd>
+
+
+<dt>
+<a name="Oliveira10Reducing">&nbsp;</a>
+</dt>
+<dd>
+<b>Reducing memory requirements of stream programs by graph
+  transformations</b>.
+ Pablo de&nbsp;Oliveira&nbsp;Castro, St&eacute;phane Louise, and Denis Barthou.
+ In <em>High Performance Computing and Simulation (HPCS), 2010
+  International Conference on</em>, pages 171--180. IEEE Computer Society, 2010.
+[&nbsp;<a href="dataflow_bib.html#Oliveira10Reducing">bib</a>&nbsp;| 
+<a href="http://doi.ieeecomputersociety.org/10.1109/HPCS.2010.5547134">DOI</a>&nbsp;| 
+<a href="streammemory-hpcs10.pdf">.pdf</a>&nbsp;]
+<blockquote><font size="-1">
+
+  Stream languages explicitly describe fork-join parallelism and pipelines, offering a powerful programming model for many-core Multi-Processor Systems on Chip (MPSoC). In an embedded resource-constrained system, adapting stream programs to fit memory requirements is particularly important. In this paper we present a new approach to reduce the memory footprint required to run stream programs on MPSoC. Through an exploration of equivalent program variants, the method selects parallel code minimizing memory consumption. For large program instances, a heuristic accelerating the exploration phase is proposed and evaluated. We demonstrate the interest of our method on a panel of ten significant benchmarks. Using a multi-core modulo scheduling technique, our approach lowers considerably the minimal amount of memory required to run seven of these benchmarks while preserving throughput.
+  
+</font></blockquote>
+
+</dd>
+
+
+<dt>
+<a name="DEOLIVEIRACASTRO:2009:HAL-00447376:1">&nbsp;</a>
+</dt>
+<dd>
+<b>Design-Space Exploration of Stream Programs through
+  Semantic-Preserving Transformations</b>.
+ Pablo de&nbsp;Oliveira&nbsp;Castro, St&eacute;phane Louise, and Denis Barthou.
+[&nbsp;<a href="dataflow_bib.html#DEOLIVEIRACASTRO:2009:HAL-00447376:1">bib</a>&nbsp;| 
+<a href="http://hal.archives-ouvertes.fr/hal-00447376/PDF/stream_transformations_hal.pdf">.pdf</a>&nbsp;]
+<blockquote><font size="-1">
+Stream languages explicitly describe fork-join parallelism and pipelines, offering a powerful programming model for many-core Multi-Processor Systems on Chip (MPSoC). In an embedded resource-constrained system, adapting stream programs to fit memory requirements is particularly important. In this paper we present a design-space exploration technique to reduce the minimal memory required when running stream programs on MPSoC; this allows to target memory constrained systems and in some cases obtain better performance. Using a set of semantically preserving transformations, we explore a large number of equivalent program variants; we select the variant that minimizes a buffer evaluation metric. To cope efficiently with large program instances we propose and evaluate an heuristic for this method. We demonstrate the interest of our method on a panel of ten significant benchmarks. As an illustration, we measure the minimal memory required using a multi-core modulo scheduling. Our approach lowers considerably the minimal memory required for seven of the ten benchmarks.
+</font></blockquote>
+
+</dd>
+
+
+<dt>
+<a name="Oliveira:phd">&nbsp;</a>
+</dt>
+<dd>
+<b>Expression et optimisation des r&eacute;organisations de donn&eacute;es dans du
+  parall&eacute;lisme de flots</b>.
+ Pablo de&nbsp;Oliveira&nbsp;Castro.
+ PhD thesis, Universit&eacute; de Versailles Saint Quentin en Yvelines,
+  2010.
+[&nbsp;<a href="dataflow_bib.html#Oliveira:phd">bib</a>&nbsp;| 
+<a href="these-oliveira.pdf">.pdf</a>&nbsp;| 
+<a href="soutenance.pdf">.pdf</a>&nbsp;]
+
+</dd>
+</dl>
+
+
+
+
+<p></p>
+
+
+<p>If you download IEEE publications please consider the
+<a href="ieeecrnotice.html">copyright notice.</a></p>
+
+<script>
+var bqs = document.getElementsByTagName("blockquote");
+for(var i = 0; i < bqs.length; i++) {
+  bqs[i].style.display = "none";
+  var ab = document.createElement('a');
+  ab.setAttribute('href', '#');
+  ab.setAttribute('onClick', 'toggleBq('+i+'); return false;');
+  ab.appendChild(document.createTextNode("[abstract]"));
+  bqs[i].parentNode.insertBefore(ab,bqs[i]);
+}
+function toggleBq(i) {
+  if (bqs[i].style.display == "none")
+    bqs[i].style.display = "block";
+  else
+    bqs[i].style.display = "none";
+}
+</script>
+</article>
+  <nav id="menu">
+    
+    <ul>
+<li><a href="/">Contact</a></li>
+<li><a href="/publications/">Research</a></li>
+<li><a href="/lectures/">Lectures</a>
+
+<ul>
+<li><a href="/lectures/archi-ord/">Architecture</a></li>
+<li><a href="/lectures/Java-SE/">Java &amp; SE</a></li>
+<li><a href="/lectures/tp-ifips/">OpenMP/MPI</a></li>
+<li><a href="/lectures/ASE/">ASE</a></li>
+<li><a href="/lectures/SEA/">SEA</a></li>
+<li><a href="/lectures/compil/">Compilers</a></li>
+</ul>
+</li>
+<li><a href="/#misc">Misc</a>
+
+<ul>
+<li><a href="/misc/tronbot">Tron bot</a></li>
+<li><a href="/squeak_nds">Squeak NDS</a></li>
+<li><a href="http://github.com/pablooliveira/bibjekyll/">Bibjekyll</a></li>
+<li><a href="http://github.com/pablooliveira/similar/">Similar</a></li>
+<li><a href="https://github.com/benchmark-subsetting/adaptive-sampling-kit">ASK</a></li>
+<li><a href="http://github.com/pablooliveira/irvm/">IRVM</a></li>
+<li><a href="https://github.com/verificarlo/verificarlo">Verificarlo</a></li>
+<li><a href="https://benchmark-subsetting.github.io/cere/">CERE</a></li>
+</ul>
+</li>
+</ul>
+
+
+  <img id="menudecoration" src="/pulley.png" title="First principles of physics by
+    Carhart, Henry S. and Chute, Horatio N. 1912. Fig 132, Fixed and movable pulley." \>
+  </nav>
+</div>
+
+<footer>
+Last modified the
+2020-05-06
+<br /> Pablo de
+Oliveira Castro &lt;pablo@sifflez.org&gt;
+</footer>
+
+</body>
+</html>
