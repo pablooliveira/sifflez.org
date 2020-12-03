@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Lab 5 - static frames</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <link rel="stylesheet" href="../pandoc.css" />
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<header>
+<h1 class="title">Lab 5 - static frames</h1>
+</header>
+<nav id="TOC">
+<ul>
+<li><a href="#setup">Setup</a></li>
+<li><a href="#frame-creation">Frame creation</a></li>
+<li><a href="#finding-the-right-frame">Finding the right frame</a></li>
+<li><a href="#frame-assignment">Frame assignment</a></li>
+<li><a href="#find-the-variable-address">Find the variable address</a></li>
+<li><a href="#passing-the-static-link">Passing the static link</a></li>
+</ul>
+</nav>
+<p>In this lab, we will extend our code generator for our Tiger compiler so that it can access variables declared outside the current function using the static link.</p>
+<h2 id="setup">Setup</h2>
+<p>This lab must be done by enriching the work done in lab 4. The automated tests will run as soon as you create (and add in git) a <code>src/irgen/lab5.check</code> file in your <code>lab4/dragon-tiger</code> directory. This file can be empty, only its presence is required.</p>
+<h2 id="frame-creation">Frame creation</h2>
+<ol class="example" type="1">
+<li>Add a new <code>void IRGenerator::generate_frame()</code> method which will be called when analyzing a <code>FunDecl</code> (in <code>irgen.cc</code>). The steps are:</li>
+</ol>
+<ul>
+<li>Build a vector of the types needed in the frame. If the function has a parent, the first field is a pointer onto the parent frame. You can use the <code>getPointerTo()</code> method on a type to get a pointer type to it. Other types needed are those of the escaping declarations, whose list is accessible through the <code>get_escaping_decls()</code> method on the <code>FunDecl</code> node. The current function is stored in the <code>current_function</code> field of the <code>IRGenerator</code> object.</li>
+<li>Create a new structure named <code>ft_</code> followed by the external name (for example <code>ft_main.f</code>) from those types.</li>
+<li>Register this new type into the <code>frame_type</code> map which associates a function declaration to its frame type.</li>
+<li>Create a new object of the newly created frame type and allocate it on the stack, assigning the result to the <code>frame</code> field of the <code>IRGenerator</code> object.</li>
+</ul>
+<p>The insertion point should be set to the entry block right after its creation before calling <code>generate_frame()</code>, in <code>IRGenerator::generate_function()</code>,</p>
+<p>At this stage, the frame will be created with the right type but will be empty.</p>
+<h2 id="finding-the-right-frame">Finding the right frame</h2>
+<ol start="2" class="example" type="1">
+<li>Add a new <code>std::pair&lt;llvm:StructType *, llvm::Value *&gt; IRGenerator::frame_up(int levels)</code> method (in <code>irgen.cc</code>) which returns either the current frame information (if <code>levels</code> is 0) or the information of one or several levels above (if <code>levels</code> is not 0). The returned pair contains the frame type and an expression to be able to access it.</li>
+</ol>
+<p>A way to do it would be:</p>
+<ul>
+<li>Initialize a variable <code>fun</code> with the current function declaration (found in <code>current_function_decl</code>) and a <code>sl</code> value representing the address of the current frame (found in <code>frame</code>).</li>
+<li>Then, for every level you need to go up, replace <code>sl</code> by a load of the first field of the frame it currently points to (using <code>Builder.CreateStructGEP()</code> and <code>Builder.CreateLoad()</code>, and <code>fun</code> by the declaration of its parent. You are not one level up.</li>
+<li>When this is done, you can return a pair made of the frame type of <code>fun</code> (found in the <code>frame_type</code> map) and the current static link from <code>sl</code>, which represents a succession of loads.</li>
+</ul>
+<h2 id="frame-assignment">Frame assignment</h2>
+<ol start="3" class="example" type="1">
+<li>It is now time to put escaping variables into the frame. You will create a new <code>llvm::Value *IRGenerator::generate_vardecl(const VarDecl &amp;decl)</code> method (in <code>irgen.cc</code>) which will take care of allocating the variable either in the frame (if it escapes) or in the stack (if it doesn’t escape) and register its address into the <code>allocations</code> map:</li>
+</ol>
+<ul>
+<li>If the variable does not escape, allocate it using <code>alloca_in_entry</code>, register its address in the <code>allocations</code> map which maps a variable declaration to the <code>llvm::Value *</code> representing its address. You might have to modify code you have written already to set the <code>allocations</code> data here.</li>
+<li>If the variable does escape, you must find its position in the list of escaping variables for the current function. This gives you its position in the frame structure. Don’t forget to add 1 if the current function has a parent and thus has reserved index 0 to store the static link it received. This index must be recorded in the <code>frame_position</code> map which associates an escaping variable declaration to its position in the frame. Then you can use <code>Builder.CreateStructGEP</code> with the right frame type (found in the <code>frame_type</code> map) and the current frame (found in the <code>frame</code> field of the visitor) to retrieve the address of this variable. You must register it in the <code>allocations</code> map and you can return it.</li>
+</ul>
+<p>Now, you can replace your calls to <code>alloca_in_entry</code> from lab4 to use <code>generate_vardecl</code> instead. Since the tests in lab4 do not use escaping variables, this should not break them. However, you might want to try some code snippets to ensure that escaping variables (and only them and the static link) are stored into the frame.</p>
+<h2 id="find-the-variable-address">Find the variable address</h2>
+<ol start="4" class="example" type="1">
+<li>Since a variable may have been created in an outer frame, we must use <code>frame_up</code> to find its address. Modify <code>IRGeneratoe::address_of()</code> in order to:</li>
+</ol>
+<ul>
+<li>return the result of <code>allocations[&amp;decl]</code> as before if the variable is used at the same depth as its declaration;</li>
+<li>use <code>frame_up()</code> and the <code>frame_position</code> map to return a pointer to the variable in an upper frame otherwise.</li>
+</ul>
+<p>Make sure you use <code>address_of()</code> and not directly <code>allocations</code> in the visitor for <code>Identifier</code> and <code>Assign</code>.</p>
+<h2 id="passing-the-static-link">Passing the static link</h2>
+<ol start="5" class="example" type="1">
+<li>We now must pass the static link to every function which isn’t external (primitives don’t need the static link). To do so, we need to do several things:</li>
+</ol>
+<ul>
+<li>Modify the <code>FunCall</code> visitor in order to pass the static link to non-external functions as the first argument. We will use the recently created <code>frame_up</code> method to get the right static link. The number of levels to go up is computed from the difference between the depth of the call and the depth of the function declaration. We only care for the second component of the pair returned by <code>frame_up</code>.</li>
+<li>Modify the <code>FunDecl</code> visitor if we are analyzing a non-external function. In this case, we must insert a parameter which is a pointer to our parent frame type before the other arguments.</li>
+<li>Modify <code>IRGenerator::generate_function()</code> (in <code>irgen.cc</code>) so that it stores the first parameter (if we are analyzing a non-external function) into the first field of the current frame.</li>
+<li>In the same function, use <code>generate_vardecl</code> instead of <code>alloca_in_entry</code> to store function parameters into local variables. By doing so, you will ensure that escaping parameters will get stored in the frame, while non-escaping ones will be allocated on the stack (and probably later in physical registers instead).</li>
+</ul>
+<p>If everything goes well, at this stage, you will be able to run code which uses variables defined above the current function.</p>
+<p>Congratulations, your compiler is now complete as far as the code generation is concerned.</p>
+</body>
+</html>
