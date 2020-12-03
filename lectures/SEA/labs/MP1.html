@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Systèmes d’Exploitation – Mini-Projet 1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      .smallcaps{font-variant: small-caps;}
+      .line-block{white-space: pre-line;}
+      .column{display: inline-block;}
+  </style>
+  <style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+  </style>
+  <link rel="stylesheet" href="pandoc.css">
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<header>
+<h1 class="title">Systèmes d’Exploitation – Mini-Projet 1</h1>
+</header>
+<nav id="TOC">
+<ul>
+<li><a href="#mise-en-place">Mise en place</a></li>
+<li><a href="#utilisation-de-git">Utilisation de Git</a></li>
+<li><a href="#makefile-et-nom-du-binaire">Makefile et nom du binaire</a></li>
+<li><a href="#notation">Notation</a></li>
+<li><a href="#un-shell-simple">Un shell simple</a></li>
+<li><a href="#fonctionnalités-avancées">Fonctionnalités avancées</a></li>
+</ul>
+</nav>
+<h2 id="mise-en-place">Mise en place</h2>
+<p>Le but de ce mini-projet est de programmer un shell simple.</p>
+<p>Ce mini-projet est à faire sous environnement UNIX en C. L’utilisation de l’appel <code>system()</code> de la stdlib est proscrit, car cet appel utilise le shell <code>sh</code> pour exécuter des commandes.</p>
+<p>Votre shell devra utiliser des appels systèmes tel que <code>open()</code> ou <code>fork()</code>. Pour obtenir la documentation sur les appels, vous pouvez utiliser la commande:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">   $ <span class="fu">man</span> 2 <span class="op">&lt;</span>commande<span class="op">&gt;</span></code></pre></div>
+<p>Le 2 fait référence à la section 2 du manuel qui catalogue les fonctions système.</p>
+<h2 id="utilisation-de-git">Utilisation de Git</h2>
+<p>Pour tous les Mini-Projets (MPs) de système on utilisera <a href="http://git-scm.com">git</a>. Vous avez vu son utilisation et configuré un dépôt dans le <a href="T1.html">TP1</a>.</p>
+<p>Allez dans votre dépôt git et créez un nouvel répertoire pour travailler sur le MP1:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">    $ <span class="bu">cd</span> prenom-nom/
+    <span class="co"># Créez maintenant un répertoire MP1</span>
+    $ <span class="fu">mkdir</span> MP1/
+    $ <span class="bu">cd</span> MP1/</code></pre></div>
+<p>Faites maintenant le MP normalement. Vous travaillerez sur le répertoire <code>MP1</code> que vous venez de créer. À chaque question vous <em>committerez</em> vos modifications.</p>
+<p>Pour envoyer votre travail sur le serveur de rendu (en fin de séance), vous utiliserez la commande:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">    $ <span class="fu">git</span> push origin master</code></pre></div>
+<h2 id="makefile-et-nom-du-binaire">Makefile et nom du binaire</h2>
+<p>Pour compiler votre shell, le script de correction automatique utilisera les commandes suivantes:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">   $ <span class="bu">cd</span> MP1/
+   $ <span class="fu">make</span></code></pre></div>
+<p>Pour executer votre shell, le script de correction automatique utilisera la commande suivante:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">   $ <span class="bu">cd</span> MP1/
+   $ <span class="ex">./mishell</span></code></pre></div>
+<p>Assurez vous donc de commiter un <code>Makefile</code> qui fabrique un binaire appellé <code>mishell</code> (comme mini shell).</p>
+<h2 id="notation">Notation</h2>
+<p>Ce MP sera noté. La date de rendu est disponible sur le <a href="../index.html">calendrier des cours</a>. Le rendu se fera en pushant sur votre dépôt SEA.</p>
+<p>Trois critères seront utilisés pour la notation:</p>
+<ul>
+<li><p>Correction du code: votre code sera évalué sur des exemples (comme les exemple donnés dans le sujet).</p></li>
+<li><p>Code clair: votre code est clair, indenté et intelligemment commenté</p></li>
+<li><p>Utilisation de git: un commit par exercice, messages clairs et informatifs</p></li>
+</ul>
+<h2 id="un-shell-simple">Un shell simple</h2>
+<p>Le shell est un programme qui permet à l’utilisateur de lancer des programmes de manière interactive. Des exemples de shell courants sont bash, ksh, tcsh, fish, zsh.</p>
+<p>Commitez sous git à la fin de chaque question.</p>
+<ol class="example" type="1">
+<li><p>Programmez l’interface textuelle de votre shell. Votre shell doit présenter un invite à l’utilisateur (obligatoirement terminé par <code>%</code>) puis lire l’entrée de l’utilisateur. Pour l’instant, contentez vous d’imprimer le texte que l’utilisateur à entré. Vous pouvez utiliser les fonctions: <code>printf</code> et <code>fgets</code> par exemple. Lorsque l’utilisateur tape <code>CTRL+D</code> (soit EOF) en début d’invite le programme doit quitter.</p>
+<p>Exemple d’execution:</p></li>
+</ol>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">        <span class="ex">%</span> cd
+        <span class="bu">cd</span>
+        <span class="ex">%</span> ls
+        <span class="fu">ls</span>
+        <span class="ex">%</span></code></pre></div>
+<ol start="2" class="example" type="1">
+<li><p>Programmez un parseur simple qui décompose l’entrée de l’utilisateur en tokens. Les tokens sont les mots de l’entrée qui sont séparés par des espaces ou des tabulations. Par exemple, l’entrée <code>ls ../.. | sort</code> est composée des 4 tokens suivants: <code>ls</code>, <code>../..</code>, <code>|</code>, et <code>sort</code>.</p>
+<p>À ce stade-ci votre shell doit juste imprimer la liste des tokens à chaque entrée. Vous pouvez utiliser la fonction <code>strsep</code> pour cela.</p>
+<p>Exemple d’execution:</p></li>
+</ol>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">        <span class="ex">%</span> ls ..
+        <span class="fu">ls</span>
+        <span class="ex">..</span>
+        <span class="ex">%</span> cd
+        <span class="bu">cd</span>
+        <span class="ex">%</span></code></pre></div>
+<ol start="3" class="example" type="1">
+<li>Implémentez deux primitives du shell:
+<ul>
+<li>Si l’utilisateur tape <code>exit</code>, le shell doit sortir.</li>
+<li>Si l’utilisateur tape <code>cd &lt;arg&gt;</code>, le shell doit changer son répertoire courant selon <arg>.</li>
+<li>Modifiez également le shell pour qu’il affiche le répertoire courant avant l’invite.</li>
+</ul>
+<p>Vous pouvez utiliser les fonctions <code>strcmp</code>, <code>getcwd</code> et <code>chdir</code>.</p>
+<p>Exemple d’utilisation:</p></li>
+</ol>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">        <span class="ex">/home/toto</span> % cd ..
+        <span class="ex">/home/</span> % exit</code></pre></div>
+<ol start="4" class="example" type="1">
+<li><p>Implémentez l’exécution de commandes simples. Sauf si <code>cd</code> ou <code>exit</code> sont reconnus, le shell suppose que l’utilisateur à tapé une commande à exécuter. Implémentez l’execution de commandes sans vous servir de la fonction <code>system</code>. Vous pouvez utiliser <code>fork</code>, <code>execvp</code> et <code>waitpid</code>.</p>
+<p>Exemple d’utilisation:</p></li>
+</ol>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">        <span class="ex">/home/toto</span> % ls -a
+        <span class="bu">.</span> <span class="ex">..</span> documents
+        <span class="ex">/home/toto</span> % cat /etc/passwd
+        <span class="ex">root</span>:x:0:0:root:/root:/bin/bash
+        <span class="ex">daemon</span>:x:1:1:daemon:/usr/sbin:/bin/sh
+        <span class="ex">bin</span>:x:2:2:bin:/bin:/bin/sh
+        <span class="ex">sys</span>:x:3:3:sys:/dev:/bin/sh
+        <span class="ex">...</span></code></pre></div>
+<h2 id="fonctionnalités-avancées">Fonctionnalités avancées</h2>
+<ol start="5" class="example" type="1">
+<li><p>Implémentez la redirection d’entrées sorties standard. Votre shell doit reconnaître les redirections suivantes: <code>&gt;</code>, <code>&lt;</code> et <code>2&gt;</code>.</p>
+<p>Vous pouvez utiliser les fonctions <code>dup2</code>, <code>open</code> et <code>close</code>.</p>
+<p>Exemple d’utilisation:</p></li>
+</ol>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">        <span class="ex">/home/toto</span> % ls -a <span class="op">&gt;</span> out
+        <span class="ex">/home/toto</span> % cat out
+        <span class="ex">.</span>
+        <span class="ex">..</span>
+        <span class="ex">documents</span>
+        <span class="ex">out</span>
+        <span class="ex">/home/toto</span> % sort -r <span class="op">&lt;</span> out
+        <span class="ex">out</span>
+        <span class="ex">documents</span>
+        <span class="ex">..</span>
+        <span class="ex">.</span></code></pre></div>
+<ol start="6" class="example" type="1">
+<li><p>Implémentez les pipes. Vous pouvez utiliser la fonction <code>pipe</code>. Votre code ne doit pas faire l’hypothèse d’un nombre de pipes maximal.</p>
+<p>Exemple d’utilisation:</p></li>
+</ol>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">        <span class="ex">/home/toto</span> % ls -a <span class="kw">|</span> <span class="fu">sort</span> -r <span class="kw">|</span> <span class="fu">grep</span> o
+        <span class="ex">out</span>
+        <span class="ex">documents</span>
+        <span class="ex">/home/toto</span> % sort -r <span class="op">&lt;</span> out <span class="kw">|</span> <span class="fu">grep</span> o <span class="op">&gt;</span> out2
+        <span class="ex">/home/toto</span> % cat out2
+        <span class="ex">out</span>
+        <span class="ex">documents</span></code></pre></div>
+<ol start="7" class="example" type="1">
+<li><p>Implémentez la mise en tâche de fond, opérateur <code>&amp;</code>.</p>
+<p>Exemple d’utilisation:</p></li>
+</ol>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">        <span class="ex">/home/toto</span> % sleep 5 <span class="kw">&amp;</span>
+        <span class="ex">/home/toto</span> % echo hi
+        <span class="ex">hi</span></code></pre></div>
+<ol start="8" class="example" type="1">
+<li>SECRET LEVEL: Implémentez une/des fonctionnalité(s) de votre choix (attention pour débloquer ce niveau il faut avoir répondu à toutes les autres questions avant). Quelques suggestions: complétion automatique avec TAB, job control (bg et fg), gestion des variables d’environnement, amélioration du parseur pour prendre en compte les guillemets, sous-shells <code>$()</code>.</li>
+</ol>
+<figure>
+<img src="mario.jpg" alt="Secret Level" /><figcaption>Secret Level</figcaption>
+</figure>
+</body>
+</html>

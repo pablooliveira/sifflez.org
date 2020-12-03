@@ -1,0 +1,131 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+  </style>
+  <link rel="stylesheet" href="pandoc.css" type="text/css" />
+</head>
+<body>
+<div id="TOC">
+<ul>
+<li><a href="#systèmes-dexploitation-td-6---ordonnancement">Systèmes d’Exploitation: TD 6 - Ordonnancement</a><ul>
+<li><a href="#utilisation-de-git">Utilisation de Git</a></li>
+<li><a href="#notation">Notation</a></li>
+</ul></li>
+<li><a href="#partie-i-ordonnanceurs">Partie I: Ordonnanceurs</a></li>
+<li><a href="#partie-ii-métriques">Partie II: Métriques</a></li>
+</ul>
+</div>
+<h1 id="systèmes-dexploitation-td-6---ordonnancement">Systèmes d’Exploitation: TD 6 - Ordonnancement</h1>
+<p>Dans ce TP vous allez implémenter différents algorithmes d’ordonnancement étudiés en cours: FCFS, RR, SJF, SRTF.</p>
+<p>Un simulateur d’ordonnancement vous est fourni. Récupérez le à l’adresse <a href="http://tahiti.prism.uvsq.fr/os/scheduler.tar.gz" class="uri">http://tahiti.prism.uvsq.fr/os/scheduler.tar.gz</a>.</p>
+<p>Pour le décompresser vous pouvez utiliser la commande suivante:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">    $ <span class="fu">tar</span> xvf scheduler.tar.gz</code></pre></div>
+<p>Ce simulateur d’ordonnancement possède plusieurs commandes. La commande <code>make</code> vous permets de compiler le simulateur et <code>make clean</code> d’effacer les fichiers générés.</p>
+<p>La commande <code>make simulate_fcfs</code> vous permets de simuler l’ordonnanceur <code>fcfs</code>. Vous pouvez remplacer <code>fcfs</code> par l’ordonnanceur de votre choix (<code>rr</code>, <code>sjf</code> ou <code>srtf</code>). Lorsque vous exécutez <code>make simulate_fcfs</code>, un fichier <code>preview.ps</code> est crée. Il contient les résultats de votre simulation, vous pouvez l’ouvrir avec la commande <code>evince preview.ps</code>.</p>
+<p>Enfin, la commande <code>make rapport</code> vous permets de simuler les quatre ordonnanceurs et de générer le fichier final <code>rapport.ps</code>. Une fois que vous aurez terminé le TP n’oubliez pas de lancer cette commande pour vérifier vos résultats.</p>
+<h2 id="utilisation-de-git">Utilisation de Git</h2>
+<p>Le rendu du TP se fera avec GIT. Pour ce TP il faut travailler dans le repertoire <code>TD6</code>.</p>
+<p>Commencez par commiter le contenu de l’archive <code>scheduler.tar.gz</code> que vous avez décompressé.</p>
+<p>Puis une fois le TP fini, il faudra commiter le fichier <code>rapport.pdf</code>, ainsi que tous les fichiers source que vous aurez modifiés.</p>
+<p>N’oubliez pas de faire un <code>push</code> de vos commits sur le serveur de rendu.</p>
+<h2 id="notation">Notation</h2>
+<p>Ce TP est noté. Le travail doit être fait par binômes. Vous pouvez discuter avec d’autres groupes des techniques abordés dans ce TP, mais il est strictement interdit de donner la réponse aux exercices.</p>
+<h1 id="partie-i-ordonnanceurs">Partie I: Ordonnanceurs</h1>
+<ol class="example" style="list-style-type: decimal">
+<li><p>Modifiez le fichier <code>rapport.tex</code> et changez le champ <code>author</code> avec vos noms et prénoms.</p></li>
+<li><p>Testez la commande <code>make rapport</code>.</p></li>
+</ol>
+<p>Le simulateur est composé de plusieurs fichiers:</p>
+<ul>
+<li><code>sched.h</code>: décrit les différents types utilisés.
+<ul>
+<li><code>tproc</code>: définit un processus, il comporte un <code>pid</code>, un temps d’activation, une durée d’exécution (<code>length</code>) et un champ <code>remaining</code> pour savoir à tout instant combien de temps il reste à exécuter.</li>
+<li><code>tnode</code>: un nœud dans une liste chaînée de processus</li>
+<li><code>tlist</code>: une liste chaînée de processus</li>
+<li><code>tstats</code>: une structure pour comptabiliser différentes métriques (temps de complétion, attente et réponse).</li>
+<li><code>tproc</code>: est un type pointeur de fonctions pour les fonctions d’ordonnancement</li>
+<li>un ensemble de fonctions pour manipuler les listes de processus sont également définies</li>
+</ul></li>
+<li><code>list.c</code>: contient l’implémentation des fonction manipulant les listes de processus
+<ul>
+<li><code>add</code>: permet d’ajouter un processus en fin de liste</li>
+<li><code>del</code>: permet de supprimer un processus</li>
+<li>Pour <code>l</code> de type <code>tlist*</code>, <code>l-&gt;first</code> et <code>l-&gt;last</code> permettent d’accéder au premier et dernier éléments de la liste</li>
+<li>Pour <code>n</code> de type <code>tnode*</code>, <code>n-&gt;next</code> permet d’accéder à l’élément suivant dans la liste et <code>n-&gt;proc</code> retourne la structure processus.</li>
+</ul></li>
+<li><code>sched.c</code>: contient la logique du simulateur
+<ul>
+<li><code>ready</code> est une liste avec les processus prêts et <code>proc</code> contient tous les autres processus</li>
+<li><code>main</code>: décode les arguments en ligne de commande et charge la description des tâches depuis le fichier <code>task_description.h</code>. Les tâches dans <code>task_description.h</code> sont exactement celles données en exemple en cours. Au départ <code>main</code> ajoute toutes les tâches dans la liste <code>proc</code>. Puis <code>main</code> appelle <code>simulate</code> pour lancer la simulation.</li>
+<li><code>simulate</code>: c’est le cœur du simulateur. La boucle externe gère le temps. À chaque pas de temps, les actions suivantes sont déclenchées:
+<ul>
+<li>On active les processus dont la date d’activation est atteinte. C’est à dire on les déplace de la liste <code>procs</code> vers la liste <code>ready</code>.</li>
+<li>Si des processus sont prêts, on appelle la fonction <code>scheduler</code> (qui pointe vers un des ordonnanceurs <code>rr</code>, <code>fcfs</code>, etc.)</li>
+<li>La fonction <code>scheduler</code> choisit un processus qu’elle retourne. Elle écrit également dans <code>delta</code> le nombre d’unités de temps pendant lesquelles le processus sera exécuté.</li>
+<li>On augmente donc l’horloge de <code>delta</code>.</li>
+<li>Enfin on supprime les tâches completées (dont le champ <code>remaining</code> est à zéro).</li>
+</ul></li>
+<li><code>randomscheduler</code>: c’est un ordonnanceur exemple</li>
+<li><code>fcfs</code>, <code>rr</code>, <code>sjf</code>, <code>srtf</code>: ces fonctions implémentent différents ordonnanceurs. Pour l’instant elles appellent toutes, <code>randomscheduler</code>.</li>
+</ul></li>
+</ul>
+<ol start="3" class="example" style="list-style-type: decimal">
+<li><p>Étudiez le code du simulateur, prenez du temps sur cette question car elle vous aidera pour la suite. Il n’y a rien à rendre pour cette question, mais elle est <em>très</em> importante!</p></li>
+<li><p>Décrire le fonctionnement de <code>randomscheduler</code> dans un fichier <code>randomscheduler.txt</code> que vous commiterez dans git.</p></li>
+<li><p>Implémentez la fonction <code>fcfs</code>. Vérifiez que vous trouvez le même ordonnancement qu’en cours.</p></li>
+<li><p>Implémentez la fonction <code>rr</code>. Vérifiez que vous trouvez le même ordonnancement qu’en cours.</p></li>
+<li><p>Implémentez la fonction <code>sjf</code>. Vérifiez que vous trouvez le même ordonnancement qu’en cours.</p></li>
+<li><p>Implémentez la fonction <code>srtf</code>. Vérifiez que vous trouvez le même ordonnancement qu’en cours.</p></li>
+</ol>
+<h1 id="partie-ii-métriques">Partie II: Métriques</h1>
+<p>Vous remarquerez que les statistiques dans l’objet <code>stats</code> sont toujours à zéro.</p>
+<p>Votre implémentation doit être indépendante de la fonction d’ordonnancement choisie. Elle ne doit donc pas modifier les fonctions <code>fcfs</code>, <code>rr</code>, <code>sjf</code> et <code>srtf</code>. Vous ne devez normalement modifier que la fonction <code>simulate</code>.</p>
+<ol start="9" class="example" style="list-style-type: decimal">
+<li><p>Modifiez le simulateur pour comptabiliser le temps total de complétion.</p></li>
+<li><p>Modifiez le simulateur pour comptabiliser le temps total de réponse.</p></li>
+<li><p>Modifiez le simulateur pour comptabiliser le temps total d’attente.</p></li>
+<li><p>Est-ce que les propriétés décrites en cours sont vérifiées ? Écrivez votre réponse dans le fichier <code>proprietes.txt</code> que vous commiterez dans git.</p></li>
+</ol>
+</body>
+</html>

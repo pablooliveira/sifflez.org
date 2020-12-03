@@ -1,0 +1,51 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <link rel="stylesheet" href="pandoc.css" type="text/css" />
+  <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+</head>
+<body>
+<div id="TOC">
+<ul>
+<li><a href="#systèmes-dexploitation-avancés-t8">Systèmes d’Exploitation Avancés: T8</a></li>
+</ul>
+</div>
+<h1 id="systèmes-dexploitation-avancés-t8">Systèmes d’Exploitation Avancés: T8</h1>
+<p>Ce sujet de TD a été conçu par le Département Informatique du Conservatoire National des Arts et Métiers.</p>
+<p>Le but de ce TD est d’étudier les systèmes de pagination pour la mémoire virtuelle.</p>
+<ol class="example" style="list-style-type: decimal">
+<li><p>Qu’est-ce que la mémoire virtuelle? Donnez trois raisons pour lesquelles il est intéressant de disposer d’un mécanisme de mémoire virtuelle sur un ordinateur moderne.</p></li>
+<li><p>Qu’est-ce qu’une MMU? A quoi sert le TLB d’une MMU?</p></li>
+<li><p>Pourquoi les tailles des pages sont-elles toujours des puissances de deux?</p></li>
+<li><p>Considérons un premier ordinateur, qui exécute un processus avec 137 pages virtuelles déjà chargées en mémoire physique. Le coût pour lire une entrée de la table des pages est de 10ns (ce temps comprends la mise à jour de la TLB). La TLB de cet ordinateur peut stocker les 32 traductions les plus récentes et fournit son résultat en 3ns. <strong>Quel pourcentage des accès mémoire doit-il concerner des pages référencées dans la TLB pour avoir un cout moyen d’accès a une page physique égal a 5ns? </strong></p></li>
+<li><p>On considère un deuxième ordinateur a processeur 64 bits, disposant également d’un espace d’adressage sur 64 bits. Ce système dispose de 256 Mo (c’est-a-dire de <span class="math inline">\(2^{28}\)</span> octets) de mémoire physique, organisée en pages de 4 ko. <strong>Quel est le nombre maximal d’entrées dans la table des pages?</strong></p></li>
+<li><p>Pour ne pas avoir a utiliser autant de mémoire physique pour gérer la mémoire virtuelle, on peut utiliser une table des pages inverse, possédant autant d’entrées que de pages physiques. Décrivez le principe d’une telle table des pages inverse. Donnez les avantages et inconvénients d’une telle implémentation par rapport au système classique de table des pages.</p></li>
+<li><p>Quel(s) mécanisme(s) peu(ven)t-il(s) être utilise(s) pour réduire le surcout inhérent a ce système?</p></li>
+<li><p>Quels problèmes ce système pose-t-il vis-à-vis de la mémoire partagée? Quelle solution pouvez- vous envisager?</p></li>
+</ol>
+<p>On considère un système de gestion de mémoire paginée a deux niveaux tel que:</p>
+<ul>
+<li><p>les adresses virtuelles et physiques sont toutes deux codées sur 32 bits;</p></li>
+<li><p>les 10 premiers bits de l’adresse virtuelle forment le premier index, les 10 bits suivants forment le deuxième index, et les 12 bits restants le déplacement;</p></li>
+<li><p>on suppose que chacune des entrées de ces tables est sur 32 bits.</p></li>
+</ul>
+<ol start="9" class="example" style="list-style-type: decimal">
+<li>Quelle est la taille maximale utilisée par le répertoire et les tables des pages ?</li>
+</ol>
+<p>Soit un processus P ayant alloué les segments suivants (les adresses de début et de fin sont données en binaire):</p>
+<ul>
+<li><p>0000001000.0000000000.000010101010 → 0000001000.0000000010.101010101010</p></li>
+<li><p>0000000010.0000000000.000010101010 → 0000000010.0000000000.000010000000</p></li>
+<li><p>0000000010.0000000100.000000000000 → 0000000010.0000000100.111111111111</p></li>
+<li><p>1000000000.0000000000.000000000000 → 1000000010.0000001111.000000000000</p></li>
+</ul>
+<ol start="10" class="example" style="list-style-type: decimal">
+<li>Dessiner la structure hiérarchique de la table de pages pour le processus P.</li>
+</ol>
+</body>
+</html>
