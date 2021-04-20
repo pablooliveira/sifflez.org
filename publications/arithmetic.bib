@@ -1,3 +1,17 @@
+@ARTICLE{Brun2021Study,
+  author={E. {Brun} and D. {Defour} and P. {De Oliveira Castro} and M. {Istoan} and D. {Mancusi} and E. {Petit} and A. {Vaquet}},
+  journal={IEEE Transactions on Emerging Topics in Computing},
+  title={A Study of the Effects and Benefits of Custom-Precision Mathematical Libraries for HPC Codes},
+  year={2021},
+  volume={},
+  number={},
+  pages={1-1},
+  doi={10.1109/TETC.2021.3070422},
+  abstract={Mathematical libraries are being specifically developed to use fixed-width data-paths on processors and target common floating-point formats like binary32 and binary64. In this article we propose a framework to evaluate the effects of mathematical library calls accuracy in scientific computations. First, our tool collects for each call-site of a mathematical function the input-data profile. Then, using a heuristic exploration algorithm, we estimate the minimal required accuracy by rounding the result to lower precisions. The data profile and accuracy measurement per call-site is used to speculatively select the mathematical function implementation with the most appropriate accuracy for a given scenario. We have tested the methodology with the Intel MKL VML library with predefined accuracy levels. We demonstrate the benefits of our approach on two real-world applications: SGP4, a satellite tracking application, and PATMOS, a Monte Carlo neutron transport code. We experiment and discuss its generalization across data-sets, and finally propose a speculative runtime implementation for PATMOS. The experiment provides an insight into the performance improvements that can be achieved by leveraging the control of per-function call-site accuracy-mode execution of the Intel MKL VML library.}
+}
+
+
+
 @article{Kiar2020Comparing,
 author = {Gregory Kiar and Pablo de Oliveira Castro and Pierre Rioux and Eric Petit and Shawn T Brown and Alan C Evans and Tristan Glatard},
 title ={Comparing perturbation models for evaluating stability of neuroimaging pipelines},
@@ -8,6 +22,7 @@ pages = {1094342020926237},
 year = {0},
 doi = {10.1177/1094342020926237},
 URL = { https://doi.org/10.1177/1094342020926237 },
+documenturl = {https://youtu.be/TymQQJ6iYRQ},
 abstract = { With an increase in awareness regarding a troubling lack of reproducibility in analytical software tools, the degree of validity in scientific derivatives and their downstream results has become unclear. The nature of reproducibility issues may vary across domains, tools, data sets, and computational infrastructures, but numerical instabilities are thought to be a core contributor. In neuroimaging, unexpected deviations have been observed when varying operating systems, software implementations, or adding negligible quantities of noise. In the field of numerical analysis, these issues have recently been explored through Monte Carlo Arithmetic, a method involving the instrumentation of floating-point operations with probabilistic noise injections at a target precision. Exploring multiple simulations in this context allows the characterization of the result space for a given tool or operation. In this article, we compare various perturbation models to introduce instabilities within a typical neuroimaging pipeline, including (i) targeted noise, (ii) Monte Carlo Arithmetic, and (iii) operating system variation, to identify the significance and quality of their impact on the resulting derivatives. We demonstrate that even low-order models in neuroimaging such as the structural connectome estimation pipeline evaluated here are sensitive to numerical instabilities, suggesting that stability is a relevant axis upon which tools are compared, alongside more traditional criteria such as biological feasibility, computational efficiency, or, when possible, accuracy. Heterogeneity was observed across participants which clearly illustrates a strong interaction between the tool and data set being processed, requiring that the stability of a given tool be evaluated with respect to a given cohort. We identify use cases for each perturbation method tested, including quality assurance, pipeline error detection, and local sensitivity analysis, and make recommendations for the evaluation of stability in a practical and analytically focused setting. Identifying how these relationships and recommendations scale to higher order computational tools, distinct data sets, and their implication on biological feasibility remain exciting avenues for future work. }
 }
 
@@ -16,7 +31,8 @@ abstract = { With an increase in awareness regarding a troubling lack of reprodu
   author    = {Defour, David and de Oliveira Castro, Pablo and Istoan, Matei and Petit, Eric},
   title     = {Custom-Precision Mathematical Library Explorations for Code Profiling and Optimization},
   booktitle = {27th {IEEE} Symposium on Computer Arithmetic, {ARITH} 2020},
-  year      = {(to appear) 2020},
+  year      = {2020},
+  pages     = {121--124},
   abstract = {The typical processors used for scientific computing have fixed-width data-paths. This implies that mathematical libraries were specifically developed to target each of these fixed precisions (binary16, binary32, binary64). However, to address the increasing energy consumption and throughput requirements of scientific applications, library and hardware designers are moving beyond this one-size-fits-all approach. In this article we propose to study the effects and benefits of using user-defined floating-point formats and target accuracies in calculations involving mathematical functions. Our tool collects input-data profiles and iteratively explores lower precisions for each call-site of a mathematical function in user applications. This profiling data will be a valuable asset for specializing and fine-tuning mathematical function implementations for a given application. We demonstrate the tool's capabilities on SGP4, a satellite tracking application. The profile data shows the potential for specialization and provides insight into answering where it is useful to provide variable-precision designs for elementary function evaluation.},
   pdf = {https://hal.archives-ouvertes.fr/hal-02563852/document}
 }
