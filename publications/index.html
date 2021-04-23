@@ -26,6 +26,26 @@
 <dl>
 
 <dt>
+<a name="Sohier2021Confidence">&nbsp;</a>
+</dt>
+<dd>
+<b>Confidence Intervals for Stochastic Arithmetic</b>.
+ Devan Sohier, Pablo de&nbsp;Oliveira&nbsp;Castro, Fran&#x00E7;ois F&eacute;votte,
+  Bruno Lathuili&egrave;re, Eric Petit, and Olivier Jamond.
+ <em>ACM Transactions Mathematical Software</em>, 47(2), April 2021.
+[&nbsp;<a href="arithmetic_bib.html#Sohier2021Confidence">bib</a>&nbsp;| 
+<a href="http://dx.doi.org/10.1145/3432184">DOI</a>&nbsp;| 
+<a href="https://doi.org/10.1145/3432184">http</a>&nbsp;| 
+<a href="https://hal.archives-ouvertes.fr/hal-01827319/file/confidence.pdf">.pdf</a>&nbsp;| 
+<a href="confidence_interval_slides.pdf">.pdf</a>&nbsp;]
+<blockquote><font size="-1">
+Quantifying errors and losses due to the use of Floating-point (FP) calculations in industrial scientific computing codes is an important part of the Verification, Validation, and Uncertainty Quantification process. Stochastic Arithmetic is one way to model and estimate FP losses of accuracy, which scales well to large, industrial codes. It exists in different flavors, such as CESTAC or MCA, implemented in various tools such as CADNA, Verificarlo, or Verrou. These methodologies and tools are based on the idea that FP losses of accuracy can be modeled via randomness. Therefore, they share the same need to perform a statistical analysis of programs results to estimate the significance of the results.In this article, we propose a framework to perform a solid statistical analysis of Stochastic Arithmetic. This framework unifies all existing definitions of the number of significant digits (CESTAC and MCA), and also proposes a new quantity of interest: the number of digits contributing to the accuracy of the results. Sound confidence intervals are provided for all estimators, both in the case of normally distributed results, and in the general case. The use of this framework is demonstrated by two case studies of industrial codes: Europlexus and code_aster.
+</font></blockquote>
+
+</dd>
+
+
+<dt>
 <a name="Brun2021Study">&nbsp;</a>
 </dt>
 <dd>
@@ -98,28 +118,6 @@ The typical processors used for scientific computing have fixed-width data-paths
 <a href="dyn_adapt_slides19.pdf">.pdf</a>&nbsp;]
 <blockquote><font size="-1">
 With the ever-increasing need for computation of scientific applications, new application domains, and major energy constraints, the landscape of floating-point computation is changing.  New floating-point representation formats are emerging and there is a need for tools to simulate their impact in legacy codes.  In this paper, we propose an automatic tool to evaluate the effect of adapting the floating point precision for each operation over time, which is particularly useful in iterative schemes.  We present a backend to emulate any IEEE-754 floating-point operation in lower precision.  We tested the numerical errors resilience of our solutions thanks to Monte Carlo Arithmetic and  demonstrated the effectiveness of this methodology on YALES2, a large Combustion-CFD HPC code, by achieving 28% to 67% reduction in communication volume by lowering precision.
-</font></blockquote>
-
-</dd>
-
-
-<dt>
-<a name="Sohier2018confidence">&nbsp;</a>
-</dt>
-<dd>
-<b>Confidence Intervals for Stochastic Arithmetic</b>.
- Devan Sohier, Pablo de&nbsp;Oliveira&nbsp;Castro, Fran&#x00E7;ois F&eacute;votte,
-  Bruno Lathuili&egrave;re, Eric Petit, and Olivier Jamond.
- (2020) accepted for publication in ACM Transactions on Mathematical
-  Software (ACM TOMS), preprint, July 2018.
-[&nbsp;<a href="arithmetic_bib.html#Sohier2018confidence">bib</a>&nbsp;| 
-<a href="https://hal.archives-ouvertes.fr/hal-01827319">http</a>&nbsp;| 
-<a href="https://hal.archives-ouvertes.fr/hal-01827319/file/confidence.pdf">.pdf</a>&nbsp;| 
-<a href="confidence_interval_slides.pdf">.pdf</a>&nbsp;]
-<blockquote><font size="-1">
-
-    Quantifying errors and losses due to the use of Floating-Point (FP) calculations in industrial scientific computing codes is an important part of the Verification, Validation and Uncertainty Quantification (VVUQ) process. Stochastic Arithmetic is one way to model and estimate FP losses of accuracy, which scales well to large, industrial codes. It exists in different flavors, such as CESTAC or MCA, implemented in various tools such as CADNA, Verificarlo or Verrou. These methodologies and tools are based on the idea that FP losses of accuracy can be modeled via randomness. Therefore, they share the same need to perform a statistical analysis of programs results in order to estimate the significance of the results. In this paper, we propose a framework to perform a solid statistical analysis of Stochastic Arithmetic. This framework unifies all existing definitions of the number of significant digits (CESTAC and MCA), and also proposes a new quantity of interest: the number of digits contributing to the accuracy of the results. Sound confidence intervals are provided for all estimators, both in the case of normally distributed results, and in the general case. The use of this framework is demonstrated by two case studies of large, industrial codes: Europlexus and code_aster.
-  
 </font></blockquote>
 
 </dd>
@@ -686,7 +684,7 @@ function toggleBq(i) {
 
 <footer>
 Last modified the
-2021-04-20
+2021-04-23
 <br /> Pablo de
 Oliveira Castro &lt;pablo@sifflez.org&gt;
 </footer>
