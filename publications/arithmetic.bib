@@ -1,3 +1,19 @@
+@article{Kiar2021Numerical,
+    doi = {10.1371/journal.pone.0250755},
+    author = {Kiar, Gregory AND Chatelain, Yohan AND de Oliveira Castro, Pablo AND Petit, Eric AND Rokem, Ariel AND Varoquaux, Gaël AND Misic, Bratislav AND Evans, Alan C. AND Glatard, Tristan},
+    journal = {PLOS ONE},
+    publisher = {Public Library of Science},
+    title = {Numerical uncertainty in analytical pipelines lead to impactful variability in brain networks},
+    year = {2021},
+    month = {11},
+    volume = {16},
+    url = {https://doi.org/10.1371/journal.pone.0250755},
+    pages = {1-16},
+    abstract = {The analysis of brain-imaging data requires complex processing pipelines to support findings on brain function or pathologies. Recent work has shown that variability in analytical decisions, small amounts of noise, or computational environments can lead to substantial differences in the results, endangering the trust in conclusions. We explored the instability of results by instrumenting a structural connectome estimation pipeline with Monte Carlo Arithmetic to introduce random noise throughout. We evaluated the reliability of the connectomes, the robustness of their features, and the eventual impact on analysis. The stability of results was found to range from perfectly stable (i.e. all digits of data significant) to highly unstable (i.e. 0 − 1 significant digits). This paper highlights the potential of leveraging induced variance in estimates of brain connectivity to reduce the bias in networks without compromising reliability, alongside increasing the robustness and potential upper-bound of their applications in the classification of individual differences. We demonstrate that stability evaluations are necessary for understanding error inherent to brain imaging experiments, and how numerical analysis can be applied to typical analytical workflows both in brain imaging and other domains of computational sciences, as the techniques used were data and context agnostic and globally relevant. Overall, while the extreme variability in results due to analytical instabilities could severely hamper our understanding of brain organization, it also affords us the opportunity to increase the robustness of findings.},
+    number = {11},
+}
+
+
 @article{Sohier2021Confidence,
 author = {Sohier, Devan and de Oliveira Castro, Pablo and F\'{e}votte, Fran\c{c}ois and Lathuili\`{e}re, Bruno and Petit, Eric and Jamond, Olivier},
 title = {Confidence Intervals for Stochastic Arithmetic},
@@ -34,9 +50,9 @@ documenturl = {confidence_interval_slides.pdf}
   journal={IEEE Transactions on Emerging Topics in Computing},
   title={A Study of the Effects and Benefits of Custom-Precision Mathematical Libraries for HPC Codes},
   year={2021},
-  volume={},
-  number={},
-  pages={1-1},
+  volume={9},
+  number={3},
+  pages={1467-1478},
   doi={10.1109/TETC.2021.3070422},
   abstract={Mathematical libraries are being specifically developed to use fixed-width data-paths on processors and target common floating-point formats like binary32 and binary64. In this article we propose a framework to evaluate the effects of mathematical library calls accuracy in scientific computations. First, our tool collects for each call-site of a mathematical function the input-data profile. Then, using a heuristic exploration algorithm, we estimate the minimal required accuracy by rounding the result to lower precisions. The data profile and accuracy measurement per call-site is used to speculatively select the mathematical function implementation with the most appropriate accuracy for a given scenario. We have tested the methodology with the Intel MKL VML library with predefined accuracy levels. We demonstrate the benefits of our approach on two real-world applications: SGP4, a satellite tracking application, and PATMOS, a Monte Carlo neutron transport code. We experiment and discuss its generalization across data-sets, and finally propose a speculative runtime implementation for PATMOS. The experiment provides an insight into the performance improvements that can be achieved by leveraging the control of per-function call-site accuracy-mode execution of the Intel MKL VML library.}
 }
