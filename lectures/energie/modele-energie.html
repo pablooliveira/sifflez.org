@@ -455,7 +455,7 @@ document.getElementsByTagName( 'head' )[0].appendChild( link );</script><link re
 <div class="ulist"><ul><li><p>Éfficacité énergétique doublée tous les 1.5 ans</p></li><li><p>Puissance de calcul doublée tous les 1.5 ans</p></li><li><p>Nombre de PCs utilisés double tous les trois ans (entre 1980 et 2008).</p></li></ul></div>
 <div class="paragraph"><p>Optimiser la consommation ne réduit pas l&#8217;impact total du calcul. On observe un « effet rebond » où l&#8217;efficacité gagnée est utilisée pour calculer plus.</p></div></div></section>
 <section id="_simulation_numérique_vers_un_calcul_sobre"><h2>Simulation numérique: vers un calcul sobre ?</h2><div class="slide-content"><div class="ulist"><ul><li><p>Compromis entre justesse du modèle et coût énergétique. Exemple: Réseaux de Neuronnes (Resnet), Green AI, Schwartz 2019.</p></li></ul></div>
-<div class="paragraph"><p><span class="image"><img src="figs/resnet.png" alt="FPO (Milliards d&#8217;Opérations Flottantes) vs. Justesse" width="Schwartz Green AI 2019" height="500"></span></p></div>
+<div class="paragraph"><p><span class="image"><img src="figs/resnet.png" alt="FPO (Milliards d&#8217;Opérations Flottantes) vs. Justesse" width="Schwartz Green AI 2019" height="300"></span></p></div>
 <div class="ulist"><ul><li><p>Pour une augmentation linéaire du coût en calcul, on a une augmentation logarithmique de la justesse.</p></li><li><p>Phénomène similaire observé aussi dans la simulation numérique (Masson &amp; Knutti 2011).</p></li><li><p>« Loi » des Retours Décroissants ?</p></li></ul></div></div></section>
 <section id="_bibliographie"><h2>Bibliographie</h2><div class="slide-content"><div class="ulist"><ul><li><p>Computer Architecture: A Quantitative Approach, Henessy, Patterson.</p></li><li><p>Introduction to Power Consumption in Dig. Int. Circuits, Tisserand, ECOFAC 2010.</p></li><li><p>Racing and Pacing to Idle: Theoretical and Empirical Analysis of Energy Optimization Heuristics, Kim, Ines, Hoffmann. IEEE 2015.</p></li><li><p>Adaptive, Transparent Frequency and Voltage Scaling of
 Communication Phases in MPI Programs, Lim, Freeh, Lowenthal. ACM/IEEE SC 2006.</p></li><li><p>Green AI, Schwartz et al, 2019.</p></li><li><p>Speed Scale Depdence of Climate Model Performance in the CMPI3 Ensemble, Masson &amp; Knutti, 2011.</p></li></ul></div></div></section></div></div><script src="reveal.js/js/reveal.js"></script><script>Array.prototype.slice.call(document.querySelectorAll('.slides section')).forEach(function(slide) {
@@ -486,7 +486,7 @@ Reveal.initialize({
   // Display a presentation progress bar
   progress: true,
   // Display the page number of the current slide
-  slideNumber: false,
+  slideNumber: 'true',
   // Control which views the slide number displays on
   showSlideNumber: 'all',
   // Add the current slide number to the URL hash so that reloading the
