@@ -8,7 +8,7 @@
        <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/r29/html5.min.js"></script>
    <![endif]-->
    <link rel="shortcut icon" href="/favicon.ico" />
-   <title>Squeak VM for NDS</title>
+   <title>Numerical computing</title>
 </head>
 <body>
 
@@ -18,54 +18,17 @@
 
 <div id="wrapper">
   <article>
-    <h1>Squeak vm for nds</h1>
+    <h2>Introduction to numerical computing (Calcul Numérique M1 CHPS)</h2>
 
-<div class="floatimage">
-<img src="squeak_nds_desmume1.jpg" alt=
-"Squeak VM for nds running under Desmume" />
-</div>
-
-
-<p>Here is a port of the <a href="http://www.squeakvm.org/">Squeak VM</a>
-for the Nintendo DS. The port is quite bare for the moment, but seems
-to work fine with a stripped down Squeak 3.0 image.</p>
-
-<p>Because of the NDS limited memory, this port can only run small
-footprint images. It uses both screens on the DS, and supports
-color resolutions from 1 to 16 bits. It lacks (among
-other things) sound support and a virtual keyboard.</p>
-
-<p>I'm not sure if a virtual keyboard should be integrated in the
-vm. It seems indeed undesirable for images that do not need
-keyboard input. I think a better option would be to provide
-a virtual keyboard inside the squeak image, but do not know yet
-if this is feasible.</p>
-
-<h3>Getting it</h3>
-
-<h4>Source</h4>
-
-<p>You can get a copy of the repository using
-<a href="http://www.git-scm.com">GIT</a> by typing:</p>
-
-<pre><code>% git clone git://github.com/pablooliveira/squeak_nds.git
-</code></pre>
-
-<p>or <a href="http://github.com/pablooliveira/squeak_nds">browse</a>
-the individual files. At this latter URL, you can
-also request a snapshot of the repository by clicking
-on "snapshot".</p>
-
-<h4>Binary</h4>
+<p>Introduction lectures to the <em>Calcul Numérique</em> course in M1 CHPS in French.
+The rest of the course it taught by <a href="https://cv.archives-ouvertes.fr/thomas-dufaud">Thomas Dufaud</a>.</p>
 
 <ul>
-<li><a href="http://github.com/pablooliveira/squeak_nds/raw/master/README">README</a></li>
-<li><a href="./vm.nds">vm.nds</a></li>
+<li><a href="flottants.pdf">Arithmétique à virgule flottante</a></li>
+<li><a href="integration.pdf">Intégration numérique</a></li>
+<li><a href="https://github.com/pablooliveira/cours-calcul-numerique/blob/main/tp-simclim/TP1.pdf">TD: Simulation d'un modèle climatique simple</a></li>
 </ul>
 
-
-<p>The Squeak image used for the above screenshot is available
-<a href="http://github.com/pablooliveira/squeak_nds/tree/master/platforms/nds/vm/test/">here</a></p>
 
   </article>
 
@@ -109,7 +72,7 @@ on "snapshot".</p>
 
 <footer>
 Last modified the
-2010-02-07
+2021-11-25
 <br /> Pablo de
 Oliveira Castro &lt;pablo@sifflez.org&gt;
 </footer>
