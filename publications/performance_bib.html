@@ -51,8 +51,8 @@
   year = {2015},
   organization = {IEEE},
   abstract = {
-Evaluating the strong scalability of OpenMP applications is a costly and time-consuming process. It traditionally requires executing the whole application multiple times with different number of threads. We propose the Parallel Codelet Extractor and REplayer (PCERE), a tool to reduce the cost of scalability evaluation. PCERE decomposes applications into small pieces called codelets: each codelet maps to an OpenMP parallel region and can be replayed as a standalone program. To accelerate scalability prediction, PCERE replays codelets while varying the number of threads. Prediction speedup comes from two key ideas. First, the number of invocations during replay can be significantly reduced. Invocations that have the same performance are grouped together and a single representative is replayed. Second, sequential parts of the programs do not need to be replayed for each different thread configuration. PCERE codelets can be captured once and replayed accurately on multiple architectures, enabling cross-architecture parallel performance prediction. We evaluate PCERE on a C version of the NAS 3.0 Parallel Benchmarks (NPB). We achieve an average speed-up of 25 times on evaluating OpenMP applications scalability with an average error of 4.9\% (median error of 1.7\%).
-    },
+                  Evaluating the strong scalability of OpenMP applications is a costly and time-consuming process. It traditionally requires executing the whole application multiple times with different number of threads. We propose the Parallel Codelet Extractor and REplayer (PCERE), a tool to reduce the cost of scalability evaluation. PCERE decomposes applications into small pieces called codelets: each codelet maps to an OpenMP parallel region and can be replayed as a standalone program. To accelerate scalability prediction, PCERE replays codelets while varying the number of threads. Prediction speedup comes from two key ideas. First, the number of invocations during replay can be significantly reduced. Invocations that have the same performance are grouped together and a single representative is replayed. Second, sequential parts of the programs do not need to be replayed for each different thread configuration. PCERE codelets can be captured once and replayed accurately on multiple architectures, enabling cross-architecture parallel performance prediction. We evaluate PCERE on a C version of the NAS 3.0 Parallel Benchmarks (NPB). We achieve an average speed-up of 25 times on evaluating OpenMP applications scalability with an average error of 4.9\% (median error of 1.7\%).
+                  },
   pdf = {pcere15.pdf},
   documenturl = {pcere15-slides.pdf}
 }
@@ -69,37 +69,35 @@ Evaluating the strong scalability of OpenMP applications is a costly and time-co
   year = {2015},
   publisher = {ACM},
   doi = {10.1145/2724717},
-  abstract = {
-        This article presents Codelet Extractor and REplayer (CERE), an
-        open-source framework for code isolation. CERE finds
-        and extracts the hotspots of an application as
-        isolated fragments of code, called
-        codelets. Codelets can be modified, compiled, run,
-        and measured independently from the original
-        application. Code isolation reduces benchmarking
-        cost and allows piecewise optimization of an
-        application. Unlike previous approaches, CERE
-        isolates codes at the compiler Intermediate
-        Representation (IR) level. Therefore CERE is
-        language agnostic and supports many input languages
-        such as C, C++, Fortran, and D. CERE automatically
-        detects codelets invocations that have the same
-        performance behavior. Then, it selects a reduced set
-        of representative codelets and invocations, much
-        faster to replay, which still captures accurately
-        the original application. In addition, CERE supports
-        recompiling and retargeting the extracted
-        codelets. Therefore, CERE can be used for
-        cross-architecture performance prediction or
-        piecewise code optimization. On the SPEC 2006 FP
-        benchmarks, CERE codelets cover 90.9\% and accurately
-        replay 66.3\% of the execution time. We use CERE
-        codelets in a realistic study to evaluate three
-        different architectures on the NAS benchmarks. CERE
-        accurately estimates each architecture performance
-        and is 7.3x to 46.6x cheaper than running the full
-        benchmark.
-    },
+  abstract = {This article presents Codelet Extractor and REplayer (CERE), an
+               open-source framework for code isolation. CERE finds
+               and extracts the hotspots of an application as
+               isolated fragments of code, called
+               codelets. Codelets can be modified, compiled, run,
+               and measured independently from the original
+               application. Code isolation reduces benchmarking
+               cost and allows piecewise optimization of an
+               application. Unlike previous approaches, CERE
+               isolates codes at the compiler Intermediate
+               Representation (IR) level. Therefore CERE is
+               language agnostic and supports many input languages
+               such as C, C++, Fortran, and D. CERE automatically
+               detects codelets invocations that have the same
+               performance behavior. Then, it selects a reduced set
+               of representative codelets and invocations, much
+               faster to replay, which still captures accurately
+               the original application. In addition, CERE supports
+               recompiling and retargeting the extracted
+               codelets. Therefore, CERE can be used for
+               cross-architecture performance prediction or
+               piecewise code optimization. On the SPEC 2006 FP
+               benchmarks, CERE codelets cover 90.9\% and accurately
+               replay 66.3\% of the execution time. We use CERE
+               codelets in a realistic study to evaluate three
+               different architectures on the NAS benchmarks. CERE
+               accurately estimates each architecture performance
+               and is 7.3x to 46.6x cheaper than running the full
+               benchmark.  },
   pdf = {cere15.pdf}
 }
 </pre>
@@ -119,27 +117,24 @@ Evaluating the strong scalability of OpenMP applications is a costly and time-co
   doi = {10.1145/2544137.2544144},
   publisher = {ACM},
   address = {New York, NY, USA},
-  abstract = {
-        System selection aims at finding the best architecture for a set of
-        programs and workloads. It traditionally requires long running
-        benchmarks. We propose a method to reduce the cost of system
-        selection. We break down benchmarks into elementary fragments of
-        source code, called codelets. Then, we identify two causes of
-        redundancy: first, similar codelets; second, codelets called
-        repeatedly. The key idea is to minimize redundancy inside the
-        benchmark suite to speed it up. For each group of similar codelets,
-        only one representative is kept. For codelets called repeatedly and for
-        which the performance does not vary across calls, the number of
-        invocations is reduced. Given an initial benchmark suite, our
-        method produces a set of reduced benchmarks that can be used in
-        place of the original one for system selection.
-
-        We evaluate our method on the NAS SER benchmarks, producing a reduced
-        benchmark suite 30 times faster in average than the original suite,
-        with a maximum of 44 times. The reduced suite predicts the execution
-        time on three target architectures with a median error between 3.9\%
-        and 8\%.
-    },
+  abstract = {System selection aims at finding the best architecture for a set of
+                 programs and workloads. It traditionally requires long running
+                 benchmarks. We propose a method to reduce the cost of system
+                 selection. We break down benchmarks into elementary fragments of
+                 source code, called codelets. Then, we identify two causes of
+                 redundancy: first, similar codelets; second, codelets called
+                 repeatedly. The key idea is to minimize redundancy inside the
+                 benchmark suite to speed it up. For each group of similar codelets,
+                 only one representative is kept. For codelets called repeatedly and for
+                 which the performance does not vary across calls, the number of
+                 invocations is reduced. Given an initial benchmark suite, our
+                 method produces a set of reduced benchmarks that can be used in
+                 place of the original one for system selection.
+                 We evaluate our method on the NAS SER benchmarks, producing a reduced
+                 benchmark suite 30 times faster in average than the original suite,
+                 with a maximum of 44 times. The reduced suite predicts the execution
+                 time on three target architectures with a median error between 3.9\%
+                 and 8\%.  },
   pdf = {finegrained-cgo14.pdf},
   documenturl = {finegrained-slides.pdf}
 }
@@ -155,25 +150,21 @@ Evaluating the strong scalability of OpenMP applications is a costly and time-co
   issn = {1532-0634},
   doi = {10.1002/cpe.3097},
   keywords = {performance, sampling, modeling, stencil},
-  abstract = {
-
-    Characterizing performance is essential to optimize programs and architectures.
-    The open source Adaptive Sampling Kit (ASK) measures the performance
-    trade-off in large design spaces. Exhaustively sampling all sets of
-    parameters is computationally intractable. Therefore, ASK concentrates
-    exploration in the most irregular regions of the design space through
-    multiple adaptive sampling strategies. The paper presents the ASK
-    architecture and a set of adaptive sampling strategies, including a new
-    approach called Hierarchical Variance Sampling. ASK's usage is demonstrated
-    on three performance characterization problems: memory stride accesses,
-    Jacobian stencil code, and an industrial seismic application using 3D stencils.
-    ASK builds accurate models of performance with a small number of measures.
-    It considerably reduces the cost of performance exploration. For instance,
-    the Jacobian stencil code design space, which has more than 31 × 10^8
-    combinations of parameters, is accurately predicted using only 1500
-    combinations.
-
-    },
+  abstract = {Characterizing performance is essential to optimize programs and architectures.
+               The open source Adaptive Sampling Kit (ASK) measures the performance
+               trade-off in large design spaces. Exhaustively sampling all sets of
+               parameters is computationally intractable. Therefore, ASK concentrates
+               exploration in the most irregular regions of the design space through
+               multiple adaptive sampling strategies. The paper presents the ASK
+               architecture and a set of adaptive sampling strategies, including a new
+               approach called Hierarchical Variance Sampling. ASK's usage is demonstrated
+               on three performance characterization problems: memory stride accesses,
+               Jacobian stencil code, and an industrial seismic application using 3D stencils.
+               ASK builds accurate models of performance with a small number of measures.
+               It considerably reduces the cost of performance exploration. For instance,
+               the Jacobian stencil code design space, which has more than 31 × 10^8
+               combinations of parameters, is accurately predicted using only 1500
+               combinations.},
   pdf = {ASK-cpe13.pdf}
 }
 </pre>
@@ -185,24 +176,20 @@ Evaluating the strong scalability of OpenMP applications is a costly and time-co
   booktitle = {International Workshop on Parallel Software Tools and Tool Infrastructures (PSTI)},
   year = {2013},
   publisher = {IEEE Computer Society},
-  abstract = {
-
-Source-code isolation finds and extracts the hotspots of an application as
-independent isolated fragments of code, called codelets. Codelets can be
-modified, compiled, run, and measured independently from the original
-application. Source-code isolation reduces benchmarking cost and allows
-piece-wise optimization of an application. Source-code isolation is faster
-than whole-program benchmarking and optimization since the user can
-concentrate only on the bottlenecks. This paper examines the viability of
-using isolated codelets in place of the original application for
-performance characterization and optimization. On the NAS benchmarks, we
-show that codelets capture 92.3\% of the original execution time. We present
-a set of techniques for keeping codelets as faithful as possible to the
-original hotspots: 63.6\% of the codelets have the same assembly as the
-original hotspots and 81.6\% of the codelets have the same run time
-performance as the original hotspots.
-
-},
+  abstract = {Source-code isolation finds and extracts the hotspots of an application as
+                 independent isolated fragments of code, called codelets. Codelets can be
+                 modified, compiled, run, and measured independently from the original
+                 application. Source-code isolation reduces benchmarking cost and allows
+                 piece-wise optimization of an application. Source-code isolation is faster
+                 than whole-program benchmarking and optimization since the user can
+                 concentrate only on the bottlenecks. This paper examines the viability of
+                 using isolated codelets in place of the original application for
+                 performance characterization and optimization. On the NAS benchmarks, we
+                 show that codelets capture 92.3\% of the original execution time. We present
+                 a set of techniques for keeping codelets as faithful as possible to the
+                 original hotspots: 63.6\% of the codelets have the same assembly as the
+                 original hotspots and 81.6\% of the codelets have the same run time
+                 performance as the original hotspots.},
   pdf = {psti13.pdf},
   documenturl = {psti13-slides.pdf}
 }
@@ -218,21 +205,19 @@ performance as the original hotspots.
   isbn = {978-1-4799-0836-3},
   year = {2013},
   publisher = {IEEE Computer Society},
-  abstract = {
-      Using the MAQAO loop static analyzer, we characterize a corpus of binary
-          loops extracted from common benchmark suits such as SPEC, NAS, etc.
-          and several industrial applications. For each loop, MAQAO extracts
-          low-level assembly features such as: integer and floating-point
-          vectorization ratio, number of registers used and spill-fill, number
-          of concurrent memory streams accessed, etc. The distributions of
-          these features on a large representative code corpus can be used to
-          evaluate compilers and architectures and tune them for the most
-          frequently used assembly patterns. In this paper, we present the
-          MAQAO loop analyzer and a characterization of the 4857 binary loops.
-          We evaluate register allocation and vectorization on two compilers
-          and propose a method to tune loop buffer size and stream prefetcher
-          based on static analysis of benchmarks.
-  },
+  abstract = {Using the MAQAO loop static analyzer, we characterize a corpus of binary
+               loops extracted from common benchmark suits such as SPEC, NAS, etc.
+               and several industrial applications. For each loop, MAQAO extracts
+               low-level assembly features such as: integer and floating-point
+               vectorization ratio, number of registers used and spill-fill, number
+               of concurrent memory streams accessed, etc. The distributions of
+               these features on a large representative code corpus can be used to
+               evaluate compilers and architectures and tune them for the most
+               frequently used assembly patterns. In this paper, we present the
+               MAQAO loop analyzer and a characterization of the 4857 binary loops.
+               We evaluate register allocation and vectorization on two compilers
+               and propose a method to tune loop buffer size and stream prefetcher
+               based on static analysis of benchmarks.},
   pdf = {hpcs13.pdf}
 }
 </pre>
@@ -250,22 +235,20 @@ performance as the original hotspots.
   series = {Lecture Notes in Computer Science},
   volume = {7484},
   isbn = {978-3-642-32819-0},
-  abstract = {
-    Characterizing performance is essential to optimize programs
-    and architectures. The open source Adaptive Sampling Kit (ASK) measures
-    the performance trade-offs in large design spaces. Exhaustively
-    sampling all points is computationally intractable. Therefore, ASK
-    concentrates exploration in the most irregular regions of the design space
-    through multiple adaptive sampling methods. The paper presents the
-    ASK architecture and a set of adaptive sampling strategies, including a
-    new approach: Hierarchical Variance Sampling. ASK’s usage is demonstrated
-    on two performance characterization problems: memory stride
-    accesses and stencil codes. ASK builds precise models of performance
-    with a small number of measures. It considerably reduces the cost of
-    performance exploration. For instance, the stencil code design space,
-    which has more than 31.10^8 points, is accurately predicted using only
-    1500 points.
-    },
+  abstract = {Characterizing performance is essential to optimize programs
+                 and architectures. The open source Adaptive Sampling Kit (ASK) measures
+                 the performance trade-offs in large design spaces. Exhaustively
+                 sampling all points is computationally intractable. Therefore, ASK
+                 concentrates exploration in the most irregular regions of the design space
+                 through multiple adaptive sampling methods. The paper presents the
+                 ASK architecture and a set of adaptive sampling strategies, including a
+                 new approach: Hierarchical Variance Sampling. ASK’s usage is demonstrated
+                 on two performance characterization problems: memory stride
+                 accesses and stencil codes. ASK builds precise models of performance
+                 with a small number of measures. It considerably reduces the cost of
+                 performance exploration. For instance, the stencil code design space,
+                 which has more than 31.10^8 points, is accurately predicted using only
+                 1500 points.},
   pdf = {ASK-europar12.pdf},
   documenturl = {ASK-europar12-slides.pdf}
 }
@@ -274,10 +257,10 @@ performance as the original hotspots.
 <a name="Petit2012computing"></a><pre>
 @inproceedings{<a href="/publications/#Petit2012computing">Petit2012computing</a>,
   title = {Computing-Kernels Performance Prediction Using DataFlow Analysis and
-Microbenchmarking},
+               Microbenchmarking},
   author = {Petit, Eric and de Oliveira Castro, Pablo and Menour, Tarek and Krammer,
-Bettina and
-Jalby, William},
+               Bettina and
+               Jalby, William},
   booktitle = {International Workshop on Compilers for Parallel Computers},
   year = {2012}
 }

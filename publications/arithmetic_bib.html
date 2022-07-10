@@ -1,9 +1,14 @@
 <h1>arithmetic.bib</h1><a name="elarar2022positiv"></a><pre>
 @inproceedings{<a href="/publications/#elarar2022positiv">elarar2022positiv</a>,
-  author = {El Arar, El-Mehdi and Devan, Sohier and De Oliveira Castro, Pablo and Petit, Eric},
-  title = {The positive effects of stochastic rounding in numerical algorithms},
-  booktitle = {29th {IEEE} Symposium on Computer Arithmetic, {ARITH} 2022},
-  year = {(to appear) 2022}
+  title = {{The Positive Effects of Stochastic Rounding in Numerical Algorithms}},
+  author = {El Arar, El-Mehdi and Sohier, Devan and de Oliveira Castro, Pablo and Petit, Eric},
+  url = {https://hal.archives-ouvertes.fr/hal-03716058},
+  booktitle = {{29th IEEE Symposium on Computer Arithmetic ARITH 2022}},
+  address = {Virtual conference, France},
+  year = {2022},
+  pdf = {https://hal.archives-ouvertes.fr/hal-03716058/file/main.pdf},
+  hal_version = {v1},
+  abstract = {Recently, stochastic rounding (SR) has been implemented in specialized hardware but most current computing nodes do not yet support this rounding mode. Several works empirically illustrate the benefit of stochastic rounding in various fields such as neural networks and ordinary differential equations. For some algorithms, such as summation, inner product or matrixvector multiplication, it has been proved that SR provides probabilistic error bounds better than the traditional deterministic bounds. In this paper, we extend this theoretical ground for a wider adoption of SR in computer architecture. First, we analyze the biases of the two SR modes: SR-nearness and SR-up-or-down. We demonstrate on a case-study of Euler's forward method that IEEE-754 default rounding modes and SR-up-or-down accumulate rounding errors across iterations and that SR-nearness, being unbiased, does not. Second, we prove a O(√ n) probabilistic bound on the forward error of Horner's polynomial evaluation method with SR, improving on the known deterministic O(n) bound.}
 }
 </pre>
 
@@ -118,28 +123,28 @@
 <a name="Chatelain2018veritracer"></a><pre>
 @inproceedings{<a href="/publications/#Chatelain2018veritracer">Chatelain2018veritracer</a>,
   author = {Yohan Chatelain and
-             Pablo de Oliveira Castro and
-             Eric Petit and
-             David Defour and
-             Jordan Bieder and
-             Marc Torrent},
+                 Pablo de Oliveira Castro and
+                 Eric Petit and
+                 David Defour and
+                 Jordan Bieder and
+                 Marc Torrent},
   title = {{VeriTracer: Context-enriched tracer for floating-point arithmetic analysis}},
   booktitle = {25th {IEEE} Symposium on Computer Arithmetic, {ARITH} 2018, Amherst, MA, USA. June 25th-27th, 2018},
   pages = {65--72},
   publisher = {IEEE},
   year = {2018},
   abstract = {VeriTracer automatically instruments a code and
-    traces the accuracy of floating-point variables over
-    time. VeriTracer enriches the visual traces with contextual
-    information such as the call site path in which
-    a value was modified. Contextual information is important
-    to understand how the floating-point errors
-    propagate in complex codes. VeriTracer is implemented
-    as an LLVM compiler tool on top of Verificarlo.
-    We demonstrate how VeriTracer can detect accuracy
-    loss and quantify the impact of using a compensated
-    algorithm on ABINIT, an industrial HPC application
-    for Ab Initio quantum computation.},
+                 traces the accuracy of floating-point variables over
+                 time. VeriTracer enriches the visual traces with contextual
+                 information such as the call site path in which
+                 a value was modified. Contextual information is important
+                 to understand how the floating-point errors
+                 propagate in complex codes. VeriTracer is implemented
+                 as an LLVM compiler tool on top of Verificarlo.
+                 We demonstrate how VeriTracer can detect accuracy
+                 loss and quantify the impact of using a compensated
+                 algorithm on ABINIT, an industrial HPC application
+                 for Ab Initio quantum computation.},
   pdf = {arith2018veritracer.pdf},
   documenturl = {arith2018slides.pdf}
 }
@@ -148,12 +153,12 @@
 <a name="Denis2016verificarlo"></a><pre>
 @inproceedings{<a href="/publications/#Denis2016verificarlo">Denis2016verificarlo</a>,
   author = {Christophe Denis and
-             Pablo de Oliveira Castro and
-             Eric Petit},
+               Pablo de Oliveira Castro and
+               Eric Petit},
   title = {Verificarlo: Checking Floating Point Accuracy through Monte Carlo
-             Arithmetic},
+               Arithmetic},
   booktitle = {23nd {IEEE} Symposium on Computer Arithmetic, {ARITH} 2016, Silicon
-             Valley, CA, USA, July 10-13, 2016},
+               Valley, CA, USA, July 10-13, 2016},
   pages = {55--62},
   year = {2016},
   url = {<a href="http://dx.doi.org/10.1109/ARITH.2016.31">http://dx.doi.org/10.1109/ARITH.2016.31</a>},
