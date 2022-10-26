@@ -1,0 +1,17 @@
+<h1>hdr.bib</h1><a name="oliveira2022HDR"></a><pre>
+@article{<a href="/publications/#oliveira2022HDR">oliveira2022HDR</a>,
+  title = {{High Performance Computing code optimizations: Tuning performance and accuracy}},
+  author = {de Oliveira Castro, Pablo},
+  url = {https://tel.archives-ouvertes.fr/tel-03831483},
+  note = {Habilitation {\`a} diriger des recherches, Universit{\'e} Paris-Saclay},
+  year = {2022},
+  month = oct,
+  keywords = {compilation ; optimization ; performance ; energy ; floating-point ; stochastic rounding ; High Perfomance Computing ; Calcul Haute Performance},
+  pdf = {https://tel.archives-ouvertes.fr/tel-03831483/file/habilitation.pdf},
+  abstract = {Since the beginning of the field of high performance computing (HPC) after World War II, there has been a rapid increase in computing resources and simulation complexity. HPC fine-grained simulation of complex systems, such as fluid dynamics or molecular interactions, has made possible important advances in many scientific fields and in the industry. Reducing the cost, both in time and energy, of computer simulations is critical. The precision of simulations should be sufficient to provide scientific insights but as low as possible to save energy and computation time.
+HPC relies on complex heterogeneous architectures with massive concurrency at different execution levels, a deep memory hierarchy, and dedicated interconnect networks. This inherent complexity generates an optimization space composed of many factors such as the chosen architecture, the algorithmic variant, the floating-point precision and format, the compiler optimization passes, and the thread mapping. The first part of the manuscript presents methods to accelerate the optimization of HPC applications. We present the design of CERE, an open-source tool that automatically decomposes applications into standalone regions, called codelets. Instead of studying the whole application, a minimal set of codelets capturing its performance behavior serves as a proxy for optimization. The optimization space is further reduced by the use of adaptive sampling techniques, that estimate the performance from a limited number of factor combinations. We demonstrate these techniques in different domains, such as optimizing a seismic imaging proto-application and reducing simulation time for hardware-software co-design.
+The second part of the manuscript uses alternative floating-point models, such as Monte Carlo arithmetic, to explore the compromise between numerical precision and performance. A probabilistic definition of the number of significant digits is introduced and used to estimate the accuracy of a computation. We discuss the design of verificarlo, an open-source framework for numerical optimization, and demonstrate how it can be applied to pinpoint numerical bugs in large HPC codes such as neuroimaging pipelines, Density Functional Theory quantum mechanical modeling, or structure simulations. Verificarlo is also used to identify the parts of the code that can use smaller floating-point formats, reducing the computation cost. We apply these techniques to optimize the speed and energy consumption of a conjugate-gradient solver used in Computational Fluid Dynamics.
+Finally, we examine the challenge of reducing the power consumption of HPC through a survey of the literature. We advocate for sobriety in our usage of computing resources: instead of always reaching for more complex simulations, we should find the right fit for our problem.}
+}
+</pre>
+
