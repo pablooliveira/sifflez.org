@@ -1,0 +1,879 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name=viewport content="width=device-width, initial-scale=1">
+   <link rel="stylesheet" href="/css/site.css" type="text/css" />
+   <!--[if lt IE 9]>
+       <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/r29/html5.min.js"></script>
+   <![endif]-->
+   <link rel="shortcut icon" href="/favicon.ico" />
+   <!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>On the environmental impact of High Performance Computing | Sifflez.org</title>
+<meta name="generator" content="Jekyll v4.2.1" />
+<meta property="og:title" content="On the environmental impact of High Performance Computing" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Pablo de Oliveira Castro - Computer science assistant professor at the Université de Versailles St-Quentin-en-Yvelines." />
+<meta property="og:description" content="Pablo de Oliveira Castro - Computer science assistant professor at the Université de Versailles St-Quentin-en-Yvelines." />
+<link rel="canonical" href="https://sifflez.org/publications/environment-hpc/" />
+<meta property="og:url" content="https://sifflez.org/publications/environment-hpc/" />
+<meta property="og:site_name" content="Sifflez.org" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2022-10-26T00:00:00+02:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="On the environmental impact of High Performance Computing" />
+<script type="application/ld+json">
+{"url":"https://sifflez.org/publications/environment-hpc/","headline":"On the environmental impact of High Performance Computing","dateModified":"2022-10-26T00:00:00+02:00","datePublished":"2022-10-26T00:00:00+02:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://sifflez.org/publications/environment-hpc/"},"@type":"BlogPosting","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://sifflez.org/sifflez_plant.jpg"}},"description":"Pablo de Oliveira Castro - Computer science assistant professor at the Université de Versailles St-Quentin-en-Yvelines.","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+</head>
+<body>
+
+<header>
+    <a  class="to_nav" href="#menu">Menu</a>
+</header>
+
+<div id="wrapper">
+  <article>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+<h1 id="some-thoughts-on-the-environmental-impact-of-high-performance-computing">Some thoughts on the environmental impact of High Performance Computing</h1>
+
+<center>
+Pablo de Oliveira Castro <br />
+2022-10-26
+</center>
+<p><br /></p>
+
+<ul>
+  <li><a href="#c8:sec:energy">1. Energetic sobriety</a></li>
+  <li><a href="#the-global-carbon-impact-of-computation">2. The global carbon impact of computation</a></li>
+  <li><a href="#low-carbon-electricity-is-not-a-silver-bullet">3. Low-carbon electricity is not a silver bullet</a></li>
+  <li><a href="#c8:sec:efficiency">4. HPC efficiency</a>
+    <ul>
+      <li><a href="#dennards-scaling-1970-2009">4.1. Dennard’s scaling: 1970-2009</a></li>
+      <li><a href="#multi-processing-and-accelerators-2009-2022">4.2. Multi-Processing and accelerators: 2009-2022</a></li>
+      <li><a href="#software-optimizations">4.3. Software optimizations</a></li>
+    </ul>
+  </li>
+  <li><a href="#c8:sec:rebound">5. Rebound effects</a></li>
+  <li><a href="#computation-sobriety-when-less-is-more">6. Computation sobriety: when less is more</a>
+    <ul>
+      <li><a href="#case-study-in-healthcare">6.1. Case study in healthcare</a></li>
+      <li><a href="#closing-thoughts">6.2 Closing thoughts</a></li>
+    </ul>
+  </li>
+  <li><a href="#c8:sec:bibliography">Bibliography</a></li>
+</ul>
+
+<p><em>This article was originally published as part of my
+<a href="https://hal.universite-paris-saclay.fr/LI-PARAD/tel-03831483">Habilitation à Diriger les
+Recherches</a> [1].</em></p>
+
+<p>Faced with an unprecedented climate crisis, reducing our environmental
+impact is paramount. HPC’s direct effects on the environment are
+twofold.</p>
+
+<p>First, producing HPC hardware involves complex industrial processes and
+depends on costly resources such as rare-earth elements. Large areas are
+mined to extract rare-earth elements with major ecological and health
+impacts. Mining releases toxic and radioactive materials that poison the
+land and the people around the extraction sites. Moreover, rare-earth
+mines operate in developing countries where the labor cost is low and
+environmental regulations are less strict, leading to human rights
+abuses and child labor to satisfy the demands of the high-tech industry.
+Disposing of obsolete HPC hardware is also problematic, and waste is
+often exported to developing countries. For example, the Agbogbloshie
+district in Ghana has become one of the largest dumps where electronic
+waste is dismantled under unsafe conditions with harmful health [2]
+and environmental effects.</p>
+
+<p>Second, HPC requires energy to fabricate the hardware and perform the
+computations, which translates into greenhouse gas emissions,
+particularly carbon dioxide emissions. Reducing these emissions is
+critical to mitigate global warming.</p>
+
+<p>However, HPC also has indirect effects on the environmental crisis. The
+technological advances it brings can cause <em>rebound effects</em> where the
+efficiency gained increases demand for computation. Paradoxically, the
+increased demand can result in a net increase in carbon emissions and
+new hardware manufacture, worsening the ecological impact.</p>
+
+<p>My research has focused on optimizations at the compiler, operating
+system, and software levels. Therefore, in this survey, I look at the
+environmental impact through the prism of power consumption and the
+associated carbon emissions. This choice is guided by my research field
+and does not imply that the other topics, such as rare-earth extraction,
+are less important.</p>
+
+<p>One could think that optimizations reducing the computation cost of a
+code also improve the power consumption. Instead, the gained efficiency
+often amortizes an increase in the computation size or the simulation
+complexity. In that case, the larger problem size offsets the gained
+efficiency, and the net effect is that the power consumption stays the
+same or even increases.</p>
+
+<p>The climate crisis is shifting the focus to reducing energy consumption
+and limiting the environmental impact of computations. Improving the
+computation efficiency might not be enough and could even be
+counterproductive because of <em>rebound effects</em>. I think more sobriety in
+our computation demands is required; in particular, instead of pushing
+for larger and more complex models, we should aim for the smallest model
+satisfying the required accuracy.</p>
+
+<h2 id="c8:sec:energy">Energetic sobriety</h2>
+
+<p>We are in the midst of an ecological crisis, documented extensively by
+the scientific community [3]. One major aspect of this crisis is
+global warming, which calls for a drastic reduction of our carbon
+footprint. The <em>Stratégie Nationale Bas Carbone</em> is the French national
+roadmap for reaching carbon-neutrality in 2050; its last revision in
+2020 operates under the hypothesis that France will reduce its energy
+consumption by 40% either through increased efficiency or sobriety. In
+this context, improving energy efficiency is paramount when optimizing
+HPC programs and architectures.</p>
+
+<p>The TOP500 and Green500 lists have ranked the computing and power
+efficiency of the top supercomputers. In 2013, the most efficient
+supercomputer in these lists achieved 3208 MFlop/s/W; in 2022, the most
+efficient supercomputer achieved 39.4 GFlop/s/W. In a decade, the energy
+efficiency has been multiplied by 12. Efficiency improvements result
+from improvements in chip manufacturing technology, the use of
+specialized accelerators, and careful optimization of applications.</p>
+
+<p>However, this efficiency improvement comes with a comparable increase in
+computation capacity. The total computing capacity of the TOP500 list
+has gone from 228.6 PFlop/s in 2013 to 3 EFlop/s in 2022, representing a
+13 times increase in computing capacity.</p>
+
+<p>When considering the net carbon impact of HPC, the efficiency savings
+are lost due to the increased computation demand. One might wonder
+whether HPC is subject to rebound effects (discussed in
+section <a href="#c8:sec:rebound" data-reference-type="ref" data-reference="c8:sec:rebound">5</a>), where the efficiency gained in a
+technology fosters its widespread adoption, nullifying the net energy
+savings.</p>
+
+<p>Another option to reduce HPC’s power budget is to compute less. Often,
+the trend is to reach for the more complex and fine-grained models
+available, which come with an increased computation cost. But we should
+not aim for the most precise and accurate computation when a simpler or
+less precise model would do the job. For example, reducing the
+floating-point precision of a model can save computation and
+energy [1].</p>
+
+<h2 id="the-global-carbon-impact-of-computation">The global carbon impact of computation</h2>
+
+<p>Most studies that evaluate the carbon impact of computation do not
+specifically focus on HPC centers but consider the broader ecosystem of
+data centers which, besides high-performance computations, also runs
+data-oriented internet services.</p>
+
+<p>Data centers worldwide use an estimated 200TWh [4] each year,
+representing 1% of the global energy demand and 0.3% of the global
+carbon emissions. That figure is under-estimated because it does not
+account for the embodied emissions [5] of data centers: the carbon
+emitted to fabricate the servers and their surrounding infrastructure.</p>
+
+<p>When personal digital devices, mobile phone networks, and televisions
+are also included, the whole information and communication technology
+(ICT) carbon footprint is estimated to be 1.8%-2.8% of the global carbon
+emissions [6]. Embodied emissions are important in the ICT sector:
+they represent 23% of the total carbon impact. In France, the part of
+embodied emissions is even higher because the carbon intensity of French
+electricity is low. Therefore, besides reducing computations, it is
+essential to prolong the lifetime of ICT appliances.</p>
+
+<p>A 1.8%-2.8% total carbon footprint for ICT might appear unimportant. In
+particular, when compared to the carbon emitted by the industry (29.4%),
+transportation (16.2%), or residential sectors (10.9%) [7].
+Nevertheless, it should be put into perspective since the demand for
+HPC, particularly AI, is growing quickly; for example, it is estimated
+that DNN computations have increased by a 300 000 factor from 2012 to
+2018 [8].</p>
+
+<p>While this discussion focuses on carbon impact to keep matters simple,
+as mentioned in the introduction, ICT raises other important
+sustainability issues such as rare-earth mining and electronic waste.</p>
+
+<h2 id="low-carbon-electricity-is-not-a-silver-bullet">Low-carbon electricity is not a silver bullet</h2>
+
+<p>To mitigate the carbon impact, some computation-centers buy renewable
+energy on the grid [9] or are built close to renewable energy sources
+such as geothermic plants. Others perform their computations when the
+demand on the grid is low, reducing their operation cost since they buy
+the electricity at a premium price and optimize the usage of the grid
+scheduling computation when there is a surplus of electricity.</p>
+
+<p>Despite these strategies, Freitag et al. [6] conclude renewable
+energies are not a silver bullet due to their limited availability with
+current technology. They note that renewable energy is a scarce resource
+and that any energy taken by ICT will not be available for other uses.</p>
+
+<p>The carbon intensity of electricity in France is low, in 2021, the
+annual average was 36 gCO2/kWh, as reported by Réseau de Transport
+d’Électricité (RTE). Indeed, 92% of french electricity comes from
+low-carbon production methods: 69% comes from nuclear power plants, 12%
+from hydroelectric power stations, 7% from wind turbines, and 3% from
+solar panels. Nevertheless, only 25% of the French final energy
+consumption comes from electricity. Fossil fuel’s annual energy
+consumption was 1005TWh in 2021, which represents 61% of the final
+energy mix.</p>
+
+<p>Due to the low carbon intensity of electricity, some argue that reducing
+computing energy consumption in France will not significantly lower the
+national carbon footprint and advocate focusing on decarbonating other
+sectors such as transport or heating, which depend mainly on fossil
+fuels. Yet, moving to electric heaters and cars will increase the
+required electricity budget drastically. Satisfying such an increase in
+electricity demand is impossible with the current electricity production
+infrastructure and scaling the renewable and nuclear production is a
+complex challenge [10] with multiple technological uncertainties.
+Given the forecasted growth of the ICT sector, reducing ICT energy
+consumption appears necessary to free renewable electricity for
+decarbonating heating, transport, or other essential industries.</p>
+
+<p>Many countries still depend massively on fossil fuels for their energy
+production. For example, in 2021, US carbon intensity was 379 gCO2/kWh,
+ten times more than France. The world average carbon intensity in 2021
+is 442 gCO2/kWh. The low carbon intensity in France is the exception and
+not the rule.</p>
+
+<h2 id="c8:sec:efficiency">HPC efficiency</h2>
+
+<h3 id="dennards-scaling-1970-2009">Dennard’s scaling: 1970-2009</h3>
+
+<p>From 1946 to 2009, the power efficiency of processors doubled every 1.57
+years [11]. This efficiency gain was achieved mainly through
+improvements in the lithographic and chemical manufacturing process of
+semiconductors, which reduced the gate length of transistors in each
+generation of processors.</p>
+
+<p>Current logic circuits use Complementary Metal Oxide Semiconductor
+(CMOS) transistors. The power consumption of a CMOS gate is modeled by
+two terms representing the dynamic and static power, respectively,
+\(P = \underbrace{1/2.C.V^2.f}_{P_\textrm{dynamic}} +
+        \underbrace{V.I_{\textrm{leak}}}_{P_\textrm{static}} \label{c8:eq:power}\)
+where <em>C</em> is the equivalent charge capacity of the gate, <em>V</em> the voltage
+applied to the gate, <em>f</em> the clock frequency of the gate
+double-transitions (rising and falling), and <em>I</em><sub>leak</sub> the
+intensity of the leak currents.</p>
+
+<p>In 1975, Dennard observed that for each new transistor generation, the
+transistor dimensions were reduced by 30% through manufacturing
+improvements.</p>
+
+<p>This has the following implications:</p>
+
+<ul>
+  <li>
+    <p>The voltage and capacitance also diminish by 30% since they vary
+linearly with the transistor size.</p>
+  </li>
+  <li>
+    <p>The propagation time diminishes by 30% since the distance is reduced
+and the frequency grows by 42% since it varies inversely to the
+propagation time.</p>
+  </li>
+  <li>
+    <p>The surface area is reduced by 50% ≈ 0.7 × 0.7.</p>
+  </li>
+</ul>
+
+<p>Given these changes, <em>P</em><sub>dynamic</sub> should be roughly halved in
+each new transistor generation,
+\(\Delta P\_\textrm{dynamic} = \Delta C.\Delta V^2.\Delta f = 0.7\times 0.7^2 \times \frac{1}{0.7} \approx 0.5\)</p>
+
+<p>Assuming that the static power is small, the power dissipation per
+surface unit remains constant across CPU generations. Indeed, the
+surface is halved for each generation, but so is the power dissipation.</p>
+
+<p>In practice, CPU manufacturers have used the surface gain to double the
+number of transistors in each generation, so the overall power
+consumption has stayed constant. Nevertheless, since the frequency also
+increases by 42%, the computing efficiency in FLOPS/W has improved
+across generations.</p>
+
+<p>These observations, called Dennard’s scaling, were empirically verified
+from 1970 to 2009. However, the rate of scaling has started slowing
+since 2009. The main reason is that with the continuing miniaturization
+of transistors, leak currents increase, which in turn increases the
+static power limiting the miniaturization of transistors and efficiency
+scaling [12].</p>
+
+<h3 id="multi-processing-and-accelerators-2009-2022">Multi-Processing and accelerators: 2009-2022</h3>
+
+<p>Because frequency scaling has reached a limit, chip manufacturers turn
+to other strategies to improve FLOP/s. We have seen two main trends in
+this last decade. First, manufacturers have started increasing the
+number of processing elements per socket. For applications that expose
+enough fine-grained independent tasks, massive parallelism improves the
+performance despite the frequency limit. Second, there is increased
+usage of specialized processors such as GPU (Graphical Processing
+Units), TPU (Tensor Processing Units), FPGA (Field Programmable Gate
+Arrays). These processors target massively parallel applications where
+tasks are mostly synchronous and execute the same operations. They excel
+in specific domains such as dense linear algebra computations, machine
+learning, crypto-currencies mining, and others. Specialized processors
+tailored to a particular application domain can achieve impressive
+performance and often better power efficiency.</p>
+
+<p>In this decade, power efficiency in computing elements has continued to
+improve due to technological advances and reductions in idle power.
+Efforts have also been made to optimize the other components in an HPC
+system, such as memory, storage, network interfaces, or power
+converters. The top two machines in the Green500 list for November 2021
+illustrate the previous trends. The first supercomputer, MN-3, achieves
+39.38 GFlops/W with 1 664 MN cores, specialized chips for matrix
+arithmetic. The second supercomputer, SSC-21, achieves 33.96 GFlops/W
+with 16 704 AMD EPYC 7543 cores. In recent years, AMD has significantly
+improved the power consumption [13,14] of general-purpose CPUs.</p>
+
+<p>As discussed in
+section <a href="#c8:sec:energy" data-reference-type="ref" data-reference="c8:sec:energy">1</a>, when comparing the most efficient
+supercomputers between 2013 and 2021, we see a 12× improvement in power
+efficiency. This trend is also true for internet data centers, Masanet
+et al.[15] shows that, in the last decade, server efficiency has
+improved owing to more efficient CPUs, storage-drive density and
+efficiency gains, better server utilization thanks to virtualization,
+and better data-center power usage effectiveness.</p>
+
+<h3 id="software-optimizations">Software optimizations</h3>
+
+<p>Current processors offer multiple idle modes. For example, Intel
+processors have different P-States and C-States. In P-States, the CPU is
+active but operates in a power-saving mode. C-States are sleep modes,
+which turn off parts of the system, deep C-States offer substantial
+energy saving during idle time, but there is a transition delay from
+P-States to C-States to wake up the processor.</p>
+
+<p>P-States are based on DVFS (Dynamic Voltage Frequency Scaling) [16]:
+voltage and frequency are reduced to decrease the static and dynamic
+power, as modeled in
+equation <a href="#c8:eq:power" data-reference-type="ref" data-reference="c8:eq:power">[c8:eq:power]</a>. P-States are either
+changed by the operating system or runtime governors [17] or are
+directly managed by the hardware itself, depending on the workload. For
+some HPC applications, DVFS can achieve up to 16.5%  [18] energy
+savings without significantly reducing their performance. The key idea
+is to reduce the frequency and voltage during the less
+computation-intensive phases or selectively reduce them for the uncore
+components [19].</p>
+
+<p>On the application side, many factors affect the energy efficiency such
+as the choice of the algorithm and the data structures. The language,
+optimization, and compiler also impact the energy used. In general,
+compiled languages tend to be more energy-efficient [20] than
+interpreted languages. Yet, many factors are at play, and one should be
+careful when comparing languages since the results depend on the
+developers’ implementation and expertise.</p>
+
+<p>Often, optimizations that improve the performance also improve energy
+saving. Since the energy consumed is the product of the power and the
+computation time, reducing the computation time shrinks the energy
+product. In some corner cases, optimizations for energy and execution
+time are different, but on most platforms, the optimizations improving
+execution time also improve energy [21]. For this reason, the LLVM
+Compiler does not offer a specific optimization level targeting energy.</p>
+
+<h2 id="c8:sec:rebound">Rebound effects</h2>
+
+<p>In 1865, the economist William S. Jevons observed that Watt improvements
+of the steam engines’ efficiency was accompanied by an increase in coal
+consumption. Watt’s engine efficiency fostered its adoption by a wide
+range of industries. Jevons paradox, also called the rebound effect,
+states that an increase in efficiency in resource use will generate an
+increase in resource consumption rather than a decrease.</p>
+
+<p>Gossart[22] reviews the literature on rebound effects of ICT. He
+distinguishes different levels of rebound effects.</p>
+
+<ul>
+  <li>
+    <p>Direct rebound effects increase the spread of ICT technologies.</p>
+  </li>
+  <li>
+    <p>Indirect rebound effects happen when increasing ICT efficiency
+reduces the cost of goods or services produced with ICT. This
+indirect cost reduction increases the consumption of other
+resources.</p>
+  </li>
+  <li>
+    <p>Economy-wide rebound effects structurally change production and
+consumption patterns, potentially increasing production and
+associated carbon emissions in other fields.</p>
+  </li>
+</ul>
+
+<p>As previously seen in
+section <a href="#c8:sec:efficiency" data-reference-type="ref" data-reference="c8:sec:efficiency">4</a>, from 1970 to 2009, the power
+efficiency of processors doubled every 1.57. Nevertheless, Hilty et
+al. [23] show that in the same period, the computation power for
+personal computers doubled every 1.5 years. Moreover, the number of
+installed computers doubled every three years from 1980 to 2008. The
+increase in computation demand offset efficiency gains. The continuous
+improvements in chip manufacturing cost and frequency lead to quick
+obsolescence of old slower models and an explosion in demand. This is an
+example of a direct rebound effect in CPUs.</p>
+
+<p>For HPC, the 12 × efficiency improvement achieved between 2013 and 2022
+is shadowed by a 13 × computation power increase.
+Figure <a href="#c8:fig:top500" data-reference-type="ref" data-reference="c8:fig:top500">1</a> confirms this trend by looking at
+the evolution of the first 100 systems in the TOP500 supercomputer list
+in the last decade. The geometric growth of the energy efficiency is
+offset by a geometric growth of the peak computation power. This results
+in a moderate growth in power consumption.</p>
+
+<p>The same is true for data-centers, for which increases in demand are
+balanced by efficiency gains, producing a net power increase of 6% from
+2010 to 2018 [15]. All in all, despite large efficiency gains, the net
+effect is an increase in carbon emissions.</p>
+
+<figure id="c8:fig:top500">
+<img src="top500.png" width="100%" />
+<figcaption><b>Figure 1:</b> Evolution over time of the first 100 systems in
+the TOP500 list. Peak is the theoretical peak computing performance.
+Each point is an HPC system. Box plots span from the first to the third
+quartile. The blue line is a linear regression on the individual HPC
+systems’ metrics. Because the vertical axis is logarithmic, Peak and
+Efficiency follow roughly a geometric growth.<span id="c8:fig:top500" label="c8:fig:top500"></span></figcaption>
+</figure>
+
+<p>In the last decade, the growth of the total power consumption has been
+moderate. But with the slowing down of CMOS scaling, there is a risk
+that the efficiency improvements in processors will reach a limit [6].
+In that scenario, increases in computation volume would directly
+translate into higher energy consumption and carbon emissions.</p>
+
+<p>Few studies directly quantify the indirect and economy-wide rebound
+effects of ICT. Yet, in its last report [24], the ICPP working group
+III recognizes rebound effects in digitalization as a risk towards
+carbon emissions increase since they “have the potential to steeply
+increase energy efficiency in all end-use sectors through material input
+savings and increased coordination. […] economic growth resulting from
+higher energy and labour productivities can increase energy demand and
+associated GHG [Green House Gas] emissions. Importantly,
+digitalization can also benefit carbon-intensive technologies”.</p>
+
+<h2 id="computation-sobriety-when-less-is-more">Computation sobriety: when less is more</h2>
+
+<p>In computer simulations, efficiency gains are often leveraged to
+increase model complexity or size. Much like in Jevons’ paradox,
+efficiency gains can increase computation and data storage capacity
+demands.</p>
+
+<p>For example, Neural Networks have received many optimizations in the
+last decade. Codes have been optimized to run on GPU and, later, on
+dedicated architectures such as Google Tensor Processing Unit.
+Algorithms and data representations have been optimized [25]. For
+example, networks exploit smaller floating-point formats, such as
+bfloat16, to reduce bandwidth, computation time, and storage size.</p>
+
+<figure id="c8:fig:openai">
+<img src="ai-and-compute-all-error.png" width="100%" />
+<figcaption><b>Figure 2:</b> Computation power required to train AI systems,
+data and figure by OpenAI <span class="citation" data-cites="openai">[26]</span>. From 2012, AI computation demands have
+become steeper doubling every 3.4 months. <span id="c8:fig:openai" label="c8:fig:openai"></span></figcaption>
+</figure>
+
+<p>Despite the optimizations, the training cost of neural networks has
+spiked [27]. Figure <a href="#c8:fig:openai" data-reference-type="ref" data-reference="c8:fig:openai">2</a> shows that from 2012 onwards, the
+training cost for AI systems doubles every 3.4 months. The training cost
+from 2012 to 2018 has grown by a  × 300 000 factor.</p>
+
+<p>Schwartz et al. [8] studies different generations of image recognition
+neural networks. In
+figure <a href="#c8:fig:aicomplex" data-reference-type="ref" data-reference="c8:fig:aicomplex">3</a>, Schwartz compares the accuracy,
+the training cost, and the number of parameters. The accuracy, expressed
+as a percentage, is the success rate in an object recognition task. The
+training cost is measured as the number of floating-point operations
+used during training. The number of model parameters is also reported.</p>
+
+<p>Schwartz et al. [8] show that there are diminishing returns on
+accuracy. The accuracy gains are marginal for a linear increase in
+computation power and model complexity.</p>
+
+<figure id="c8:fig:aicomplex">
+<img src="ai-complex.png" width="100%" />
+<figcaption><b>Figure 3:</b> Accuracy (acc.) vs. computation (FPO) for AI
+neural networks identifying objects in the ImageNet dataset. Figure from
+<span class="citation" data-cites="schwartz2019green">[8]</span>. acc.
+is the top-1 accuracy percentage. FPO is the total number of floating
+point operations required for training the network. params is the number
+of model parameters. <span id="c8:fig:aicomplex" label="c8:fig:aicomplex"></span></figcaption>
+</figure>
+
+<p>Schwartz shows that in the last decade, linear accuracy gains have
+required an exponential increase in model complexity and computation
+cost. Such as trend appears unsustainable. It appears necessary to weigh
+higher accuracy’s benefits against the increased computation cost. Since
+the needed accuracy depends on the model finality, it is difficult to
+draft general guidelines. Nevertheless, Schwartz et al.[8] advocate
+for systematically reporting the model efficiency, such as the total
+FLOP or energy used during training, alongside the accuracy. Considering
+an efficiency metric makes it possible to select the smallest model
+satisfying the target accuracy.</p>
+
+<h2 id="case-study-in-healthcare">Case study in healthcare</h2>
+
+<p>To illustrate the previous discussion with a concrete case study, I turn
+to the work of Dacremont [28] and her colleagues at the Swiss Tropical
+and Public Health Institute. They have developed e-POCT, an algorithm
+for the management of febrile illnesses in resource-limited
+countries [29]. D’Acremont discusses the diminishing returns of AI
+models when applied to healthcare.</p>
+
+<p>e-POCT uses Classification and Regression Trees to help diagnose
+Tanzanian children with febrile illnesses and recommends adequate
+treatment. e-POCT is embedded on an Android tablet which gathers data
+from different sources: objective measures from an oxymeter,
+hemoglobinometer and glucometer; Point of Care (POC) tests for Malaria
+or VIH; clinical signs observed by the treating clinician. The algorithm
+follows the classification tree step-by-step, suggesting tests to
+perform and, when reaching a leaf establishing a diagnosis, recommending
+treatment, or referring the patient for higher-level care. In a
+randomized trial in Tanzania with 1 586 children, e-POCT improved
+clinical outcomes while reducing antibiotic prescription from 30% to
+11%.</p>
+
+<p>The World Health Organization has produced the Integrated Management of
+Childhood Illness (IMCI), a strategy to help treat children’s illnesses
+in resource-limited countries. Interestingly, IMCI contains paper-based
+classification trees similar to the ones produced by e-POCT. Yet unlike
+the IMCI classification tree, e-POCT algorithm is tailored and trained
+using real data, which reflects the statistical prevalence of diseases
+in Tanzania [30]. This training allows fitting the CART model to the
+target population.</p>
+
+<p>After an initial successful field trial for e-POCT, the development
+continues in the DYNAMIC [31] Study, which would deploy a more
+sophisticated AI systems to continuously collect patient data and adapt
+the algorithm. Such a solution incurs higher carbon emissions because it
+requires more computing power and increases the amount of data collected
+and transmitted.</p>
+
+<p>There seems to be a law of diminishing returns at play. On the low end
+of the technology spectrum, we have paper-based classification
+algorithms like the ones proposed in IMCI. In the middle, we have the
+tablet-based e-POCT algorithm, where the algorithm is static and updated
+manually. At the high end of the spectrum, we have sophisticated AI
+algorithms that require dedicated HPC servers and continuous data
+collection.</p>
+
+<p>Developing countries are strongly affected by climate change. Among
+other problems, droughts, floods, or air pollution caused by the
+environmental crisis negatively affect the health of children in Africa.
+Fabricating the tablets used for e-POCT currently involves child labor
+in rare-earth mines where children are exposed to pollutants.
+Dacremont [28] wonders if the increased accuracy of diagnosis with the
+more sophisticated solutions would justify the increased carbon
+emissions.</p>
+
+<p>A first step to guide the technical choice would require precisely
+quantifying the environmental impact of the different solutions by
+estimating the power consumption and performing a life-cycle assessment
+of the hardware involved. This impact should be weighed against the
+potential improvements in healthcare that each solution brings and how
+well the local clinicians and patients will accept the technology.
+Choosing an appropriate model involves complex social and environmental
+factors and requires considering all ethical factors.</p>
+
+<h3 id="closing-thoughts">Closing thoughts</h3>
+
+<p>D’Acremont study perfectly illustrates the dilemma of choosing the right
+complexity for a computation model and shows that the most accurate and
+advanced technological solution is not necessarily the better one when
+all factors are considered.</p>
+
+<p>The field of HPC offers many choices and avenues for optimization.
+First, we choose the physical phenomena to model and the finesse of the
+discretization. Then, we select a target machine that will execute the
+program. Finally, we write an implementation algorithm and apply
+different optimizations at the level of the programming language, the
+compiler, or the operating system. Usually, this process is not
+sequential and requires back-and-forths to find a good fit between the
+model, the implementation, and the architecture.</p>
+
+<p>Despite significant optimizations targeting the model, the software, and
+the hardware; the demand for computation keeps rising. Indeed, the
+efficiency gained is harnessed to increase the model complexity. Curbing
+HPC power consumption might not be a technical issue but a
+methodological one. Like D’Acremont, we need to consider how many
+resources we dedicate to a given computation. It is not possible to
+answer this question in general. The allocated resources must be weighed
+against the expected requirements and outcomes for the computation,
+which are specific, contextual, and political questions.</p>
+
+<p>Yet remaining general, we can question the tendency to always go for the
+more complex or accurate model. Going for the most accurate model is a
+shortcut that saves us from thinking about the fit between the model and
+our research question. Yet, I believe that questioning this fit before
+running the computation would help us reduce the size of models and
+increase the quality of our research. For example, in image recognition,
+there is a tendency nowadays to go for DNNs regardless of the problem
+because of their flexibility. In many cases [32], thinking about the
+structure of the problem beforehand allows using classical
+computer-vision methods that are as efficient and less costly.</p>
+
+<p>Simulation has changed the way we do science, creating a new
+epistemological tool that stands between experiment and theory, and
+bringing incredible scientific advances in many fields. However, faced
+with a shrinking energy budget, we should carefully consider when
+simulation is needed and not use it blindly. After all, the most
+environmentally friendly code is the one that is not run.</p>
+
+<h2 id="c8:sec:bibliography">Bibliography</h2>
+
+<p><span class="csl-left-margin">1
+</span><span class="csl-right-inline">Oliveira Castro, Pablo de (2022)
+‘<span class="nocase">High Performance Computing code optimizations:
+Tuning performance and accuracy</span>’. [online] Available from:
+<a href="https://tel.archives-ouvertes.fr/tel-03831483/">https://tel.archives-ouvertes.fr/tel-03831483/</a></span></p>
+
+<p><span class="csl-left-margin">2
+</span><span class="csl-right-inline">Lebbie, Tamba S., Moyebi, Omosehin
+D., Asante, Kwadwo Ansong, Fobil, Julius, et al. (2021) ‘<a href="https://doi.org/10.3390/ijerph18168488">E-waste in
+africa: A serious threat to the health of
+children</a>’. <em>International
+Journal of Environmental Research and Public Health</em>, 18(16), p.
+8488.</span></p>
+
+<p><span class="csl-left-margin">3
+</span><span class="csl-right-inline">Masson-Delmotte, Valérie, Zhai,
+Panmao, Pirani, Anna, Connors, Sarah L, et al. (2021) ‘Climate change
+2021: The physical science basis. Contribution of working group i to the
+sixth assessment report of the intergovernmental panel on climate
+change.’</span></p>
+
+<p><span class="csl-left-margin">4
+</span><span class="csl-right-inline">Jones, Nicola (2018) ‘How to stop
+data centres from gobbling up the world’s electricity’. <em>Nature</em>,
+561(7722), pp. 163–167.</span></p>
+
+<p><span class="csl-left-margin">5
+</span><span class="csl-right-inline">Freitag, Charlotte, Berners-Lee,
+Mike, Widdicks, Kelly, Knowles, Bran, et al. (2021) ‘The real climate
+and transformative impact of ICT: A critique of estimates, trends, and
+regulations’. <em>Patterns</em>, 2(9), p. 100340. [online] Available from:
+<a href="https://www.sciencedirect.com/science/article/pii/S2666389921001884">https://www.sciencedirect.com/science/article/pii/S2666389921001884</a></span></p>
+
+<p><span class="csl-left-margin">6
+</span><span class="csl-right-inline">Freitag, Charlotte, Berners-Lee,
+Mike, Widdicks, Kelly, Knowles, Bran, et al. (2021) ‘The climate impact
+of ICT: A review of estimates, trends and regulations’. [online]
+Available from: <a href="https://arxiv.org/abs/2102.02622">https://arxiv.org/abs/2102.02622</a></span></p>
+
+<p><span class="csl-left-margin">7
+</span><span class="csl-right-inline">Hannah Ritchie, Max Roser and
+Rosado, Pablo (2020) ‘CO2 and greenhouse gas emissions’. <em>Our World in
+Data</em>. [online] Available from:
+<a href="https://ourworldindata.org/co2-and-other-greenhouse-gas-emissions">https://ourworldindata.org/co2-and-other-greenhouse-gas-emissions</a></span></p>
+
+<p><span class="csl-left-margin">8
+</span><span class="csl-right-inline">Schwartz, Roy, Dodge, Jesse,
+Smith, Noah A. and Etzioni, Oren (2019) ‘Green AI’. <em>arXiv:1907.10597
+[cs, stat]</em>. [online] Available from:
+<a href="http://arxiv.org/abs/1907.10597">http://arxiv.org/abs/1907.10597</a> (Accessed 3 February 2021)</span></p>
+
+<p><span class="csl-left-margin">9
+</span><span class="csl-right-inline">Patterson, David, Gonzalez,
+Joseph, Le, Quoc, Liang, Chen, et al. (2021) ‘Carbon emissions and large
+neural network training’. <em>arXiv:2104.10350 [cs]</em>. [online]
+Available from: <a href="http://arxiv.org/abs/2104.10350">http://arxiv.org/abs/2104.10350</a> (Accessed 7 June
+2021)</span></p>
+
+<p><span class="csl-left-margin">10
+</span><span class="csl-right-inline">RTE (2021) <em>Futurs énergétiques
+2050 - principaux résultats</em>,</span></p>
+
+<p><span class="csl-left-margin">11
+</span><span class="csl-right-inline">Koomey, Jonathan, Berard, Stephen,
+Sanchez, Marla and Wong, Henry (2010) ‘Implications of historical trends
+in the electrical efficiency of computing’. <em>IEEE Annals of the History
+of Computing</em>, 33(3), pp. 46–54.</span></p>
+
+<p><span class="csl-left-margin">12
+</span><span class="csl-right-inline">Borkar, Shekhar and Chien, Andrew
+A (2011) ‘The future of microprocessors’. <em>Communications of the ACM</em>,
+54(5), pp. 67–77.</span></p>
+
+<p><span class="csl-left-margin">13
+</span><span class="csl-right-inline">Schöne, Robert, Ilsche, Thomas,
+Bielert, Mario, Velten, Markus, et al. (2021) ‘Energy efficiency aspects
+of the AMD zen 2 architecture’, in <em>2021 IEEE international conference
+on cluster computing (CLUSTER)</em>, IEEE, pp. 562–571.</span></p>
+
+<p><span class="csl-left-margin">14
+</span><span class="csl-right-inline">Su, Lisa T, Naffziger, Samuel and
+Papermaster, Mark (2017) ‘Multi-chip technologies to unleash computing
+performance gains over the next decade’, in <em>2017 IEEE international
+electron devices meeting (IEDM)</em>, IEEE, pp. 1–1.</span></p>
+
+<p><span class="csl-left-margin">15
+</span><span class="csl-right-inline">Masanet, Eric, Shehabi, Arman,
+Lei, Nuoa, Smith, Sarah and Koomey, Jonathan (2020) ‘Recalibrating
+global data center energy-use estimates’. <em>Science</em>, 367(6481), pp.
+984–986.</span></p>
+
+<p><span class="csl-left-margin">16
+</span><span class="csl-right-inline">Liu, Yongpeng and Zhu, Hong (2010)
+‘A survey of the research on power management techniques for
+high-performance systems’. <em>Software: Practice and Experience</em>, 40(11),
+pp. 943–964.</span></p>
+
+<p><span class="csl-left-margin">17
+</span><span class="csl-right-inline">Wysocki, Rafael J. (n.d.) ‘CPU
+performance scaling — the linux kernel documentation’. [online]
+Available from:
+<a href="https://www.kernel.org/doc/html/v5.18/admin-guide/pm/cpufreq.html">https://www.kernel.org/doc/html/v5.18/admin-guide/pm/cpufreq.html</a>
+(Accessed 23 May 2022)</span></p>
+
+<p><span class="csl-left-margin">18
+</span><span class="csl-right-inline">Stoffel, Mathieu and Mazouz,
+Abdelhafid (2018) ‘Improving power efficiency through fine-grain
+performance monitoring in HPC clusters’, in <em>2018 IEEE international
+conference on cluster computing (CLUSTER)</em>, IEEE, pp. 552–561.</span></p>
+
+<p><span class="csl-left-margin">19
+</span><span class="csl-right-inline">André, Etienne, Dulong, Remi,
+Guermouche, Amina and Trahay, François (2022) ‘DUF: Dynamic uncore
+frequency scaling to reduce power consumption’. <em>Concurrency and
+Computation: Practice and Experience</em>, 34(3), p. e6580.</span></p>
+
+<p><span class="csl-left-margin">20
+</span><span class="csl-right-inline">Pereira, Rui, Couto, Marco,
+Ribeiro, Francisco, Rua, Rui, et al. (2017) ‘Energy efficiency across
+programming languages: How do energy, time, and memory relate?’, in
+<em>Proceedings of the 10th ACM SIGPLAN international conference on
+software language engineering</em>, Vancouver BC Canada, ACM, pp. 256–267.
+[online] Available from:
+<a href="https://dl.acm.org/doi/10.1145/3136014.3136031">https://dl.acm.org/doi/10.1145/3136014.3136031</a></span></p>
+
+<p><span class="csl-left-margin">21
+</span><span class="csl-right-inline">Pallister, James, Hollis, Simon J
+and Bennett, Jeremy (2015) ‘Identifying compiler options to minimize
+energy consumption for embedded platforms’. <em>The Computer Journal</em>,
+58(1), pp. 95–109.</span></p>
+
+<p><span class="csl-left-margin">22
+</span><span class="csl-right-inline">Gossart, Cédric (2015) ‘Rebound
+effects and ICT: A review of the literature’. <em>ICT innovations for
+sustainability</em>, pp. 435–448.</span></p>
+
+<p><span class="csl-left-margin">23
+</span><span class="csl-right-inline">Hilty, Lorenz, Lohmann, Wolfgang
+and Huang, Elaine M (2011) ‘Sustainability and ICT-an overview of the
+field’. <em>Notizie di POLITEIA</em>, 27(104), pp. 13–28.</span></p>
+
+<p><span class="csl-left-margin">24
+</span><span class="csl-right-inline">Shukla, P. R., Skea, J., Slade,
+R., Khourdajie, A. Al, et al. (2022) ‘Mitigation of climate change.
+Contribution of working group III to the sixth assessment report of the
+intergovernmental panel on climate change’.</span></p>
+
+<p><span class="csl-left-margin">25
+</span><span class="csl-right-inline">Capra, Maurizio, Bussolino,
+Beatrice, Marchisio, Alberto, Masera, Guido, et al. (2020) ‘Hardware and
+software optimizations for accelerating deep neural networks: Survey of
+current trends, challenges, and the road ahead’. <em>IEEE Access</em>, 8, pp.
+225134–225180.</span></p>
+
+<p><span class="csl-left-margin">26
+</span><span class="csl-right-inline">Amodei, Dario, Hernandez, Danny,
+Sastry, Girish, Clark, Jack, et al. (2018) ‘AI and compute. OpenAI’.
+[online] Available from: <a href="https://openai.com/blog/ai-and-compute/">https://openai.com/blog/ai-and-compute/</a>
+(Accessed 30 May 2022)</span></p>
+
+<p><span class="csl-left-margin">27
+</span><span class="csl-right-inline">Trystram, Denis, Couillet, Romain
+and Ménissier, Thierry (2021) ‘Apprentissage profond et consommation
+énergétique : La partie immergée de l’IA-ceberg. The conversation’.
+[online] Available from:
+<a href="http://theconversation.com/apprentissage-profond-et-consommation-energetique-la-partie-immergee-de-lia-ceberg-172341">http://theconversation.com/apprentissage-profond-et-consommation-energetique-la-partie-immergee-de-lia-ceberg-172341</a>
+(Accessed 30 May 2022)</span></p>
+
+<p><span class="csl-left-margin">28
+</span><span class="csl-right-inline">D’Acremont, Valérie (2021) ‘Santé,
+technologies, environnement : Quels compromis éthiques ?’ [online]
+Available from: <a href="https://youtu.be/oKcy_cY0QOw">https://youtu.be/oKcy_cY0QOw</a></span></p>
+
+<p><span class="csl-left-margin">29
+</span><span class="csl-right-inline">Keitel, Kristina, Kagoro, Frank,
+Samaka, Josephine, Masimba, John, et al. (2017) ‘A novel electronic
+algorithm using host biomarker point-of-care tests for the management of
+febrile illnesses in tanzanian children (e-POCT): A randomized,
+controlled non-inferiority trial’. <em>PLOS Medicine</em>, 14(10), pp. 1–29.
+[online] Available from:
+<a href="https://doi.org/10.1371/journal.pmed.1002411">https://doi.org/10.1371/journal.pmed.1002411</a></span></p>
+
+<p><span class="csl-left-margin">30
+</span><span class="csl-right-inline">Santis, Olga De, Kilowoko, Mary,
+Kyungu, Esther, Sangu, Willy, et al. (2017) ‘Predictive value of
+clinical and laboratory features for the main febrile diseases in
+children living in tanzania: A prospective observational study’. <em>PLOS
+ONE</em>, 12(5), p. e0173314. [online] Available from:
+<a href="https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0173314">https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0173314</a>
+(Accessed 10 May 2022)</span></p>
+
+<p><span class="csl-left-margin">31
+</span><span class="csl-right-inline">Dynamic Study (2022) ‘Project web
+page’. [online] Available from:<a href="https://dynamic-study.com/">
+https://dynamic-study.com/</a></span></p>
+
+<p><span class="csl-left-margin">32
+</span><span class="csl-right-inline">O’Mahony, Niall, Campbell, Sean,
+Carvalho, Anderson, Harapanahalli, Suman, et al. (2019) ‘Deep learning
+vs. Traditional computer vision’, in <em>Science and information
+conference</em>, Springer, pp. 128–144.</span></p>
+
+  </article>
+
+  <nav id="menu">
+    
+    
+<ul>
+  <li><a href="/">Contact</a></li>
+  <li><a href="/#research">Research</a>
+    <ul>
+      <li><a href="/publications/">Publications</a></li>
+      <li><a href="/publications/environment-hpc/">HPC impact</a></li>
+    </ul>
+  </li>
+  <li><a href="/lectures/">Lectures</a>
+    <ul>
+      <li><a href="/lectures/archi-ord/">Architecture</a></li>
+      <li><a href="/lectures/ASE/">ASE</a></li>
+      <li><a href="https://compilation-course.github.io/">Compilers</a></li>
+      <li><a href="/lectures/Java-SE/">Java &amp; SE</a></li>
+      <li><a href="/lectures/tp-ifips/">OpenMP/MPI</a></li>
+      <li><a href="/lectures/calcul-num/">Numerical</a></li>
+      <li><a href="/lectures/SEA/">SEA</a></li>
+    </ul>
+  </li>
+  <li><a href="/#misc">Misc</a>
+    <ul>
+      <li><a href="https://github.com/verificarlo/verificarlo">Verificarlo</a></li>
+      <li><a href="https://benchmark-subsetting.github.io/cere/">CERE</a></li>
+      <li><a href="https://github.com/benchmark-subsetting/adaptive-sampling-kit">ASK</a></li>
+      <li><a href="http://github.com/pablooliveira/irvm/">IRVM</a></li>
+      <li><a href="/squeak_nds">Squeak NDS</a></li>
+      <li><a href="http://github.com/pablooliveira/similar/">Similar</a></li>
+      <li><a href="http://github.com/pablooliveira/bibjekyll/">Bibjekyll</a></li>
+      <li><a href="/misc/tronbot">Tron bot</a></li>
+    </ul>
+  </li>
+</ul>
+
+
+  <img id="menudecoration" src="/pulley.png" title="First principles of physics by
+    Carhart, Henry S. and Chute, Horatio N. 1912. Fig 132, Fixed and movable pulley." \>
+  </nav>
+</div>
+
+<footer>
+Last modified the
+2022-10-26
+<br /> Pablo de
+Oliveira Castro &lt;pablo@sifflez.org&gt;
+</footer>
+
+</body>
+</html>
