@@ -1,3 +1,14 @@
+@unpublished{deoliveiracastro2024error,
+  title = {{Error Functions and Martingales in Stochastic Rounding}},
+  author = {de Oliveira Castro, Pablo and El Arar, El-Mehdi and Petit, Eric and Sohier, Devan},
+  note = {working paper or preprint},
+  year = {2024},
+  month = Nov,
+  keywords = {Stochastic rounding ; Martingales ; Rounding error analysis ; Floating-point arithmetic ; Computation DAG ; Karatsuba multiplication},
+  pdf = {https://hal.science/hal-04787542v1/file/main.pdf},
+  abstract = {The quality of numerical computations can be measured through their forward error, for which finding good error bounds is challenging in general. For several algorithms and using stochastic rounding (SR), probabilistic analysis has been shown to be an effective alternative for obtaining tight error bounds. This analysis considers the distribution of errors and evaluates the algorithm's performance on average. Using martingales and the Azuma-Hoeffding inequality, it provides error bounds that are valid with a certain probability and in O(n√u) instead of deterministic worst-case bounds in O(nu), where n is the number of operations and u is the unit roundoff. In this paper, we present a general method that automatically constructs a martingale for any computation scheme with multi-linear errors based on additions, subtractions, and multiplications. We apply this generalization to algorithms previously studied with SR, such as pairwise summation and the Horner algorithm, and prove equivalent results. We also analyze a previously unstudied algorithm, Karatsuba polynomial multiplication, which illustrates that the method can handle reused intermediate computations.}
+}
+
 @inproceedings{delval2024verificarloCI,
   title = {{Verificarlo CI: continuous integration for numerical optimization and debugging}},
   author = {Delval, Aur{\'e}lien and Coppens, Fran{\c c}ois and Petit, Eric and Iakymchuk, Roman and de Oliveira Castro, Pablo},
