@@ -1,39 +1,3 @@
-@unpublished{deoliveiracastro2024error,
-  title = {{Error Analysis of sum-product algorithms under stochastic rounding}},
-  author = {de Oliveira Castro, Pablo and El Arar, El-Mehdi and Petit, Eric and Sohier, Devan},
-  note = {working paper or preprint},
-  year = {2024},
-  month = Nov,
-  keywords = {Stochastic rounding ; Martingales ; Rounding error analysis ; Floating-point arithmetic ; Computation DAG ; Karatsuba multiplication},
-  pdf = {https://hal.science/hal-04787542v1/file/main.pdf},
-  abstract = {The quality of numerical computations can be measured through their forward error, for which finding good error bounds is challenging in general. For several algorithms and using stochastic rounding (SR), probabilistic analysis has been shown to be an effective alternative for obtaining tight error bounds. This analysis considers the distribution of errors and evaluates the algorithm's performance on average. Using martingales and the Azuma-Hoeffding inequality, it provides error bounds that are valid with a certain probability and in O(n√u) instead of deterministic worst-case bounds in O(nu), where n is the number of operations and u is the unit roundoff. In this paper, we present a general method that automatically constructs a martingale for any computation scheme with multi-linear errors based on additions, subtractions, and multiplications. We apply this generalization to algorithms previously studied with SR, such as pairwise summation and the Horner algorithm, and prove equivalent results. We also analyze a previously unstudied algorithm, Karatsuba polynomial multiplication, which illustrates that the method can handle reused intermediate computations.}
-}
-
-@inproceedings{delval2024verificarloCI,
-  title = {{Verificarlo CI: continuous integration for numerical optimization and debugging}},
-  author = {Delval, Aur{\'e}lien and Coppens, Fran{\c c}ois and Petit, Eric and Iakymchuk, Roman and de Oliveira Castro, Pablo},
-  url = {https://hal.science/hal-04643176},
-  booktitle = {{Parallel Computational Fluid Dynamics (ParCFD) 2024}},
-  address = {Bonn, Germany},
-  year = {2024},
-  month = Sep,
-  pdf = {https://hal.science/hal-04643176v1/file/main.pdf},
-  abstract = {Floating-point accuracy is an important concern when developing numerical simulations or other compute-intensive codes. Tracking the introduction of numerical regression is often delayed until it provokes unexpected bug for the end-user. In this paper, we introduce Verificarlo CI, a continuous integration workflow for the numerical optimization and debugging of a code over the course of its development. We demonstrate applicability of Verificarlo CI on two test-case applications.}
-}
-
-@article{elarar2023bounds,
-  title = {{Bounds on non-linear errors for variance computation with stochastic rounding}},
-  author = {El Arar, El-Mehdi and Sohier, Devan and de Oliveira Castro, Pablo and Petit, Eric},
-  journal = {SIAM Journal on Scientific Computing},
-  volume = {46},
-  number = {5},
-  pages = {B579-B599},
-  year = {2024},
-  pdf = {https://hal.science/hal-04056057/file/main.pdf},
-  doi = {10.1137/23M1563001},
-  abstract = { Abstract. The main objective of this work is to investigate nonlinear errors and pairwise summation using stochastic rounding (SR) in variance computation algorithms. We estimate the forward error of computations under SR through two methods: the first is based on a bound of the variance and the Bienaymé–Chebyshev inequality, while the second is based on martingales and the Azuma–Hoeffding inequality. The study shows that for pairwise summation, using SR results in a probabilistic bound of the forward error proportional to \(\sqrt{\log (n)}u\) rather than the deterministic bound in \(O(\log (n)u)\) when using the default rounding mode. We examine two algorithms that compute the variance, one called “textbook” and the other “two-pass,” which both exhibit nonlinear errors. Using the two methods mentioned above, we show that the forward errors of these algorithms have probabilistic bounds under SR in \(O(\sqrt{n}u)\) instead of \(nu\) for the deterministic bounds. We show that this advantage holds using pairwise summation for both textbook and two-pass, with probabilistic bounds of the forward error proportional to \(\sqrt{\log (n)}u\). }
-}
-
 @article{posenitskiy2023TREXIO,
   author = {Posenitskiy, Evgeny and Chilkuri, Vijay Gopal and Ammar, Abdallah and Hapka, Michał and Pernal, Katarzyna and Shinde, Ravindra and Landinez Borda, Edgar Josué and Filippi, Claudia and Nakano, Kosuke and Kohulák, Otto and Sorella, Sandro and de Oliveira Castro, Pablo and Jalby, William and Ríos, Pablo López and Alavi, Ali and Scemama, Anthony},
   title = "{TREXIO: A file format and library for quantum chemistry}",
@@ -60,7 +24,7 @@
 	doi = {10.1137/22M1510819},
 	url = {https://doi.org/10.1137/22M1510819},
   pdf = {https://hal.archives-ouvertes.fr/hal-03722888/file/main.pdf},
-	abstract = {Abstract. Stochastic rounding ({SR}) offers an alternative to the deterministic {IEEE}-754 floating-point rounding modes. In some applications such as {PDEs}, {ODEs}, and neural networks, {SR} empirically improves the numerical behavior and convergence to accurate solutions while the theoretical background remains partial. Recent works by Ipsen, Zhou, Higham, and Mary have computed {SR} probabilistic error bounds for basic linear algebra kernels. For example, the inner product {SR} probabilistic bound of the forward error is proportional to {\textbackslash}({\textbackslash}sqrtnu{\textbackslash}) instead of {\textbackslash}(nu{\textbackslash}) for the default rounding mode. To compute the bounds, these works show that the errors accumulated in computation form a martingale. This paper proposes an alternative framework to characterize {SR} errors based on the computation of the variance. We pinpoint common error patterns in numerical algorithms and propose a lemma that bounds their variance. For each probability and through the Bienaymé–Chebyshev inequality, this bound leads to a better probabilistic error bound in several situations. Our method has the advantage of providing a tight probabilistic bound for all algorithms fitting our model. We show how the method can be applied to give {SR} error bounds for the inner product and Horner polynomial evaluation.},
+	abstract = {Abstract. Stochastic rounding ({SR}) offers an alternative to the deterministic {IEEE}-754 floating-point rounding modes. In some applications such as {PDEs}, {ODEs}, and neural networks, {SR} empirically improves the numerical behavior and convergence to accurate solutions while the theoretical background remains partial. Recent works by Ipsen, Zhou, Higham, and Mary have computed {SR} probabilistic error bounds for basic linear algebra kernels. For example, the inner product {SR} probabilistic bound of the forward error is proportional to (sqrt nu) instead of (nu) for the default rounding mode. To compute the bounds, these works show that the errors accumulated in computation form a martingale. This paper proposes an alternative framework to characterize {SR} errors based on the computation of the variance. We pinpoint common error patterns in numerical algorithms and propose a lemma that bounds their variance. For each probability and through the Bienaymé–Chebyshev inequality, this bound leads to a better probabilistic error bound in several situations. Our method has the advantage of providing a tight probabilistic bound for all algorithms fitting our model. We show how the method can be applied to give {SR} error bounds for the inner product and Horner polynomial evaluation.},
 }
 
 @inproceedings{elarar2022positiv,

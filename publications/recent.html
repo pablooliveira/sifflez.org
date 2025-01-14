@@ -1,0 +1,76 @@
+
+<dl>
+
+<dt>
+<a name="jam2025MLKAPS">&nbsp;</a>
+</dt>
+<dd>
+<b>MLKAPS: Machine Learning and Adaptive Sampling for HPC Kernel
+  Auto-tuning</b>.
+ Mathys Jam, Eric Petit, Pablo de&nbsp;Oliveira&nbsp;Castro, David Defour, Greg
+  Henry, and William Jalby.
+ working paper or preprint, January 2025.
+[&nbsp;<a href="recent_bib.html#jam2025MLKAPS">bib</a>&nbsp;| 
+<a href="https://arxiv.org/pdf/2501.05811">http</a>&nbsp;]
+<blockquote><font size="-1">
+Many High-Performance Computing (HPC) libraries rely on decision trees to select the best kernel hyperparameters at runtime,depending on the input and environment. However, finding optimized configurations for each input and environment is challengingand requires significant manual effort and computational resources. This paper presents MLKAPS, a tool that automates this task usingmachine learning and adaptive sampling techniques. MLKAPS generates decision trees that tune HPC kernels' design parameters toachieve efficient performance for any user input. MLKAPS scales to large input and design spaces, outperforming similar state-of-the-artauto-tuning tools in tuning time and mean speedup. We demonstrate the benefits of MLKAPS on the highly optimized Intel MKLdgetrf LU kernel and show that MLKAPS finds blindspots in the manual tuning of HPC experts. It improves over 85% of the inputswith a geomean speedup of x1.30. On the Intel MKL dgeqrf QR kernel, MLKAPS improves performance on 85% of the inputs with ageomean speedup of x1.18.
+</font></blockquote>
+
+</dd>
+
+
+<dt>
+<a name="deoliveiracastro2024error">&nbsp;</a>
+</dt>
+<dd>
+<b>Error Analysis of sum-product algorithms under stochastic rounding</b>.
+ Pablo de&nbsp;Oliveira&nbsp;Castro, El-Mehdi El&nbsp;Arar, Eric Petit, and Devan
+  Sohier.
+ working paper or preprint, November 2024.
+[&nbsp;<a href="recent_bib.html#deoliveiracastro2024error">bib</a>&nbsp;| 
+<a href="https://hal.science/hal-04787542v1/file/main.pdf">.pdf</a>&nbsp;]
+<blockquote><font size="-1">
+The quality of numerical computations can be measured through their forward error, for which finding good error bounds is challenging in general. For several algorithms and using stochastic rounding (SR), probabilistic analysis has been shown to be an effective alternative for obtaining tight error bounds. This analysis considers the distribution of errors and evaluates the algorithm's performance on average. Using martingales and the Azuma-Hoeffding inequality, it provides error bounds that are valid with a certain probability and in O(n√u) instead of deterministic worst-case bounds in O(nu), where n is the number of operations and u is the unit roundoff. In this paper, we present a general method that automatically constructs a martingale for any computation scheme with multi-linear errors based on additions, subtractions, and multiplications. We apply this generalization to algorithms previously studied with SR, such as pairwise summation and the Horner algorithm, and prove equivalent results. We also analyze a previously unstudied algorithm, Karatsuba polynomial multiplication, which illustrates that the method can handle reused intermediate computations.
+</font></blockquote>
+
+</dd>
+
+
+<dt>
+<a name="delval2024verificarloCI">&nbsp;</a>
+</dt>
+<dd>
+<b>Verificarlo CI: continuous integration for numerical optimization and
+  debugging</b>.
+ Aur&eacute;lien Delval, Fran&#x00E7;ois Coppens, Eric Petit, Roman
+  Iakymchuk, and Pablo de&nbsp;Oliveira&nbsp;Castro.
+ In <em>Parallel Computational Fluid Dynamics (ParCFD) 2024</em>, Bonn,
+  Germany, September 2024.
+[&nbsp;<a href="recent_bib.html#delval2024verificarloCI">bib</a>&nbsp;| 
+<a href="https://hal.science/hal-04643176">http</a>&nbsp;| 
+<a href="https://hal.science/hal-04643176v1/file/main.pdf">.pdf</a>&nbsp;]
+<blockquote><font size="-1">
+Floating-point accuracy is an important concern when developing numerical simulations or other compute-intensive codes. Tracking the introduction of numerical regression is often delayed until it provokes unexpected bug for the end-user. In this paper, we introduce Verificarlo CI, a continuous integration workflow for the numerical optimization and debugging of a code over the course of its development. We demonstrate applicability of Verificarlo CI on two test-case applications.
+</font></blockquote>
+
+</dd>
+
+
+<dt>
+<a name="elarar2024bounds">&nbsp;</a>
+</dt>
+<dd>
+<b>Bounds on non-linear errors for variance computation with stochastic
+  rounding</b>.
+ El-Mehdi El&nbsp;Arar, Devan Sohier, Pablo de&nbsp;Oliveira&nbsp;Castro, and Eric
+  Petit.
+ <em>SIAM Journal on Scientific Computing</em>, 46(5):B579--B599, 2024.
+[&nbsp;<a href="recent_bib.html#elarar2024bounds">bib</a>&nbsp;| 
+<a href="http://dx.doi.org/10.1137/23M1563001">DOI</a>&nbsp;| 
+<a href="https://hal.science/hal-04056057/file/main.pdf">.pdf</a>&nbsp;]
+<blockquote><font size="-1">
+ Abstract. The main objective of this work is to investigate nonlinear errors and pairwise summation using stochastic rounding (SR) in variance computation algorithms. We estimate the forward error of computations under SR through two methods: the first is based on a bound of the variance and the Bienaymé–Chebyshev inequality, while the second is based on martingales and the Azuma–Hoeffding inequality. The study shows that for pairwise summation, using SR results in a probabilistic bound of the forward error proportional to <I>sqrt(log (n))u</I> rather than the deterministic bound in <I>O(log (n)u)</I> when using the default rounding mode. We examine two algorithms that compute the variance, one called “textbook” and the other “two-pass,” which both exhibit nonlinear errors. Using the two methods mentioned above, we show that the forward errors of these algorithms have probabilistic bounds under SR in <I>O(sqrt(n)u)</I> instead of <I>nu</I> for the deterministic bounds. We show that this advantage holds using pairwise summation for both textbook and two-pass, with probabilistic bounds of the forward error proportional to <I>sqrt(log (n))u</I>. 
+</font></blockquote>
+
+</dd>
+</dl>
