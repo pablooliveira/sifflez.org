@@ -1,51 +1,662 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang xml:lang>
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta charset="utf-8" />
   <meta name="generator" content="pandoc" />
-  <title></title>
-  <style type="text/css">code{white-space: pre;}</style>
-  <link rel="stylesheet" href="pandoc.css" type="text/css" />
-  <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_CHTML-full" type="text/javascript"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Systèmes d’Exploitation – TD 4</title>
+  <style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+
+ul.task-list[class]{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+font-size: inherit;
+width: 0.8em;
+margin: 0 0.8em 0.2em -1.6em;
+vertical-align: middle;
+}
+
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+{ counter-reset: source-line 0; }
+pre.numberSource code > span
+{ position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+{ content: counter(source-line);
+position: relative; left: -1em; text-align: right; vertical-align: baseline;
+border: none; display: inline-block;
+-webkit-touch-callout: none; -webkit-user-select: none;
+-khtml-user-select: none; -moz-user-select: none;
+-ms-user-select: none; user-select: none;
+padding: 0 4px; width: 4em;
+color: #aaaaaa;
+}
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa; padding-left: 4px; }
+div.sourceCode
+{ }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } 
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.at { color: #7d9029; } 
+code span.bn { color: #40a070; } 
+code span.bu { color: #008000; } 
+code span.cf { color: #007020; font-weight: bold; } 
+code span.ch { color: #4070a0; } 
+code span.cn { color: #880000; } 
+code span.co { color: #60a0b0; font-style: italic; } 
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.do { color: #ba2121; font-style: italic; } 
+code span.dt { color: #902000; } 
+code span.dv { color: #40a070; } 
+code span.er { color: #ff0000; font-weight: bold; } 
+code span.ex { } 
+code span.fl { color: #40a070; } 
+code span.fu { color: #06287e; } 
+code span.im { color: #008000; font-weight: bold; } 
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.kw { color: #007020; font-weight: bold; } 
+code span.op { color: #666666; } 
+code span.ot { color: #007020; } 
+code span.pp { color: #bc7a00; } 
+code span.sc { color: #4070a0; } 
+code span.ss { color: #bb6688; } 
+code span.st { color: #4070a0; } 
+code span.va { color: #19177c; } 
+code span.vs { color: #4070a0; } 
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } 
+</style>
+  <style type="text/css">
+
+
+
+div#header, header
+{
+
+border-bottom: 1px solid #aaa;
+margin-bottom: 0.5em;
+}
+.title 
+{
+text-align: center;
+}
+.author, .date 
+{
+text-align: center;
+}
+
+div#TOC, nav#TOC
+{
+
+border-bottom: 1px solid #aaa;
+margin-bottom: 0.5em;
+}
+@media print
+{
+div#TOC, nav#TOC
+{
+
+display: none;
+}
+}
+
+h1, h2, h3, h4, h5, h6
+{
+font-family: "Helvetica Neue", Helvetica, "Liberation Sans", Calibri, Arial, sans-serif; 
+
+page-break-after: avoid; 
+}
+
+div div, section section 
+{
+margin-left: 2em; 
+}
+p {}
+blockquote
+{ font-style: italic;
+}
+li 
+{
+}
+li > p 
+{
+margin-top: 1em; 
+}
+ul 
+{
+}
+ul li 
+{
+}
+ol 
+{
+}
+ol li 
+{
+}
+hr {}
+
+sub 
+{
+}
+sup 
+{
+}
+em 
+{
+}
+em > em 
+{
+font-style: normal;
+}
+strong 
+{
+}
+
+a 
+{
+
+text-decoration: none;
+}
+@media screen
+{
+a:hover
+{
+
+text-decoration: underline;
+}
+}
+@media print
+{
+a {
+
+color: black;
+background: transparent;
+}
+a[href^="http://"]:after, a[href^="https://"]:after
+{
+
+content: " (" attr(href) ") ";
+font-size: 90%;
+}
+}
+
+img
+{
+
+vertical-align: middle;
+}
+div.figure 
+{
+
+margin-left: auto;
+margin-right: auto;
+text-align: center;
+font-style: italic;
+}
+p.caption 
+{
+
+}
+
+pre, code {
+background-color: #fdf7ee;
+
+
+
+white-space: pre-wrap; 
+white-space: -moz-pre-wrap !important; 
+white-space: -pre-wrap; 
+white-space: -o-pre-wrap; 
+word-wrap: break-word; 
+
+}
+pre 
+{
+
+padding: 0.5em; 
+border-radius: 5px; 
+
+border: 1px solid #aaa;
+
+margin-left: 0.5em;
+margin-right: 0.5em;
+}
+@media screen
+{
+pre
+{
+
+white-space: pre;
+overflow: auto;
+
+border: 1px dotted #777;
+}
+}
+code 
+{
+}
+p > code, li > code 
+{
+
+padding-left: 2px;
+padding-right: 2px;
+}
+li > p code 
+{
+
+padding: 2px;
+}
+
+span.math 
+{
+
+}
+div.math 
+{
+}
+span.LaTeX 
+{
+} eq 
+{
+} 
+
+table
+{
+border-collapse: collapse;
+border-spacing: 0; 
+border-bottom: 2pt solid #000;
+border-top: 2pt solid #000; 
+
+margin-left: auto;
+margin-right: auto;
+}
+thead 
+{
+border-bottom: 1pt solid #000;
+background-color: #eee; 
+}
+tr.header 
+{
+} tbody 
+{
+}
+
+tr {
+}
+tr.odd:hover, tr.even:hover 
+{
+background-color: #eee;
+}
+
+tr.odd {}
+tr.even {}
+td, th 
+{ vertical-align: top; 
+vertical-align: baseline; 
+padding-left: 0.5em;
+padding-right: 0.5em;
+padding-top: 0.2em;
+padding-bottom: 0.2em;
+}
+
+
+th 
+{
+font-weight: bold; }
+tfoot 
+{
+}
+caption 
+{
+caption-side: top;
+border: none;
+font-size: 0.9em;
+font-style: italic;
+text-align: center;
+margin-bottom: 0.3em; 
+padding-bottom: 0.2em;
+}
+
+dl 
+{
+border-top: 2pt solid black;
+padding-top: 0.5em;
+border-bottom: 2pt solid black;
+}
+dt 
+{
+font-weight: bold;
+}
+dd+dt 
+{
+border-top: 1pt solid black;
+padding-top: 0.5em;
+}
+dd 
+{
+margin-bottom: 0.5em;
+}
+dd+dd 
+{
+border-top: 1px solid black; 
+}
+
+a.footnote, a.footnoteRef { 
+font-size: small; vertical-align: text-top;
+}
+a[href^="#fnref"], a.reversefootnote 
+{
+}
+@media print
+{
+a[href^="#fnref"], a.reversefootnote 
+{
+
+display: none;
+}
+}
+div.footnotes 
+{
+}
+div.footnotes li[id^="fn"] 
+{
+}
+
+@media print
+{
+.noprint
+{
+display:none;
+}
+}
+</style>
 </head>
 <body>
-<div id="TOC">
+<header id="title-block-header">
+<h1 class="title">Systèmes d’Exploitation – TD 4</h1>
+</header>
+<nav id="TOC" role="doc-toc">
 <ul>
-<li><a href="#systèmes-dexploitation-avancés-t4-mémoire-virtuelle">Systèmes d’Exploitation Avancés: T4 Mémoire Virtuelle</a></li>
+<li><a href="#paquets-à-installer" id="toc-paquets-à-installer">Paquets
+à installer</a></li>
+<li><a href="#notation" id="toc-notation">Notation</a></li>
+<li><a href="#simulateur-dordonnancement" id="toc-simulateur-dordonnancement">Simulateur d’Ordonnancement</a></li>
+<li><a href="#partie-i-ordonnanceurs" id="toc-partie-i-ordonnanceurs">Partie I: Ordonnanceurs</a></li>
+<li><a href="#partie-ii-métriques" id="toc-partie-ii-métriques">Partie
+II: Métriques</a></li>
+<li><a href="#partie-iii-ordonnancement-temps-réel" id="toc-partie-iii-ordonnancement-temps-réel">Partie III: Ordonnancement
+Temps-Réel</a></li>
 </ul>
-</div>
-<h1 id="systèmes-dexploitation-avancés-t4-mémoire-virtuelle">Systèmes d’Exploitation Avancés: T4 Mémoire Virtuelle</h1>
-<p>Ce sujet de TD a été conçu par le Département Informatique du Conservatoire National des Arts et Métiers.</p>
-<p>Le but de ce TD est d’étudier les systèmes de pagination pour la mémoire virtuelle.</p>
-<ol class="example" style="list-style-type: decimal">
-<li><p>Qu’est-ce que la mémoire virtuelle? Donnez trois raisons pour lesquelles il est intéressant de disposer d’un mécanisme de mémoire virtuelle sur un ordinateur moderne.</p></li>
-<li><p>Qu’est-ce qu’une MMU? A quoi sert le TLB d’une MMU?</p></li>
-<li><p>Pourquoi les tailles des pages sont-elles toujours des puissances de deux?</p></li>
-<li><p>Considérons un premier ordinateur, qui exécute un processus avec 137 pages virtuelles déjà chargées en mémoire physique. Le coût pour lire une entrée de la table des pages est de 10ns (ce temps comprends la mise à jour de la TLB). La TLB de cet ordinateur peut stocker les 32 traductions les plus récentes et fournit son résultat en 3ns. <strong>Quel pourcentage des accès mémoire doit-il concerner des pages référencées dans la TLB pour avoir un cout moyen d’accès a une page physique égal a 5ns? </strong></p></li>
-<li><p>On considère un deuxième ordinateur a processeur 64 bits, disposant également d’un espace d’adressage sur 64 bits. Ce système dispose de 256 Mo (c’est-a-dire de <span class="math inline">\(2^{28}\)</span> octets) de mémoire physique, organisée en pages de 4 ko. <strong>Quel est le nombre maximal d’entrées dans la table des pages?</strong></p></li>
-<li><p>Pour ne pas avoir a utiliser autant de mémoire physique pour gérer la mémoire virtuelle, on peut utiliser une table des pages inverse, possédant autant d’entrées que de pages physiques. Décrivez le principe d’une telle table des pages inverse. Donnez les avantages et inconvénients d’une telle implémentation par rapport au système classique de table des pages.</p></li>
-<li><p>Quel(s) mécanisme(s) peu(ven)t-il(s) être utilise(s) pour réduire le surcout inhérent a ce système?</p></li>
-<li><p>Quels problèmes ce système pose-t-il vis-à-vis de la mémoire partagée? Quelle solution pouvez- vous envisager?</p></li>
+</nav>
+<p>Dans ce TD vous allez implémenter différents algorithmes
+d’ordonnancement étudiés en cours: FCFS, RR, SJF, SRTF; et dans la
+dernière partie des algorithmes d’ordonnancement temps réel: EDF et
+RM.</p>
+<h2 id="paquets-à-installer">Paquets à installer</h2>
+<p>Pour pouvoir générer le rapport en LaTeX du simulateur il faut
+installer les paquets avec la commande suivante,</p>
+<pre><code>$ sudo apt-get install --no-install-recommends texlive-fonts-recommended texlive-latex-base texlive-generic-recommended texlive-pstricks texlive-latex-extra texlive-lang-french</code></pre>
+<h2 id="notation">Notation</h2>
+<p>Ce TD est noté. Le travail doit être fait individuellement. Vous
+pouvez discuter avec d’autres camarades des techniques abordés dans ce
+TD, mais il est strictement interdit de donner la réponse aux
+exercices.</p>
+<h2 id="simulateur-dordonnancement">Simulateur d’Ordonnancement</h2>
+<p>Un simulateur d’ordonnancement vous est fourni. Récupérez le à <a href="../scheduler.tar.gz">ici</a>.</p>
+<p>Pour le décompresser dans votre répertoire TD4, vous utiliserez les
+commandes suivantes:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>    <span class="ex">$</span> cd TD4/</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="ex">$</span> wget https://www.sifflez.org/lectures/SEA/scheduler.tar.gz</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="ex">$</span> tar xvf scheduler.tar.gz</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    <span class="ex">$</span> git add <span class="pp">*</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    <span class="ex">$</span> git commit <span class="at">-m</span> <span class="st">&quot;Simulateur d&#39;ordonnancement fourni&quot;</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    <span class="ex">$</span> git push origin master</span></code></pre></div>
+<p>Ce simulateur d’ordonnancement possède plusieurs commandes. La
+commande <code>make</code> vous permets de compiler le simulateur et
+<code>make clean</code> d’effacer les fichiers générés.</p>
+<p>La commande <code>make simulate_fcfs</code> vous permets de simuler
+l’ordonnanceur <code>fcfs</code>. Vous pouvez remplacer
+<code>fcfs</code> par l’ordonnanceur de votre choix (<code>rr</code>,
+<code>sjf</code> ou <code>srtf</code>). Lorsque vous exécutez
+<code>make simulate_fcfs</code>, un fichier <code>preview.ps</code> est
+crée. Il contient les résultats de votre simulation, vous pouvez
+l’ouvrir avec la commande <code>evince preview.ps</code>.</p>
+<p>Enfin, la commande <code>make rapport</code> vous permets de simuler
+les quatre ordonnanceurs et de générer le fichier final
+<code>rapport.ps</code>. Une fois que vous aurez terminé le TD n’oubliez
+pas de lancer cette commande pour vérifier vos résultats.</p>
+<h1 id="partie-i-ordonnanceurs">Partie I: Ordonnanceurs</h1>
+<ol class="example" type="1">
+<li><p>Modifiez le fichier <code>rapport.tex</code> et changez le champ
+<code>author</code> avec vos noms et prénoms.</p></li>
+<li><p>Testez la commande <code>make rapport</code>.</p></li>
 </ol>
-<p>On considère un système de gestion de mémoire paginée a deux niveaux tel que:</p>
+<p>Le simulateur est composé de plusieurs fichiers:</p>
 <ul>
-<li><p>les adresses virtuelles et physiques sont toutes deux codées sur 32 bits;</p></li>
-<li><p>les 10 premiers bits de l’adresse virtuelle forment le premier index, les 10 bits suivants forment le deuxième index, et les 12 bits restants le déplacement;</p></li>
-<li><p>on suppose que chacune des entrées de ces tables est sur 32 bits.</p></li>
+<li><code>sched.h</code>: décrit les différents types utilisés.
+<ul>
+<li><code>tproc</code>: définit un processus, il comporte un
+<code>pid</code>, un temps d’activation, une durée d’exécution
+(<code>length</code>) et un champ <code>remaining</code> pour savoir à
+tout instant combien de temps il reste à exécuter.</li>
+<li><code>tnode</code>: un nœud dans une liste chaînée de processus</li>
+<li><code>tlist</code>: une liste chaînée de processus</li>
+<li><code>tstats</code>: une structure pour comptabiliser différentes
+métriques (temps de complétion, attente et réponse).</li>
+<li><code>tproc</code>: est un type pointeur de fonctions pour les
+fonctions d’ordonnancement</li>
+<li>un ensemble de fonctions pour manipuler les listes de processus sont
+également définies</li>
+</ul></li>
+<li><code>list.c</code>: contient l’implémentation des fonction
+manipulant les listes de processus
+<ul>
+<li><code>add</code>: permet d’ajouter un processus en fin de liste</li>
+<li><code>del</code>: permet de supprimer un processus</li>
+<li>Pour <code>l</code> de type <code>tlist*</code>,
+<code>l-&gt;first</code> et <code>l-&gt;last</code> permettent d’accéder
+au premier et dernier éléments de la liste</li>
+<li>Pour <code>n</code> de type <code>tnode*</code>,
+<code>n-&gt;next</code> permet d’accéder à l’élément suivant dans la
+liste et <code>n-&gt;proc</code> retourne la structure processus.</li>
+</ul></li>
+<li><code>sched.c</code>: contient la logique du simulateur
+<ul>
+<li><code>ready</code> est une liste avec les processus prêts et
+<code>proc</code> contient tous les autres processus</li>
+<li><code>main</code>: décode les arguments en ligne de commande et
+charge la description des tâches depuis le fichier
+<code>task_description.h</code>. Les tâches dans
+<code>task_description.h</code> sont exactement celles données en
+exemple en cours. Au départ <code>main</code> ajoute toutes les tâches
+dans la liste <code>proc</code>. Puis <code>main</code> appelle
+<code>simulate</code> pour lancer la simulation.</li>
+<li><code>simulate</code>: c’est le cœur du simulateur. La boucle
+externe gère le temps. À chaque pas de temps, les actions suivantes sont
+déclenchées:
+<ul>
+<li>On active les processus dont la date d’activation est atteinte.
+C’est à dire on les déplace de la liste <code>procs</code> vers la liste
+<code>ready</code>.</li>
+<li>Si des processus sont prêts, on appelle la fonction
+<code>scheduler</code> (qui pointe vers un des ordonnanceurs
+<code>rr</code>, <code>fcfs</code>, etc.)</li>
+<li>La fonction <code>scheduler</code> choisit un processus qu’elle
+retourne. Elle écrit également dans <code>delta</code> le nombre
+d’unités de temps pendant lesquelles le processus sera exécuté.</li>
+<li>On augmente donc l’horloge de <code>delta</code>.</li>
+<li>Enfin on supprime les tâches completées (dont le champ
+<code>remaining</code> est à zéro).</li>
+</ul></li>
+<li><code>randomscheduler</code>: c’est un ordonnanceur exemple</li>
+<li><code>fcfs</code>, <code>rr</code>, <code>sjf</code>,
+<code>srtf</code>: ces fonctions implémentent différents ordonnanceurs.
+Pour l’instant elles appellent toutes,
+<code>randomscheduler</code>.</li>
+</ul></li>
 </ul>
-<ol start="9" class="example" style="list-style-type: decimal">
-<li>Quelle est la taille maximale utilisée par le répertoire et les tables des pages ?</li>
+<ol start="3" class="example" type="1">
+<li><p>Étudiez le code du simulateur, prenez du temps sur cette question
+car elle vous aidera pour la suite. Il n’y a rien à rendre pour cette
+question, mais elle est <em>très</em> importante!</p></li>
+<li><p>Décrire le fonctionnement de <code>randomscheduler</code> dans un
+fichier <code>randomscheduler.txt</code> que vous commiterez dans
+git.</p></li>
+<li><p>Implémentez la fonction <code>fcfs</code>. Vérifiez que vous
+trouvez le même ordonnancement qu’en cours.</p></li>
+<li><p>Implémentez la fonction <code>rr</code>. Vérifiez que vous
+trouvez le même ordonnancement qu’en cours.</p></li>
+<li><p>Implémentez la fonction <code>sjf</code>. Vérifiez que vous
+trouvez le même ordonnancement qu’en cours.</p></li>
+<li><p>Implémentez la fonction <code>srtf</code>. Vérifiez que vous
+trouvez le même ordonnancement qu’en cours.</p></li>
 </ol>
-<p>Soit un processus P ayant alloué les segments suivants (les adresses de début et de fin sont données en binaire. L’adresse de fin est exclue.):</p>
+<h1 id="partie-ii-métriques">Partie II: Métriques</h1>
+<p>Vous remarquerez que les statistiques dans l’objet <code>stats</code>
+sont toujours à zéro.</p>
+<p>Votre implémentation doit être indépendante de la fonction
+d’ordonnancement choisie. Elle ne doit donc pas modifier les fonctions
+<code>fcfs</code>, <code>rr</code>, <code>sjf</code> et
+<code>srtf</code>. Vous ne devez normalement modifier que la fonction
+<code>simulate</code>.</p>
+<ol start="9" class="example" type="1">
+<li><p>Modifiez le simulateur pour comptabiliser le temps total de
+complétion.</p></li>
+<li><p>Modifiez le simulateur pour comptabiliser le temps total de
+réponse.</p></li>
+<li><p>Modifiez le simulateur pour comptabiliser le temps total
+d’attente.</p></li>
+<li><p>Est-ce que les propriétés décrites en cours sont vérifiées ?
+Écrivez votre réponse dans le fichier <code>proprietes.txt</code> que
+vous commiterez dans git.</p></li>
+</ol>
+<h1 id="partie-iii-ordonnancement-temps-réel">Partie III: Ordonnancement
+Temps-Réel</h1>
+<p>Dans cette nous allons étendre le simulateur d’ordonanncement de
+manière à tester les deux algorithmes d’ordonnancement temps réel
+étudiés en cours: RM et EDF.</p>
+<ol start="13" class="example" type="1">
+<li>Rajoutez une nouvelle cible au Makefile pour générer un fichier
+rapport avec les ordonnanceurs <code>rm</code> et <code>edf</code>,</li>
+</ol>
+<div class="sourceCode" id="cb3"><pre class="sourceCode makefile"><code class="sourceCode makefile"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="dv">rapport_tr:</span><span class="dt"> rm.tex rm.source edf.tex edf.source</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="er">    </span>latex rapport_tr.tex</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    dvips rapport_tr.dvi -f &gt; rapport_tr.ps</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    evince rapport_tr.ps</span></code></pre></div>
+<ol start="14" class="example" type="1">
+<li>Créez également le fichier <code>rapport_tr.tex</code> avec le
+contenu ci-dessous, remplacez “Prénom Nom” par votre nom.</li>
+</ol>
+<div class="sourceCode" id="cb4"><pre class="sourceCode latex"><code class="sourceCode latex"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="bu">\documentclass</span>{<span class="ex">article</span>}</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="bu">\usepackage</span>[utf8]{<span class="ex">inputenc</span>}</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="bu">\usepackage</span>[T1]{<span class="ex">fontenc</span>}</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="bu">\usepackage</span>[francais]{<span class="ex">babel</span>}</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="bu">\usepackage</span>{<span class="ex">rtsched</span>}</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="bu">\usepackage</span>{<span class="ex">fullpage</span>}</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="bu">\usepackage</span>{<span class="ex">color</span>}</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="bu">\usepackage</span>{<span class="ex">listings</span>}</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="fu">\author</span>{Prénom Nom}</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="fu">\lstset</span>{ <span class="co">%</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>language=C, </span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>belowcaptionskip=1<span class="fu">\baselineskip</span>,</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>breaklines=true,</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>frame=L,</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>xleftmargin=<span class="fu">\parindent</span>,</span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>language=C,</span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>showstringspaces=false,</span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>basicstyle=<span class="fu">\ttfamily</span>,</span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>keywordstyle=<span class="fu">\bfseries\color</span>{green!40!black},</span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>commentstyle=<span class="fu">\itshape\color</span>{purple!40!black},</span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>identifierstyle=<span class="fu">\color</span>{black},</span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>stringstyle=<span class="fu">\color</span>{orange},</span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>numbers=left,</span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a><span class="fu">\title</span>{T7: Ordonnancement TR}</span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a><span class="kw">\begin</span>{<span class="ex">document</span>}</span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a><span class="fu">\maketitle</span></span>
+<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a><span class="kw">\section</span>{RM}</span>
+<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a><span class="fu">\input</span>{rm.tex}</span>
+<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a><span class="fu">\lstinputlisting</span>{rm.source}</span>
+<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a><span class="kw">\section</span>{EDF}</span>
+<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a><span class="fu">\input</span>{edf.tex}</span>
+<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a><span class="fu">\lstinputlisting</span>{edf.source}</span>
+<span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-40"><a href="#cb4-40" aria-hidden="true" tabindex="-1"></a><span class="kw">\end</span>{<span class="ex">document</span>}</span></code></pre></div>
+<p>On travaillera avec des tâches périodiques, dont l’échéance est égale
+à la période.</p>
+<ol start="15" class="example" type="1">
+<li><p>Pour gérer des tâches temps réel, nous allons modifier la
+structure <code>tproc</code> de manière à rajouter un champ représentant
+la periode de chaque tâche. Faites les modifications nécessaires dans le
+code de manière à que chaque tâche ait un champ <code>period</code>.</p>
 <ul>
-<li><p>0000001000.0000000000.000010101010 → 0000001000.0000000010.101010101010</p></li>
-<li><p>0000000010.0000000000.000010101010 → 0000000010.0000000000.000100000000</p></li>
-<li><p>0000000010.0000000100.000000000000 → 0000000010.0000000100.111111111111</p></li>
-<li><p>1000000000.0000000000.000000000000 → 1000000010.0000001111.000000000000</p></li>
-</ul>
-<ol start="10" class="example" style="list-style-type: decimal">
-<li>Dessiner la structure hiérarchique de la table de pages pour le processus P.</li>
+<li>Si ce champ vaut 0, la tâche est apériodique.</li>
+<li>Si ce champ vaut <code>t</code> différent de zéro, alors la tâche
+est périodique de période <code>t</code>.</li>
+</ul></li>
+</ol>
+<p>Pour la suite, les algorithmes RM et EDF ne marcheront que sur des
+tâches périodiques. Néanmoins, lorsque vous faites des modifications
+dans le simulateur, vous devrez vous assurer que le code marche encore
+pour les tâches apériodiques sur les autres ordonnanceurs.</p>
+<ol start="16" class="example" type="1">
+<li>Modifiez le fichier <code>task_description.h</code>, de manière à
+simuler le système de tâches suivant:</li>
+</ol>
+<div class="sourceCode" id="cb5"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> max_time <span class="op">=</span> <span class="dv">40</span><span class="op">;</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>tproc tasks<span class="op">[]</span> <span class="op">=</span> <span class="op">{</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>     <span class="co">//pid  //activation  //length  //remaining  //period</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="op">{</span><span class="dv">1</span><span class="op">,</span>     <span class="dv">0</span><span class="op">,</span>            <span class="dv">1</span><span class="op">,</span>        <span class="dv">1</span><span class="op">,</span>           <span class="dv">3</span>       <span class="op">},</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    <span class="op">{</span><span class="dv">2</span><span class="op">,</span>     <span class="dv">0</span><span class="op">,</span>            <span class="dv">1</span><span class="op">,</span>        <span class="dv">1</span><span class="op">,</span>           <span class="dv">4</span>       <span class="op">},</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    <span class="op">{</span><span class="dv">3</span><span class="op">,</span>     <span class="dv">0</span><span class="op">,</span>            <span class="dv">2</span><span class="op">,</span>        <span class="dv">2</span><span class="op">,</span>           <span class="dv">6</span>       <span class="op">},</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="op">};</span></span></code></pre></div>
+<ol start="17" class="example" type="1">
+<li><p>Modifiez la fonction <code>simulate</code> de manière à gérer les
+tâches périodiques. Chaque fois qu’une tâche finit, si elle est
+périodique il faut la redémarrer. Pour cela, il faudra mettre à jour ses
+champs <code>activation</code> et <code>remaining</code> et la rajouter
+à la liste des tâches.</p></li>
+<li><p>Implémentez l’ordonnanceur EDF vu en cours.</p></li>
+<li><p>Implémentez l’ordonnanceur RM vu en cours.</p></li>
+<li><p>Testez les différents systèmes de tâches présentés en cours.
+Obtenez vous les mêmes résultats que moi ?</p></li>
+<li><p>Modifiez la fonction simulate de manière à afficher en rouge
+l’exécution d’une tâche qui ne satisfait pas son échéance. Pour modifier
+la couleur d’une exécution de tâche vous pouvez remplacer</p>
+<pre><code>        \\TaskExecution{%d}{%d}{%d}
+    ```
+
+par
+</code></pre>
+<pre><code>\\TaskExecution[color=red]{%d}{%d}{%d}</code></pre>
+<p>```</p></li>
+<li><p>Proposez et testez un système de tâche qui est ordonnançable avec
+EDF et qui n’est pas ordonnançable avec RM.</p></li>
 </ol>
 </body>
 </html>

@@ -4,104 +4,141 @@
   <meta charset="utf-8" />
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <title>Systèmes d’Exploitation Avancés (SEA) 2019-2020</title>
-  <style type="text/css">
-      code{white-space: pre-wrap;}
-      span.smallcaps{font-variant: small-caps;}
-      span.underline{text-decoration: underline;}
-      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  <title>Systèmes d’Exploitation Avancés (SEA) 2024-2025</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
   </style>
   <link rel="stylesheet" href="pandoc.css" />
 </head>
 <body>
-<header>
-<h1 class="title">Systèmes d’Exploitation Avancés (SEA) 2019-2020</h1>
+<header id="title-block-header">
+<h1 class="title">Systèmes d’Exploitation Avancés (SEA) 2024-2025</h1>
 </header>
 <p><img src="styracosaurus.png" title="Styracosaurus" /></p>
 <h2 id="informations-administratives">Informations Administratives</h2>
 <ul>
-<li><p>Site du cours <a href="https://www.sifflez.org/lectures/SEA" class="uri">https://www.sifflez.org/lectures/SEA</a></p></li>
-<li>Enseignant principal: pablo.oliveira@uvsq.fr</li>
-<li><p>Chargé de TDs: pablo.oliveira@uvsq.fr</p></li>
-<li><p>Groupe de discussion (inscription obligatoire)</p>
-<ul>
-<li><p><a href="https://groups.google.com/group/iatic4-os/">google group: iatic4-os</a></p></li>
-<li><p>Sert à poser des questions sur les cours, TDs, projets. Tout le monde est encouragé à répondre !</p></li>
-<li><p><strong>Attention:</strong> Pour que tout le monde profite des questions/réponses, je ne repondrai que aux questions posées sur le groupe de discussion. Les mails avec question envoyés sur une autre adresse; ne recevront pas de réponse.</p></li>
-</ul></li>
+<li><p>Enseignants: pablo.oliveira@uvsq.fr, jgurhem@aneo.fr</p></li>
 <li><p>Notation</p>
 <ul>
+<li><p>Mini-projets à rendre</p></li>
 <li><p>Un contrôle en fin de semestre</p></li>
-<li><p>QCM réguliers en début de cours (au moins deux)</p></li>
-<li><p>Plusieurs mini-projets à rendre</p></li>
-<li>Note Finale:
+<li><p>Note Finale:</p>
 <ul>
-<li>35% Contrôle</li>
-<li>35% Mini-Projet</li>
-<li>30% QCM</li>
+<li>60% Contrôle</li>
+<li>40% Mini-Projet</li>
 </ul></li>
 </ul></li>
 </ul>
-<p>Pour tout rendu je vous invite à prendre connaissance de la <a href="http://www.uvsq.fr/medias/fichier/guide-anti-plagiat-et-charte-nvlogo_1526369095888-pdf?ID_FICHE=188885&amp;INLINE=FALSE">charte anti-plagiat à l’UVSQ</a>.</p>
+<p>Pour tout rendu je vous invite à prendre connaissance de la <a
+href="https://www.uvsq.fr/medias/fichier/charte-anti-plagiat-v20210825_1633613607876-pdf?ID_FICHE=144644&amp;INLINE=FALSE">charte
+anti-plagiat à l’UVSQ</a></p>
 <h2 id="horaire-des-cours-et-retards">Horaire des cours et retards</h2>
-<p>Je compte sur votre ponctualité et me réserve le droit de ne pas admettre en cours les étudiants sans justificatif arrivant en retard.</p>
+<p>Je compte sur votre ponctualité, merci d’arriver quelques minutes
+avant le début du cours.</p>
 <h2 id="mini-projets">Mini-Projets</h2>
-<p>Une partie de l’apprentissage en SEA se fait par l’intermédiaire de mini-projets que vous commencez en TP mais que vous finissez à la maison. Ces projets représentent 35% de la note finale. Ils sont une occasion de mettre les connaissances théoriques apprises en cours en pratique.</p>
-<h2 id="rendu-des-tps-et-des-mini-projets">Rendu des TPs et des mini-projets</h2>
-<p>Le rendu des TDs et des mini-projets se fera en utilisant <code>git</code> et en pushant votre travail sur <a href="http://tahiti.prism.uvsq.fr">le serveur gitlab mis à votre disposition</a>. Vous avez du recevoir un mail vous invitant à vous y inscrire.</p>
-<h2 id="calendrier">Calendrier</h2>
+<p>Une partie de l’apprentissage en SEA se fait par l’intermédiaire d’un
+mini-projet que vous commencez en TP mais que vous finissez à la maison.
+C’est une occasion de mettre les connaissances théoriques apprises en
+cours en pratique.</p>
+<h2 id="rendu-des-tps-et-du-mini-projet">Rendu des TPs et du
+mini-projet</h2>
+<p>Le rendu des TDs et du mini-projet se fera en utilisant
+<code>git</code> et en pushant votre travail sur <a
+href="http://gitlab-chps.ens.uvsq.fr">le serveur gitlab mis à votre
+disposition</a>.</p>
+<h2 id="syllabus">Syllabus</h2>
 <ul>
-<li><em>séances 1 &amp; 2: 27 janvier (3h CM)</em>
+<li>séance 1
 <ul>
-<li><a href="./lectures/1-introduction.pdf"><strong>Cours 1: Introduction.</strong></a> Qu’est ce qu’un système d’exploitation ?</li>
+<li><a href="./lectures/1-introduction.pdf"><strong>Cours 1:
+Introduction.</strong></a> Qu’est ce qu’un système d’exploitation ?</li>
 </ul></li>
-<li><em>séance 3: 12 février</em>
+<li>séance 2
 <ul>
-<li><a href="./lectures/2-processus.pdf"><strong>Cours 2: Threads et Processus.</strong></a> Comment partager le CPU entre plusieurs tâches ?</li>
-<li><a href="./labs/T1.html"><strong>TD 1</strong></a>: Mise en place de l’environnement de travail: git / gdb / gcc et rappels de Système 1.</li>
-<li>Travail en autonomie pour démarrer le <a href="./labs/MP1.html"><strong>Mini-Projet 1: Développement d’un shell</strong></a>.</li>
+<li><a href="./lectures/2-processus.pdf"><strong>Cours 2: Threads et
+Processus.</strong></a> Comment partager le CPU entre plusieurs tâches
+?</li>
+<li><a href="./labs/T1.html"><strong>TD 1</strong></a>: Mise en place de
+l’environnement de travail: git / gdb / gcc et rappels de Système
+1.</li>
+<li>Travail en autonomie pour démarrer le <a
+href="./labs/MP1.html"><strong>Mini-Projet 1: Développement d’un
+shell</strong></a>.</li>
 </ul></li>
-<li><em>séance 4: 26 février</em>
+<li><em>séance 3</em>
 <ul>
-<li><a href="./lectures/3-linker.pdf"><strong>Cours 3: Execution d’un programme.</strong></a> Comment un programme est chargé et exécuté ?</li>
-<li><a href="./labs/T2.html"><strong>TD 2</strong></a>: Reverse Engineering et exploitation de failles</li>
+<li><a href="./lectures/3-linker.pdf"><strong>Cours 3: Execution d’un
+programme.</strong></a> Comment un programme est chargé et exécuté
+?</li>
+<li><a href="./labs/T2.html"><strong>TD 2</strong></a>: Reverse
+Engineering et exploitation de failles</li>
 </ul></li>
-<li><em>séance 5: 11 mars</em>
+<li><em>séance 4</em>
 <ul>
-<li><a href="./lectures/4-concurrence.pdf"><strong>Cours 4: Programmation concurrente.</strong></a> Pourquoi et comment synchroniser les tâches ?</li>
-<li><a href="./labs/T3.html"><strong>TD 3</strong></a>: Programmation concurrente</li>
+<li><a href="./lectures/4-concurrence.pdf"><strong>Cours 4:
+Programmation concurrente.</strong></a> Pourquoi et comment synchroniser
+les tâches ?</li>
+<li><a href="./labs/T3.html"><strong>TD 3</strong></a>: Programmation
+concurrente</li>
 </ul></li>
-<li><p><strong>rendu du mini-projet 1 sur votre git le 1er mars 2020</strong></p></li>
-<li><em>séance 6: 18 mars</em>
+<li><em>séance 5</em>
 <ul>
-<li><a href="./lectures/5-ordo.pdf"><strong>Cours 5: Ordonnancement.</strong></a> Dans quel ordre exécuter les tâches ?</li>
-<li><a href="./labs/MP2.html"><strong>Mini-Projet 2</strong></a>: Implémentation d’un simulateur d’ordonnancement</li>
+<li><a href="./lectures/5-ordo.pdf"><strong>Cours 5:
+Ordonnancement.</strong></a> Dans quel ordre exécuter les tâches ?</li>
+<li>(optionnel) <a href="./lectures/6-ordoTR.pdf"><strong>Cours 6:
+Ordonnancement Temps Réel.</strong></a> Ordonnancer avec des échéances
+temporelles.</li>
+<li><a href="./labs/T5.html"><strong>TD 4</strong></a>: Implémentation
+d’un simulateur d’ordonnancement</li>
 </ul></li>
-<li><em>séance 7: 25 mars</em>
+<li><em>séance 6</em>
 <ul>
-<li><a href="./lectures/6-ordoTR.pdf"><strong>Cours 6: Ordonnancement Temps Réel.</strong></a> Ordonnancer avec des échéances temporelles.</li>
-<li><a href="./labs/MP2.html"><strong>Mini-Projet 2</strong></a>: Implémentation d’un simulateur d’ordonnancement</li>
+<li><strong>Cours 6: Introduction au cloud computing</strong> (slides
+envoyés par Jérôme Gurhem)</li>
 </ul></li>
-<li><em>séance 8: 1er avril</em>
+<li><em>séance 7</em>
 <ul>
-<li><a href="./lectures/7-memvirt.pdf"><strong>Cours 7: Mémoire Virtuelle.</strong></a> Comment partager la mémoire entre plusieurs tâches ?</li>
-<li><a href="./labs/T4.html"><strong>TD 4</strong></a>: Exercices sur la mémoire virtuelle (sur feuille)</li>
-</ul></li>
-<li><p><strong>rendu du mini-projet 2 par mail avant le dimanche 12 avril 23:59 (voir les <a href="./labs/MP2.html">instructions de rendu</a> )</strong></p></li>
-<li><em>Contrôle continu</em>
-<ul>
-<li><strong>CC: Contrôle Continu Final (annulé en raison des mesures covid-19)</strong></li>
+<li><a href="./lectures/7-memvirt.pdf"><strong>Cours 7: Mémoire
+Virtuelle.</strong></a> Comment partager la mémoire entre plusieurs
+tâches ?</li>
+<li><a href="./labs/T5.html"><strong>TD 5</strong></a>: Exercices sur la
+mémoire virtuelle</li>
 </ul></li>
 </ul>
 <h2 id="bibliographie-et-ressources">Bibliographie et Ressources</h2>
 <ul>
-<li><p>Operating System Concepts, 8th Edition de Silberschatz, Galvin, and Gagne</p></li>
+<li><p>Operating System Concepts, 8th Edition de Silberschatz, Galvin,
+and Gagne</p></li>
 <li><p>Modern Operating Systems, 4th Edition, de Tanembaum</p></li>
-<li><p><a href="http://www.scs.stanford.edu/14wi-cs140/">Stanford CS 140 lectures Winter’14 de David Mazières</a></p></li>
-<li><p>Understanding the Linux Kernel 3rd Edition de Bovet, and Cesati</p></li>
+<li><p><a href="http://www.scs.stanford.edu/14wi-cs140/">Stanford CS 140
+lectures Winter’14 de David Mazières</a></p></li>
+<li><p>Understanding the Linux Kernel 3rd Edition de Bovet, and
+Cesati</p></li>
 </ul>
 <h2 id="sources">Sources</h2>
-<p>Some of the lectures above are translated to french and adapted with some changes from Stanford <a href="http://www.scs.stanford.edu/14wi-cs140/">CS140 Operating System lectures</a>. Thanks to the authors of CS140 lectures for their kind permission to modify and adapt their work.</p>
-<p>The sources of the translated lectures and the labs are <a href="https://github.com/pablooliveira/SEA">available</a>. You can modify and redistribute them under the <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/">by-nc-sa-3.0</a> license.</p>
+<p>Some of the lectures above are translated to french and adapted with
+some changes from Stanford <a
+href="http://www.scs.stanford.edu/14wi-cs140/">CS140 Operating System
+lectures</a>. Thanks to the authors of CS140 lectures for their kind
+permission to modify and adapt their work.</p>
+<p>The sources of the translated lectures and the labs are <a
+href="https://github.com/pablooliveira/SEA">available</a>. You can
+modify and redistribute them under the <a
+href="https://creativecommons.org/licenses/by-nc-sa/3.0/">by-nc-sa-3.0</a>
+license.</p>
 </body>
 </html>

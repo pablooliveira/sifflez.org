@@ -1,178 +1,406 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang xml:lang>
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta charset="utf-8" />
   <meta name="generator" content="pandoc" />
-  <title></title>
-  <style type="text/css">code{white-space: pre;}</style>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>T5</title>
+  <style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+
+ul.task-list[class]{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+font-size: inherit;
+width: 0.8em;
+margin: 0 0.8em 0.2em -1.6em;
+vertical-align: middle;
+}
+</style>
   <style type="text/css">
-div.sourceCode { overflow-x: auto; }
-table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-  margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { width: 100%; line-height: 100%; }
-td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
-td.sourceCode { padding-left: 5px; }
-code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code > span.dt { color: #902000; } /* DataType */
-code > span.dv { color: #40a070; } /* DecVal */
-code > span.bn { color: #40a070; } /* BaseN */
-code > span.fl { color: #40a070; } /* Float */
-code > span.ch { color: #4070a0; } /* Char */
-code > span.st { color: #4070a0; } /* String */
-code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code > span.ot { color: #007020; } /* Other */
-code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code > span.fu { color: #06287e; } /* Function */
-code > span.er { color: #ff0000; font-weight: bold; } /* Error */
-code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-code > span.cn { color: #880000; } /* Constant */
-code > span.sc { color: #4070a0; } /* SpecialChar */
-code > span.vs { color: #4070a0; } /* VerbatimString */
-code > span.ss { color: #bb6688; } /* SpecialString */
-code > span.im { } /* Import */
-code > span.va { color: #19177c; } /* Variable */
-code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code > span.op { color: #666666; } /* Operator */
-code > span.bu { } /* BuiltIn */
-code > span.ex { } /* Extension */
-code > span.pp { color: #bc7a00; } /* Preprocessor */
-code > span.at { color: #7d9029; } /* Attribute */
-code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-  </style>
-  <link rel="stylesheet" href="pandoc.css" type="text/css" />
+
+
+
+div#header, header
+{
+
+border-bottom: 1px solid #aaa;
+margin-bottom: 0.5em;
+}
+.title 
+{
+text-align: center;
+}
+.author, .date 
+{
+text-align: center;
+}
+
+div#TOC, nav#TOC
+{
+
+border-bottom: 1px solid #aaa;
+margin-bottom: 0.5em;
+}
+@media print
+{
+div#TOC, nav#TOC
+{
+
+display: none;
+}
+}
+
+h1, h2, h3, h4, h5, h6
+{
+font-family: "Helvetica Neue", Helvetica, "Liberation Sans", Calibri, Arial, sans-serif; 
+
+page-break-after: avoid; 
+}
+
+div div, section section 
+{
+margin-left: 2em; 
+}
+p {}
+blockquote
+{ font-style: italic;
+}
+li 
+{
+}
+li > p 
+{
+margin-top: 1em; 
+}
+ul 
+{
+}
+ul li 
+{
+}
+ol 
+{
+}
+ol li 
+{
+}
+hr {}
+
+sub 
+{
+}
+sup 
+{
+}
+em 
+{
+}
+em > em 
+{
+font-style: normal;
+}
+strong 
+{
+}
+
+a 
+{
+
+text-decoration: none;
+}
+@media screen
+{
+a:hover
+{
+
+text-decoration: underline;
+}
+}
+@media print
+{
+a {
+
+color: black;
+background: transparent;
+}
+a[href^="http://"]:after, a[href^="https://"]:after
+{
+
+content: " (" attr(href) ") ";
+font-size: 90%;
+}
+}
+
+img
+{
+
+vertical-align: middle;
+}
+div.figure 
+{
+
+margin-left: auto;
+margin-right: auto;
+text-align: center;
+font-style: italic;
+}
+p.caption 
+{
+
+}
+
+pre, code {
+background-color: #fdf7ee;
+
+
+
+white-space: pre-wrap; 
+white-space: -moz-pre-wrap !important; 
+white-space: -pre-wrap; 
+white-space: -o-pre-wrap; 
+word-wrap: break-word; 
+
+}
+pre 
+{
+
+padding: 0.5em; 
+border-radius: 5px; 
+
+border: 1px solid #aaa;
+
+margin-left: 0.5em;
+margin-right: 0.5em;
+}
+@media screen
+{
+pre
+{
+
+white-space: pre;
+overflow: auto;
+
+border: 1px dotted #777;
+}
+}
+code 
+{
+}
+p > code, li > code 
+{
+
+padding-left: 2px;
+padding-right: 2px;
+}
+li > p code 
+{
+
+padding: 2px;
+}
+
+span.math 
+{
+
+}
+div.math 
+{
+}
+span.LaTeX 
+{
+} eq 
+{
+} 
+
+table
+{
+border-collapse: collapse;
+border-spacing: 0; 
+border-bottom: 2pt solid #000;
+border-top: 2pt solid #000; 
+
+margin-left: auto;
+margin-right: auto;
+}
+thead 
+{
+border-bottom: 1pt solid #000;
+background-color: #eee; 
+}
+tr.header 
+{
+} tbody 
+{
+}
+
+tr {
+}
+tr.odd:hover, tr.even:hover 
+{
+background-color: #eee;
+}
+
+tr.odd {}
+tr.even {}
+td, th 
+{ vertical-align: top; 
+vertical-align: baseline; 
+padding-left: 0.5em;
+padding-right: 0.5em;
+padding-top: 0.2em;
+padding-bottom: 0.2em;
+}
+
+
+th 
+{
+font-weight: bold; }
+tfoot 
+{
+}
+caption 
+{
+caption-side: top;
+border: none;
+font-size: 0.9em;
+font-style: italic;
+text-align: center;
+margin-bottom: 0.3em; 
+padding-bottom: 0.2em;
+}
+
+dl 
+{
+border-top: 2pt solid black;
+padding-top: 0.5em;
+border-bottom: 2pt solid black;
+}
+dt 
+{
+font-weight: bold;
+}
+dd+dt 
+{
+border-top: 1pt solid black;
+padding-top: 0.5em;
+}
+dd 
+{
+margin-bottom: 0.5em;
+}
+dd+dd 
+{
+border-top: 1px solid black; 
+}
+
+a.footnote, a.footnoteRef { 
+font-size: small; vertical-align: text-top;
+}
+a[href^="#fnref"], a.reversefootnote 
+{
+}
+@media print
+{
+a[href^="#fnref"], a.reversefootnote 
+{
+
+display: none;
+}
+}
+div.footnotes 
+{
+}
+div.footnotes li[id^="fn"] 
+{
+}
+
+@media print
+{
+.noprint
+{
+display:none;
+}
+}
+</style>
 </head>
 <body>
-<div id="TOC">
+<nav id="TOC" role="doc-toc">
 <ul>
-<li><a href="#systèmes-dexploitation-tp-5---threads-et-synchronisation">Systèmes d’Exploitation: TP 5 - Threads et synchronisation</a><ul>
-<li><a href="#utilisation-de-git">Utilisation de Git</a></li>
-<li><a href="#partie-i-threads-et-problèmes-de-concurrence">Partie I: Threads et problèmes de concurrence</a></li>
-<li><a href="#partie-ii-problème-producteur-consommateur">Partie II: Problème Producteur Consommateur</a></li>
-</ul></li>
+<li><a href="#systèmes-dexploitation-avancés-t5-mémoire-virtuelle" id="toc-systèmes-dexploitation-avancés-t5-mémoire-virtuelle">Systèmes
+d’Exploitation Avancés: T5 Mémoire Virtuelle</a></li>
 </ul>
-</div>
-<h1 id="systèmes-dexploitation-tp-5---threads-et-synchronisation">Systèmes d’Exploitation: TP 5 - Threads et synchronisation</h1>
-<h2 id="utilisation-de-git">Utilisation de Git</h2>
-<p>Le rendu du TP se fera avec GIT. Pour ce TP il faut travailler sur le répertoire <code>TP5</code>. Après chaque question il faut faire un commit avec le code C demandé et éventuellement les réponses aux questions dans un fichier texte.</p>
-<h2 id="partie-i-threads-et-problèmes-de-concurrence">Partie I: Threads et problèmes de concurrence</h2>
-<ol class="example" style="list-style-type: decimal">
-<li>Écrivez un programme C qui prends un entier <code>N</code> en paramètre et crée <code>N</code> threads. À la création vous attribuerez à chaque thread un numéro unique. Chaque thread imprimera le message <em>“Bonjour, je suis le thread numéro ???”</em>.</li>
+</nav>
+<h1 id="systèmes-dexploitation-avancés-t5-mémoire-virtuelle">Systèmes
+d’Exploitation Avancés: T5 Mémoire Virtuelle</h1>
+<p>Ce sujet de TD a été conçu par le Département Informatique du
+Conservatoire National des Arts et Métiers.</p>
+<p>Le but de ce TD est d’étudier les systèmes de pagination pour la
+mémoire virtuelle.</p>
+<ol class="example" type="1">
+<li><p>Qu’est-ce que la mémoire virtuelle? Donnez trois raisons pour
+lesquelles il est intéressant de disposer d’un mécanisme de mémoire
+virtuelle sur un ordinateur moderne.</p></li>
+<li><p>Qu’est-ce qu’une MMU? A quoi sert le TLB d’une MMU?</p></li>
+<li><p>Pourquoi les tailles des pages sont-elles toujours des puissances
+de deux?</p></li>
+<li><p>Considérons un premier ordinateur, qui exécute un processus avec
+137 pages virtuelles déjà chargées en mémoire physique. Le coût pour
+lire une entrée de la table des pages est de 10ns (ce temps comprends la
+mise à jour de la TLB). La TLB de cet ordinateur peut stocker les 32
+traductions les plus récentes et fournit son résultat en 3ns.
+<strong>Quel pourcentage des accès mémoire doit-il concerner des pages
+référencées dans la TLB pour avoir un cout moyen d’accès a une page
+physique égal a 5ns? </strong></p></li>
+<li><p>On considère un deuxième ordinateur a processeur 64 bits,
+disposant également d’un espace d’adressage sur 64 bits. Ce système
+dispose de 256 Mo (c’est-a-dire de 2^28 octets) de mémoire physique,
+organisée en pages de 4 ko. <strong>Quel est le nombre maximal d’entrées
+dans la table des pages?</strong></p></li>
+<li><p>Pour ne pas avoir a utiliser autant de mémoire physique pour
+gérer la mémoire virtuelle, on peut utiliser une table des pages
+inverse, possédant autant d’entrées que de pages physiques. Décrivez le
+principe d’une telle table des pages inverse. Donnez les avantages et
+inconvénients d’une telle implémentation par rapport au système
+classique de table des pages.</p></li>
+<li><p>Quel(s) mécanisme(s) peu(ven)t-il(s) être utilise(s) pour réduire
+le surcout inhérent a ce système?</p></li>
+<li><p>Quels problèmes ce système pose-t-il vis-à-vis de la mémoire
+partagée? Quelle solution pouvez- vous envisager?</p></li>
 </ol>
-<p>Vous pouvez vous servir des appels de bibliothèque suivants: <code>pthread_create</code> et <code>pthread_join</code>.</p>
-<p>Exemple d’exécution attendue:</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">./exo1</span> 10
-<span class="kw">Bonjour</span> je suis le thread numéro 1
-<span class="kw">Bonjour</span> je suis le thread numéro 4
-<span class="kw">Bonjour</span> je suis le thread numéro 0
-<span class="kw">Bonjour</span> je suis le thread numéro 3
-<span class="kw">Bonjour</span> je suis le thread numéro 2
-<span class="kw">Bonjour</span> je suis le thread numéro 5
-<span class="kw">Bonjour</span> je suis le thread numéro 7
-<span class="kw">Bonjour</span> je suis le thread numéro 6
-<span class="kw">Bonjour</span> je suis le thread numéro 9
-<span class="kw">Bonjour</span> je suis le thread numéro 8</code></pre></div>
-<p>Exécutez votre programme plusieurs fois, que constatez vous ? Que se passe-t-il si vous omettez l’appel à <code>pthread_join</code> en fin de programme ?</p>
-<ol start="2" class="example" style="list-style-type: decimal">
-<li>Dans cet exercice on va reprendre le programme précédent et rajouter une variable globale <code>int compteur</code>. Modifiez le code de chaque thread pour qu’il incrémente et affiche la variable <code>compteur</code>. Enfin, imprimez la valeur finale de <code>compteur</code> dans le main après avoir attendu la terminaison de tous les threads avec <code>pthread_join</code>.</li>
-</ol>
-<p>Exemple d’exécution attendue:</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">./exo2</span> 10
-<span class="kw">1</span>
-<span class="kw">5</span>
-<span class="kw">3</span>
-<span class="kw">4</span>
-<span class="kw">2</span>
-<span class="kw">6</span>
-<span class="kw">7</span>
-<span class="kw">8</span>
-<span class="kw">9</span>
-<span class="kw">10</span>
-<span class="kw">Le</span> compteur vaut 10</code></pre></div>
-<p>Augmentez progressivement le nombre de threads crées ? Qu’observez vous ? Comment expliquez vous ce phénomène ?</p>
-<ol start="3" class="example" style="list-style-type: decimal">
-<li>Utilisez les fonction <code>pthread_mutex_init</code>, <code>pthread_mutex_lock</code>, <code>pthread_mutex_unlock</code> et <code>pthread_mutex_destroy</code> pour protéger l’accès à la section critique (incrément du compteur partagé) dans le programme précédent.</li>
-</ol>
-<p>Comparez le temps d’exécution entre la version avec et sans mutex (vous pouvez utiliser <code>/usr/bin/time</code>).</p>
-<h2 id="partie-ii-problème-producteur-consommateur">Partie II: Problème Producteur Consommateur</h2>
-<p>Soit un programme avec deux types de threads. Des threads <em>producteurs</em> et des threads <em>consommateurs</em>.</p>
-<p>Ici les objets à produire sont des numéros uniques allant de <code>0</code> à <code>MAX_OBJETS-1</code>.</p>
-<p>Les producteurs et consommateurs communiquent uniquement à travers une pile <code>LIFO</code> (last-in-first-out) partagée par tous les threads du programme. La pile aura une taille paramétrable <code>LIFO_SIZE</code>. La pile sera implémentée à l’aide d’un tableau d’entiers.</p>
-<p>Le programme prends trois arguments:</p>
+<p>On considère un système de gestion de mémoire paginée a deux niveaux
+tel que:</p>
 <ul>
-<li>Le nombre total d’objets à produire (<code>MAX_OBJETS</code>)</li>
-<li>Le nombre de producteurs</li>
-<li>Le nombre de consommateurs</li>
+<li><p>les adresses virtuelles et physiques sont toutes deux codées sur
+32 bits;</p></li>
+<li><p>les 10 premiers bits de l’adresse virtuelle forment le premier
+index, les 10 bits suivants forment le deuxième index, et les 12 bits
+restants le déplacement;</p></li>
+<li><p>on suppose que chacune des entrées de ces tables est sur 32
+bits.</p></li>
 </ul>
-<p>Chaque thread producteur a la mission suivante:</p>
-<ul>
-<li>si le nombre total d’objets à produire est atteint je me termine</li>
-<li>si la pile est pleine j’attends, sinon je produit l’objet <code>i</code> (<code>i</code> étant un numéro d’objet pas encore utilisé) et j’affiche un message avec mon numéro de thread et l’objet produit.</li>
-</ul>
-<p>Chaque threads consommateurs a la mission suivante:</p>
-<ul>
-<li>si le nombre total d’objets à produire est atteint et tous les objets produits ont été consommés, je m’arrête</li>
-<li>si la pile est vide j’attends, sinon je consomme l’objet en haut de la pile et j’affiche un message avec mon numéro de thread et l’objet consommé.</li>
-</ul>
-<p>Pour cet exercice vous utiliserez uniquement les primitives de synchronisation définies dans <code>semaphore.h</code>.</p>
-<ol start="4" class="example" style="list-style-type: decimal">
-<li><p>Écrire une version du programme simplifié qui marche avec 1 consommateur et 1 producteur. Montrez que votre programme marche dans tous les cas de figure et qu’il termine normalement.</p></li>
-<li><p>Généralisez votre programme pour qu’il marche avec <code>N</code> consommateur et <code>M</code> producteurs. Montrez que votre programme marche dans tous les cas de figure et qu’il termine normalement.</p></li>
+<ol start="9" class="example" type="1">
+<li>Quelle est la taille maximale utilisée par le répertoire et les
+tables des pages ?</li>
 </ol>
-<p>Voici un exemple d’exécution avec 3 producteurs et 2 consommateurs:</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">
-$ <span class="kw">./prodcons</span> 20 3 2
-<span class="kw">Consommateur</span> 1 crée
-<span class="kw">Producteur</span> 0 crée
-<span class="kw">(0)</span> <span class="kw">Produit</span> [19]
-<span class="kw">(0)</span> <span class="kw">Produit</span> [18]
-<span class="kw">(0)</span> <span class="kw">Produit</span> [17]
-<span class="kw">(0)</span> <span class="kw">Produit</span> [16]
-<span class="kw">(0)</span> <span class="kw">Produit</span> [15]
-<span class="kw">(0)</span> <span class="kw">Produit</span> [14]
-<span class="kw">Consommateur</span> 0 crée
-<span class="kw">Producteur</span> 1 crée
-<span class="kw">Producteur</span> 2 crée
-<span class="kw">(0)</span> <span class="kw">Produit</span> [13]
-<span class="kw">(0)</span> <span class="kw">Produit</span> [12]
-<span class="kw">(0)</span> <span class="kw">Produit</span> [11]
-<span class="kw">(0)</span> <span class="kw">Produit</span> [10]
-<span class="kw">(1)</span> <span class="kw">Produit</span> [9]
-<span class="kw">(0)</span> <span class="kw">Consomme</span> [9]
-<span class="kw">(0)</span> <span class="kw">Consomme</span> [10]
-<span class="kw">(1)</span> <span class="kw">Consomme</span> [11]
-<span class="kw">(1)</span> <span class="kw">Produit</span> [8]
-<span class="kw">(1)</span> <span class="kw">Produit</span> [7]
-<span class="kw">(1)</span> <span class="kw">Produit</span> [6]
-<span class="kw">(1)</span> <span class="kw">Produit</span> [5]
-<span class="kw">(1)</span> <span class="kw">Produit</span> [4]
-<span class="kw">(1)</span> <span class="kw">Produit</span> [3]
-<span class="kw">(1)</span> <span class="kw">Produit</span> [2]
-<span class="kw">(1)</span> <span class="kw">Produit</span> [1]
-<span class="kw">(1)</span> <span class="kw">Produit</span> [0]
-<span class="kw">(0)</span> <span class="kw">Consomme</span> [0]
-<span class="kw">(0)</span> <span class="kw">Consomme</span> [1]
-<span class="kw">(0)</span> <span class="kw">Consomme</span> [2]
-<span class="kw">(0)</span> <span class="kw">Consomme</span> [3]
-<span class="kw">(1)</span> <span class="kw">Consomme</span> [4]
-<span class="kw">(1)</span> <span class="kw">Consomme</span> [5]
-<span class="kw">(1)</span> <span class="kw">Consomme</span> [6]
-<span class="kw">(1)</span> <span class="kw">Consomme</span> [7]
-<span class="kw">(1)</span> <span class="kw">Consomme</span> [8]
-<span class="kw">(1)</span> <span class="kw">Consomme</span> [12]
-<span class="kw">(1)</span> <span class="kw">Consomme</span> [13]
-<span class="kw">(1)</span> <span class="kw">Consomme</span> [14]
-<span class="kw">(1)</span> <span class="kw">Consomme</span> [15]
-<span class="kw">(1)</span> <span class="kw">Consomme</span> [16]
-<span class="kw">(1)</span> <span class="kw">Consomme</span> [17]
-<span class="kw">(1)</span> <span class="kw">Consomme</span> [18]
-<span class="kw">(1)</span> <span class="kw">Consomme</span> [19]
-<span class="kw">(0)</span> <span class="kw">Consomme</span> [0]</code></pre></div>
-<ol start="6" class="example" style="list-style-type: decimal">
-<li>Donnez un exemple de “vrai” programme qui utilise le modèle producteur-consommateur que vous venez d’écrire.</li>
+<p>Soit un processus P ayant alloué les segments suivants (les adresses
+de début et de fin sont données en binaire. L’adresse de fin est
+exclue.):</p>
+<ul>
+<li><p>0000001000.0000000000.000010101010 →
+0000001000.0000000010.101010101010</p></li>
+<li><p>0000000010.0000000000.000010101010 →
+0000000010.0000000000.000100000000</p></li>
+<li><p>0000000010.0000000100.000000000000 →
+0000000010.0000000100.111111111111</p></li>
+<li><p>1000000000.0000000000.000000000000 →
+1000000010.0000001111.000000000000</p></li>
+</ul>
+<ol start="10" class="example" type="1">
+<li>Dessiner la structure hiérarchique de la table de pages pour le
+processus P.</li>
 </ol>
 </body>
 </html>

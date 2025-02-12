@@ -1,312 +1,736 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<html xmlns="http://www.w3.org/1999/xhtml" lang xml:lang>
 <head>
   <meta charset="utf-8" />
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
   <title>Systèmes d’Exploitation Avancés – TP 1</title>
-  <style type="text/css">
-      code{white-space: pre-wrap;}
-      span.smallcaps{font-variant: small-caps;}
-      span.underline{text-decoration: underline;}
-      div.column{display: inline-block; vertical-align: top; width: 50%;}
-  </style>
-  <style type="text/css">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; }
+  <style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+
+ul.task-list[class]{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+font-size: inherit;
+width: 0.8em;
+margin: 0 0.8em 0.2em -1.6em;
+vertical-align: middle;
+}
+
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
 div.sourceCode { margin: 1em 0; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
-pre.numberSource a.sourceLine
-  { position: relative; left: -4em; }
-pre.numberSource a.sourceLine::before
-  { content: attr(title);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-    color: #aaaaaa;
-  }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+pre.numberSource code
+{ counter-reset: source-line 0; }
+pre.numberSource code > span
+{ position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+{ content: counter(source-line);
+position: relative; left: -1em; text-align: right; vertical-align: baseline;
+border: none; display: inline-block;
+-webkit-touch-callout: none; -webkit-user-select: none;
+-khtml-user-select: none; -moz-user-select: none;
+-ms-user-select: none; user-select: none;
+padding: 0 4px; width: 4em;
+color: #aaaaaa;
+}
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa; padding-left: 4px; }
 div.sourceCode
-  {  }
+{ }
 @media screen {
-a.sourceLine::before { text-decoration: underline; }
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-  </style>
-  <link rel="stylesheet" href="pandoc.css" />
+code span.al { color: #ff0000; font-weight: bold; } 
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.at { color: #7d9029; } 
+code span.bn { color: #40a070; } 
+code span.bu { color: #008000; } 
+code span.cf { color: #007020; font-weight: bold; } 
+code span.ch { color: #4070a0; } 
+code span.cn { color: #880000; } 
+code span.co { color: #60a0b0; font-style: italic; } 
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.do { color: #ba2121; font-style: italic; } 
+code span.dt { color: #902000; } 
+code span.dv { color: #40a070; } 
+code span.er { color: #ff0000; font-weight: bold; } 
+code span.ex { } 
+code span.fl { color: #40a070; } 
+code span.fu { color: #06287e; } 
+code span.im { color: #008000; font-weight: bold; } 
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.kw { color: #007020; font-weight: bold; } 
+code span.op { color: #666666; } 
+code span.ot { color: #007020; } 
+code span.pp { color: #bc7a00; } 
+code span.sc { color: #4070a0; } 
+code span.ss { color: #bb6688; } 
+code span.st { color: #4070a0; } 
+code span.va { color: #19177c; } 
+code span.vs { color: #4070a0; } 
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } 
+</style>
+  <style type="text/css">
+
+
+
+div#header, header
+{
+
+border-bottom: 1px solid #aaa;
+margin-bottom: 0.5em;
+}
+.title 
+{
+text-align: center;
+}
+.author, .date 
+{
+text-align: center;
+}
+
+div#TOC, nav#TOC
+{
+
+border-bottom: 1px solid #aaa;
+margin-bottom: 0.5em;
+}
+@media print
+{
+div#TOC, nav#TOC
+{
+
+display: none;
+}
+}
+
+h1, h2, h3, h4, h5, h6
+{
+font-family: "Helvetica Neue", Helvetica, "Liberation Sans", Calibri, Arial, sans-serif; 
+
+page-break-after: avoid; 
+}
+
+div div, section section 
+{
+margin-left: 2em; 
+}
+p {}
+blockquote
+{ font-style: italic;
+}
+li 
+{
+}
+li > p 
+{
+margin-top: 1em; 
+}
+ul 
+{
+}
+ul li 
+{
+}
+ol 
+{
+}
+ol li 
+{
+}
+hr {}
+
+sub 
+{
+}
+sup 
+{
+}
+em 
+{
+}
+em > em 
+{
+font-style: normal;
+}
+strong 
+{
+}
+
+a 
+{
+
+text-decoration: none;
+}
+@media screen
+{
+a:hover
+{
+
+text-decoration: underline;
+}
+}
+@media print
+{
+a {
+
+color: black;
+background: transparent;
+}
+a[href^="http://"]:after, a[href^="https://"]:after
+{
+
+content: " (" attr(href) ") ";
+font-size: 90%;
+}
+}
+
+img
+{
+
+vertical-align: middle;
+}
+div.figure 
+{
+
+margin-left: auto;
+margin-right: auto;
+text-align: center;
+font-style: italic;
+}
+p.caption 
+{
+
+}
+
+pre, code {
+background-color: #fdf7ee;
+
+
+
+white-space: pre-wrap; 
+white-space: -moz-pre-wrap !important; 
+white-space: -pre-wrap; 
+white-space: -o-pre-wrap; 
+word-wrap: break-word; 
+
+}
+pre 
+{
+
+padding: 0.5em; 
+border-radius: 5px; 
+
+border: 1px solid #aaa;
+
+margin-left: 0.5em;
+margin-right: 0.5em;
+}
+@media screen
+{
+pre
+{
+
+white-space: pre;
+overflow: auto;
+
+border: 1px dotted #777;
+}
+}
+code 
+{
+}
+p > code, li > code 
+{
+
+padding-left: 2px;
+padding-right: 2px;
+}
+li > p code 
+{
+
+padding: 2px;
+}
+
+span.math 
+{
+
+}
+div.math 
+{
+}
+span.LaTeX 
+{
+} eq 
+{
+} 
+
+table
+{
+border-collapse: collapse;
+border-spacing: 0; 
+border-bottom: 2pt solid #000;
+border-top: 2pt solid #000; 
+
+margin-left: auto;
+margin-right: auto;
+}
+thead 
+{
+border-bottom: 1pt solid #000;
+background-color: #eee; 
+}
+tr.header 
+{
+} tbody 
+{
+}
+
+tr {
+}
+tr.odd:hover, tr.even:hover 
+{
+background-color: #eee;
+}
+
+tr.odd {}
+tr.even {}
+td, th 
+{ vertical-align: top; 
+vertical-align: baseline; 
+padding-left: 0.5em;
+padding-right: 0.5em;
+padding-top: 0.2em;
+padding-bottom: 0.2em;
+}
+
+
+th 
+{
+font-weight: bold; }
+tfoot 
+{
+}
+caption 
+{
+caption-side: top;
+border: none;
+font-size: 0.9em;
+font-style: italic;
+text-align: center;
+margin-bottom: 0.3em; 
+padding-bottom: 0.2em;
+}
+
+dl 
+{
+border-top: 2pt solid black;
+padding-top: 0.5em;
+border-bottom: 2pt solid black;
+}
+dt 
+{
+font-weight: bold;
+}
+dd+dt 
+{
+border-top: 1pt solid black;
+padding-top: 0.5em;
+}
+dd 
+{
+margin-bottom: 0.5em;
+}
+dd+dd 
+{
+border-top: 1px solid black; 
+}
+
+a.footnote, a.footnoteRef { 
+font-size: small; vertical-align: text-top;
+}
+a[href^="#fnref"], a.reversefootnote 
+{
+}
+@media print
+{
+a[href^="#fnref"], a.reversefootnote 
+{
+
+display: none;
+}
+}
+div.footnotes 
+{
+}
+div.footnotes li[id^="fn"] 
+{
+}
+
+@media print
+{
+.noprint
+{
+display:none;
+}
+}
+</style>
 </head>
 <body>
-<header>
+<header id="title-block-header">
 <h1 class="title">Systèmes d’Exploitation Avancés – TP 1</h1>
 </header>
-<nav id="TOC">
+<nav id="TOC" role="doc-toc">
 <ul>
-<li><a href="#partie-i-git">Partie I: Git</a></li>
-<li><a href="#utilisation-de-git">Utilisation de Git</a><ul>
-<li><a href="#présentation-de-git">Présentation de Git</a></li>
-<li><a href="#création-dun-compte-sur-tahiti.prism.uvsq.fr">Création d’un compte sur tahiti.prism.uvsq.fr</a></li>
-<li><a href="#environnement-de-développement">Environnement de développement</a></li>
-<li><a href="#initialization-du-dépôt">Initialization du dépôt</a></li>
-<li><a href="#création-dun-dépôt-git-et-ajout-de-fichiers">Création d’un dépôt git et ajout de fichiers</a></li>
-<li><a href="#enregistrer-des-modifications-sous-git">Enregistrer des modifications sous git</a></li>
-<li><a href="#visiter-une-version-précédente">Visiter une version précédente</a></li>
-<li><a href="#annuler-les-changements-non-commités">Annuler les changements non commités</a></li>
-<li><a href="#revenir-à-une-ancienne-version-définitivement">Revenir à une ancienne version définitivement</a></li>
-<li><a href="#partager-votre-code-avec-les-autres">Partager votre code avec les autres</a></li>
+<li><a href="#partie-i-git" id="toc-partie-i-git">Partie I: Git</a></li>
+<li><a href="#utilisation-de-git" id="toc-utilisation-de-git">Utilisation de Git</a>
+<ul>
+<li><a href="#présentation-de-git" id="toc-présentation-de-git">Présentation de Git</a></li>
+<li><a href="#création-dun-compte-sur-gitlab-chps.ens.uvsq.fr" id="toc-création-dun-compte-sur-gitlab-chps.ens.uvsq.fr">Création d’un
+compte sur gitlab-chps.ens.uvsq.fr</a></li>
+<li><a href="#environnement-de-développement" id="toc-environnement-de-développement">Environnement de
+développement</a></li>
+<li><a href="#initialization-du-dépôt" id="toc-initialization-du-dépôt">Initialization du dépôt</a></li>
+<li><a href="#création-dun-dépôt-git-et-ajout-de-fichiers" id="toc-création-dun-dépôt-git-et-ajout-de-fichiers">Création d’un dépôt
+git et ajout de fichiers</a></li>
+<li><a href="#enregistrer-des-modifications-sous-git" id="toc-enregistrer-des-modifications-sous-git">Enregistrer des
+modifications sous git</a></li>
+<li><a href="#visiter-une-version-précédente" id="toc-visiter-une-version-précédente">Visiter une version
+précédente</a></li>
+<li><a href="#annuler-les-changements-non-commités" id="toc-annuler-les-changements-non-commités">Annuler les changements
+non commités</a></li>
+<li><a href="#revenir-à-une-ancienne-version-définitivement" id="toc-revenir-à-une-ancienne-version-définitivement">Revenir à une
+ancienne version définitivement</a></li>
+<li><a href="#partager-votre-code-avec-les-autres" id="toc-partager-votre-code-avec-les-autres">Partager votre code avec
+les autres</a></li>
 </ul></li>
-<li><a href="#partie-ii-appels-système">Partie II: Appels Système</a><ul>
-<li><a href="#calcul-parallèle">Calcul Parallèle</a></li>
+<li><a href="#partie-ii-appels-système" id="toc-partie-ii-appels-système">Partie II: Appels Système</a>
+<ul>
+<li><a href="#calcul-parallèle" id="toc-calcul-parallèle">Calcul
+Parallèle</a></li>
 </ul></li>
 </ul>
 </nav>
-<p>Le but de ce TP est de vous configurer votre environnement de travail et vous familiariser avec les outils indispensables pour la suite des TPs Système. On profitera également pour faire quelques rappels basiques de votre cours Système d’Exploitation d’IATIC3.</p>
-<p>Ce document est sous licence <a href="https://creativecommons.org/licenses/by-nc-sa/2.0/">CC by-nc-sa</a>. La partie I est inspirée du cours <em>Gerez vos codes source avec git</em> de Mathieu Nebra.</p>
+<p>Le but de ce TP est de vous configurer votre environnement de travail
+et vous familiariser avec les outils indispensables pour la suite des
+TPs Système. On profitera également pour faire quelques rappels basiques
+de votre cours Système d’Exploitation d’IATIC3.</p>
+<p>Ce document est sous licence <a href="https://creativecommons.org/licenses/by-nc-sa/2.0/">CC
+by-nc-sa</a>. La partie I est inspirée du cours <em>Gerez vos codes
+source avec git</em> de Mathieu Nebra.</p>
 <h2 id="partie-i-git">Partie I: Git</h2>
 <h2 id="utilisation-de-git">Utilisation de Git</h2>
-<p>Pour tous les TPs de système on utilisera <a href="http://git-scm.com">git</a>. Un dépôt git contient un projet en cours. Chaque dépôt git peut-être cloné sur différents ordinateurs locaux ou distants.</p>
+<p>Pour tous les TPs de système on utilisera <a href="http://git-scm.com">git</a>. Un dépôt git contient un projet en
+cours. Chaque dépôt git peut-être cloné sur différents ordinateurs
+locaux ou distants.</p>
 <h3 id="présentation-de-git">Présentation de Git</h3>
-<p>Si vous avez déjà travaillé sur un projet informatique, que ce soit un petit projet personnel ou un plus gros projet professionnel, vous avez certainement déjà rencontré un de ces problèmes :</p>
+<p>Git est capable de suivre l’évolution d’un fichier texte ligne de
+code par ligne de code et garde toutes les versions et tous les
+changements de votre code. Mais Git n’est pas seulement un outil de
+backup (sauvegarde), il propose de nombreuses fonctionnalités
+supplémentaires, par exemple</p>
 <ul>
-<li><p>« Qui a modifié le fichier X, il marchait bien avant et maintenant il provoque des bugs ! » ;</p></li>
-<li><p>« Robert, tu peux m’aider en travaillant sur le fichier X pendant que je travaille sur le fichier Y ? Attention à ne pas toucher au fichier Y car si on travaille dessus en même temps je risque d’écraser tes modifications ! » ;</p></li>
-<li><p>« Qui a ajouté cette ligne de code dans ce fichier ? Elle ne sert à rien ! » ;</p></li>
-<li><p>« À quoi servent ces nouveaux fichiers et qui les a ajoutés au code du projet ? » ;</p></li>
-<li><p>« Quelles modifications avions-nous faites pour résoudre le bug de la page qui se ferme toute seule ? »</p></li>
+<li><p>Git retient qui a effectué chaque modification de chaque fichier
+et pourquoi.</p></li>
+<li><p>Si deux personnes travaillent simultanément sur un même fichier,
+Git est capables d’assembler (de fusionner) leurs modifications et
+d’éviter que le travail d’une de ces personnes ne soit écrasé.</p></li>
 </ul>
-<p>Si ces problèmes là vous parlent, vous auriez dû utiliser un logiciel de gestion de versions. Ce type de logiciel est devenu indispensable lorsqu’on travaille à plusieurs sur un même projet et donc sur le même code source. Même si vous travaillez seuls, vous aurez intérêt à commencer à en utiliser un rapidement car il vous offrira de nombreux avantages, comme la conservation d’un historique de chaque modification des fichiers par exemple.</p>
-<p>Il existe de nombreux logiciels de gestion de versions, comme SVN (Subversion), Mercurial et Git. Dans ce cours on utilisera Git (prononcez « guite ») qui est un des plus puissants logiciels de ce genre.</p>
-<p>Git est capable de suivre l’évolution d’un fichier texte ligne de code par ligne de code et garde toutes les versions et tous les changements de votre code. Mais Git n’est pas seulement un outil de backup (sauvegarde), il propose de nombreuses fonctionnalités supplémentaires, par exemple</p>
-<ul>
-<li><p>Git retient qui a effectué chaque modification de chaque fichier et pourquoi.</p></li>
-<li><p>Si deux personnes travaillent simultanément sur un même fichier, Git est capables d’assembler (de fusionner) leurs modifications et d’éviter que le travail d’une de ces personnes ne soit écrasé.</p></li>
-</ul>
-<p>Git est un logiciel de gestion de version “distribué”. Chacun des développeurs participant à un même projet possède son propre <em>dépot git</em>. Les développeurs peuvent s’échanger des versions et des modifications (commits) dans un modèle pair à pair. Souvent un <em>dépot</em> central est crée sur un serveur. Le dépôt central sert de point de rencontre et facilite les échanges entre développeurs. Le serveur connaît l’historique des modifications et permet l’échange d’informations entre les développeurs, qui eux possèdent également l’historique des modifications.</p>
+<p>Git est un logiciel de gestion de version “distribué”. Chacun des
+développeurs participant à un même projet possède son propre <em>dépot
+git</em>. Les développeurs peuvent s’échanger des versions et des
+modifications (commits) dans un modèle pair à pair. Souvent un
+<em>dépot</em> central est crée sur un serveur. Le dépôt central sert de
+point de rencontre et facilite les échanges entre développeurs. Le
+serveur connaît l’historique des modifications et permet l’échange
+d’informations entre les développeurs, qui eux possèdent également
+l’historique des modifications.</p>
 <p>C’est dans ce dernier mode que nous allons fonctionner avec Git.</p>
-<h3 id="création-dun-compte-sur-tahiti.prism.uvsq.fr">Création d’un compte sur tahiti.prism.uvsq.fr</h3>
-<p>Pour sauvegarder et rendre votre travail nous allons utiliser le serveur gitlab <a href="http://tahiti.prism.uvsq.fr">tahiti.prism.uvsq.fr</a>.</p>
+<h3 id="création-dun-compte-sur-gitlab-chps.ens.uvsq.fr">Création d’un
+compte sur gitlab-chps.ens.uvsq.fr</h3>
+<p>Pour sauvegarder et rendre votre travail nous allons utiliser le
+serveur gitlab <a href="http://gitlab-chps.ens.uvsq.fr">gitlab-chps.ens.uvsq.fr</a>.</p>
 <ol class="example" type="1">
-<li><p>Normalement vous avez reçu un mail sur votre adresse <code>@isty.uvsq.fr</code> (ou <code>@ens.uvsq.fr</code>) vous invitant à créer un compte sur <a href="http://tahiti.prism.uvsq.fr">tahiti.prism.uvsq.fr</a>. Attention il est <strong>impératif d’utiliser cette même adresse mail</strong> et pas une adresse personnelle lors de la création du compte.</p></li>
-<li><p>Lorsque vous vous connectez sur le site, vous pourrez voir vos projets. Un projet <code>sea20/prenom-nom</code> a déjà été crée pour vous.</p></li>
-<li><p>(optionnel) Si vous souhaitez pouvoir cloner et pusher sur votre dépôt sans taper votre password à chaque fois, rajoutez une clé ssh sur votre compte. Cliquez sur le menu déroulant en haut à droite, choisissez “Settings”, puis sur la barre à droite choisissez “SSH Keys”.</p></li>
+<li><p>Normalement vous avez reçu un mail sur votre adresse
+<code>@isty.uvsq.fr</code> (ou <code>@ens.uvsq.fr</code>) vous invitant
+à créer un compte sur <a href="http://gitlab-chps.ens.uvsq.fr">gitlab-chps.ens.uvsq.fr</a>.
+Attention il est <strong>impératif d’utiliser cette même adresse
+mail</strong> et pas une adresse personnelle lors de la création du
+compte.</p></li>
+<li><p>Lorsque vous vous connectez sur le site, vous pourrez voir vos
+projets. Un projet <code>sea20/prenom-nom</code> a déjà été crée pour
+vous.</p></li>
+<li><p>(optionnel) Si vous souhaitez pouvoir cloner et pusher sur votre
+dépôt sans taper votre password à chaque fois, rajoutez une clé ssh sur
+votre compte. Cliquez sur le menu déroulant en haut à droite, choisissez
+“Settings”, puis sur la barre à droite choisissez “SSH Keys”.</p></li>
 </ol>
-<h3 id="environnement-de-développement">Environnement de développement</h3>
-<p>Pour les TPs et projets de SEA il vous faut un environnement de développement Linux avec <code>git</code>, <code>gcc</code> ou <code>clang</code>, <code>gdb</code>, les <code>bintools</code>. Le Mini Projet 2 nécessite également un environnement LaTeX.</p>
+<h3 id="environnement-de-développement">Environnement de
+développement</h3>
+<p>Pour les TPs et projets de SEA il vous faut un environnement de
+développement Linux avec <code>git</code>, <code>gcc</code> ou
+<code>clang</code>, <code>gdb</code>, les <code>bintools</code>. Le Mini
+Projet 2 nécessite également un environnement LaTeX.</p>
 <p>Vous avez plusieurs possibilités:</p>
 <ul>
 <li>Travailler sur l’environnement Linux des postes de TP de l’ISTY</li>
 <li>Installer une distribution Linux sur votre ordinateur personnel</li>
-<li>Utiliser une machine virtuelle distante comme <a href="https://codeanywhere.com">codeanywhere</a> ou Cloud 9.</li>
 </ul>
 <h3 id="initialization-du-dépôt">Initialization du dépôt</h3>
 <ol start="4" class="example" type="1">
-<li><p>Pour pouvoir commencer à travailler sur votre dépôt git, il va falloir le cloner. Pour cela allez sur <a href="http://tahiti.prism.uvsq.fr">tahiti.prism.uvsq.fr</a> et récupérez l’adresse du dépôt. D’abord choisissez le type d’adresse HTTP ou SSH sur le menu déroulant au centre de l’interface (ne choisissez SSH que si vous avez rajouté une clé SSH sur votre profil). Puis copiez l’adresse qui se trouve juste à côté.</p></li>
-<li><p>Allez maintenant sur un terminal et tapez les commande suivantes:</p></li>
+<li><p>Pour pouvoir commencer à travailler sur votre dépôt git, il va
+falloir le cloner. Pour cela allez sur <a href="http://gitlab-chps.ens.uvsq.fr">gitlab-chps.ens.uvsq.fr</a> et
+récupérez l’adresse du dépôt. D’abord choisissez le type d’adresse HTTP
+ou SSH sur le menu déroulant au centre de l’interface (ne choisissez SSH
+que si vous avez rajouté une clé SSH sur votre profil). Puis copiez
+l’adresse qui se trouve juste à côté.</p></li>
+<li><p>Allez maintenant sur un terminal et tapez les commande
+suivantes:</p></li>
 </ol>
-<div class="sourceCode" id="cb1"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb1-1" title="1">    <span class="co"># Attention: les commandes seront différentes pour vous selon votre nom et prénom :-)</span></a>
-<a class="sourceLine" id="cb1-2" title="2"></a>
-<a class="sourceLine" id="cb1-3" title="3">    <span class="co"># clonez le dépôt</span></a>
-<a class="sourceLine" id="cb1-4" title="4">    $ <span class="fu">git</span> clone http://tahiti.prism.uvsq.fr/sea/pablo-oliveira.git </a>
-<a class="sourceLine" id="cb1-5" title="5">    <span class="ex">warning</span>: You appear to have cloned an empty repository.</a>
-<a class="sourceLine" id="cb1-6" title="6">    <span class="ex">Checking</span> connectivity... done.</a>
-<a class="sourceLine" id="cb1-7" title="7"></a>
-<a class="sourceLine" id="cb1-8" title="8">    <span class="co"># Allez à l&#39;intérieur du dépôt cloné en local</span></a>
-<a class="sourceLine" id="cb1-9" title="9">    $ <span class="bu">cd</span> pablo-oliveira/</a>
-<a class="sourceLine" id="cb1-10" title="10"></a>
-<a class="sourceLine" id="cb1-11" title="11">    <span class="co"># Créez maintenant un répertoire TP1 dans votre dépôt</span></a>
-<a class="sourceLine" id="cb1-12" title="12">    $ <span class="fu">mkdir</span> TP1</a>
-<a class="sourceLine" id="cb1-13" title="13">    $ <span class="bu">cd</span> TP1</a></code></pre></div>
-<p>Si vous souhaitez cloner ce dépôt sur d’autres machines; la procédure est la même. Les commandes git vous permettent de synchroniser les différentes instances de dépôt entre elles.</p>
-<p>Dans la suite du TP, vous travaillerez sur le répertoire <code>TP1</code> que vous venez de créer. À chaque question où l’on vous demande de créer un modifier des fichiers, vous <em>committerez</em> vos modifications.</p>
-<h3 id="création-dun-dépôt-git-et-ajout-de-fichiers">Création d’un dépôt git et ajout de fichiers</h3>
-<p>Tout d’abord il faut configurer git avec vos informations personnelles (remplacez avec votre nom et mail)</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb2-1" title="1">$ <span class="fu">git</span> config --global user.name <span class="st">&quot;Pablo Oliveira&quot;</span></a>
-<a class="sourceLine" id="cb2-2" title="2">$ <span class="fu">git</span> config --global user.email <span class="st">&quot;pablo.oliveira@uvsq.fr&quot;</span></a></code></pre></div>
-<p>Maintenant écrivez un programme <code>test.c</code> pour afficher “Hello World!” sur la sortie standard et un fichier Makefile pour le compiler avec <code>gcc</code>.</p>
-<p>La commande <code>git status</code> vous permet de voir ce qui est nouveau depuis la dernière sauvegarde (ou commit) dans le dépôt:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb3-1" title="1">$ <span class="fu">git</span> status</a>
-<a class="sourceLine" id="cb3-2" title="2"><span class="ex">On</span> branch master</a>
-<a class="sourceLine" id="cb3-3" title="3"></a>
-<a class="sourceLine" id="cb3-4" title="4"><span class="ex">Initial</span> commit</a>
-<a class="sourceLine" id="cb3-5" title="5"></a>
-<a class="sourceLine" id="cb3-6" title="6"><span class="ex">Untracked</span> files:</a>
-<a class="sourceLine" id="cb3-7" title="7">  <span class="kw">(</span><span class="ex">use</span> <span class="st">&quot;git add &lt;file&gt;...&quot;</span> to include in what will be committed<span class="kw">)</span></a>
-<a class="sourceLine" id="cb3-8" title="8"></a>
-<a class="sourceLine" id="cb3-9" title="9">    <span class="ex">Makefile</span></a>
-<a class="sourceLine" id="cb3-10" title="10">    <span class="ex">test.c</span></a></code></pre></div>
-<p>Pour commiter les fichier il faut d’abord les ajouter dans git avec</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb4-1" title="1">$ <span class="fu">git</span> add Makefile test.c</a>
-<a class="sourceLine" id="cb4-2" title="2">$ <span class="fu">git</span> status</a>
-<a class="sourceLine" id="cb4-3" title="3"><span class="ex">On</span> branch master</a>
-<a class="sourceLine" id="cb4-4" title="4"></a>
-<a class="sourceLine" id="cb4-5" title="5"><span class="ex">Initial</span> commit</a>
-<a class="sourceLine" id="cb4-6" title="6"></a>
-<a class="sourceLine" id="cb4-7" title="7"><span class="ex">Changes</span> to be committed:</a>
-<a class="sourceLine" id="cb4-8" title="8">  <span class="kw">(</span><span class="ex">use</span> <span class="st">&quot;git rm --cached &lt;file&gt;...&quot;</span> to unstage<span class="kw">)</span></a>
-<a class="sourceLine" id="cb4-9" title="9"></a>
-<a class="sourceLine" id="cb4-10" title="10">    <span class="ex">new</span> file:   Makefile</a>
-<a class="sourceLine" id="cb4-11" title="11">    <span class="ex">new</span> file:   test.c</a></code></pre></div>
-<p>Maintenant <code>git status</code> nous indique que les deux fichiers sont prets à être committés.</p>
-<p>La commande <code>git commit</code> ouvre un editeur qui vous permet de taper un message indiquant à quoi correspondent les fichier ajoutés ou modifiés.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Attention: les commandes seront différentes pour vous selon votre nom et prénom :-)</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># clonez le dépôt</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="ex">$</span> git clone http://gitlab-chps.ens.uvsq.fr/sea/pablo-oliveira.git </span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="ex">warning:</span> You appear to have cloned an empty repository.</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    <span class="ex">Checking</span> connectivity... done.</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Allez à l&#39;intérieur du dépôt cloné en local</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    <span class="ex">$</span> cd pablo-oliveira/</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Créez maintenant un répertoire TP1 dans votre dépôt</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    <span class="ex">$</span> mkdir TP1</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    <span class="ex">$</span> cd TP1</span></code></pre></div>
+<p>Si vous souhaitez cloner ce dépôt sur d’autres machines; la procédure
+est la même. Les commandes git vous permettent de synchroniser les
+différentes instances de dépôt entre elles.</p>
+<p>Dans la suite du TP, vous travaillerez sur le répertoire
+<code>TP1</code> que vous venez de créer. À chaque question où l’on vous
+demande de créer un modifier des fichiers, vous <em>committerez</em> vos
+modifications.</p>
+<h3 id="création-dun-dépôt-git-et-ajout-de-fichiers">Création d’un dépôt
+git et ajout de fichiers</h3>
+<p>Tout d’abord il faut configurer git avec vos informations
+personnelles (remplacez avec votre nom et mail)</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> git config <span class="at">--global</span> user.name <span class="st">&quot;Pablo Oliveira&quot;</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> git config <span class="at">--global</span> user.email <span class="st">&quot;pablo.oliveira@uvsq.fr&quot;</span></span></code></pre></div>
+<p>Maintenant écrivez un programme <code>test.c</code> pour afficher
+“Hello World!” sur la sortie standard et un fichier Makefile pour le
+compiler avec <code>gcc</code>.</p>
+<p>La commande <code>git status</code> vous permet de voir ce qui est
+nouveau depuis la dernière sauvegarde (ou commit) dans le dépôt:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> git status</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="ex">On</span> branch master</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="ex">Initial</span> commit</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="ex">Untracked</span> files:</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  <span class="kw">(</span><span class="ex">use</span> <span class="st">&quot;git add &lt;file&gt;...&quot;</span> to include in what will be committed<span class="kw">)</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    <span class="ex">Makefile</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>    <span class="ex">test.c</span></span></code></pre></div>
+<p>Pour commiter les fichier il faut d’abord les ajouter dans git
+avec</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> git add Makefile test.c</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> git status</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="ex">On</span> branch master</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="ex">Initial</span> commit</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="ex">Changes</span> to be committed:</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>  <span class="kw">(</span><span class="ex">use</span> <span class="st">&quot;git rm --cached &lt;file&gt;...&quot;</span> to unstage<span class="kw">)</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>    <span class="ex">new</span> file:   Makefile</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>    <span class="ex">new</span> file:   test.c</span></code></pre></div>
+<p>Maintenant <code>git status</code> nous indique que les deux fichiers
+sont prets à être committés.</p>
+<p>La commande <code>git commit</code> ouvre un editeur qui vous permet
+de taper un message indiquant à quoi correspondent les fichier ajoutés
+ou modifiés.</p>
 <p>Pour les messages de commit utilise la convention suivante,</p>
 <ul>
-<li><p>la première ligne doit contenir un message court et informatif qui résume vos modifications</p></li>
+<li><p>la première ligne doit contenir un message court et informatif
+qui résume vos modifications</p></li>
 <li><p>la deuxième ligne doit être vide</p></li>
-<li><p>à partir de la troisième ligne vous pouvez décrire le détail de vos changements</p></li>
+<li><p>à partir de la troisième ligne vous pouvez décrire le détail de
+vos changements</p></li>
 </ul>
 <p>Par exemple:</p>
 <pre><code>    TP1 (exo1): implement basic input/output for the shell
 
     An infinite loop reads a full input line from the user
     and echoes it back. On CTRL+D the program quits.</code></pre>
-<p><a href="http://ensiwiki.ensimag.fr/index.php/%C3%89crire_de_bons_messages_de_commit_avec_Git">Voici une bonne référence</a> sur la manière de rédiger vos messages de commit.</p>
-<h3 id="enregistrer-des-modifications-sous-git">Enregistrer des modifications sous git</h3>
-<p>Maintenant vous pouvez modifier votre programme. Faites en sorte que le programme fasse une faute de segmentation. Comment faire ? Soyez créatifs.</p>
+<p><a href="http://ensiwiki.ensimag.fr/index.php/%C3%89crire_de_bons_messages_de_commit_avec_Git">Voici
+une bonne référence</a> sur la manière de rédiger vos messages de
+commit.</p>
+<h3 id="enregistrer-des-modifications-sous-git">Enregistrer des
+modifications sous git</h3>
+<p>Maintenant vous pouvez modifier votre programme. Faites en sorte que
+le programme fasse une faute de segmentation. Comment faire ? Soyez
+créatifs.</p>
 <p>Puis tapez <code>git diff</code> pour voir vos changements:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb6-1" title="1"><span class="fu">git</span> diff</a>
-<a class="sourceLine" id="cb6-2" title="2"><span class="fu">diff</span> --git a/test.c b/test.c</a>
-<a class="sourceLine" id="cb6-3" title="3"><span class="ex">index</span> 69899ec..ad7f9c6 100644</a>
-<a class="sourceLine" id="cb6-4" title="4"><span class="ex">---</span> a/test.c</a>
-<a class="sourceLine" id="cb6-5" title="5"><span class="ex">+++</span> b/test.c</a>
-<a class="sourceLine" id="cb6-6" title="6"><span class="ex">@@</span> -1,4 +1,5 @@</a>
-<a class="sourceLine" id="cb6-7" title="7"> <span class="co">#include &lt;stdio.h&gt;</span></a>
-<a class="sourceLine" id="cb6-8" title="8"> <span class="ex">int</span> main(void) <span class="kw">{</span></a>
-<a class="sourceLine" id="cb6-9" title="9"><span class="ex">-</span>    printf(<span class="st">&quot;Hello World!\n&quot;</span>);</a>
-<a class="sourceLine" id="cb6-10" title="10"><span class="ex">+</span>    do_segmentation_fault();</a>
-<a class="sourceLine" id="cb6-11" title="11"> <span class="kw">}</span></a></code></pre></div>
-<p>Maintenant commitez vos changements avec <code>git add test.c</code> suivi de <code>git commit</code>.</p>
-<p>Vous pouvez consulter le journal des modifications avec <code>git log</code></p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb7-1" title="1">$ <span class="fu">git</span> log</a>
-<a class="sourceLine" id="cb7-2" title="2"><span class="ex">commit</span> 66ea53ab301045fc5a990fac3672f842dc75b2e8</a>
-<a class="sourceLine" id="cb7-3" title="3"><span class="ex">Author</span>: Pablo Oliveira <span class="op">&lt;</span>pablo.oliveira@uvsq.fr<span class="op">&gt;</span></a>
-<a class="sourceLine" id="cb7-4" title="4"><span class="ex">Date</span>:   Thu Sep 11 22:59:15 2014 +0200</a>
-<a class="sourceLine" id="cb7-5" title="5"></a>
-<a class="sourceLine" id="cb7-6" title="6">    <span class="ex">Harmless</span> modification that makes the program segfault</a>
-<a class="sourceLine" id="cb7-7" title="7"></a>
-<a class="sourceLine" id="cb7-8" title="8"><span class="ex">commit</span> b35c2b6551d4b3738170637634702ed4d82aa501</a>
-<a class="sourceLine" id="cb7-9" title="9"><span class="ex">Author</span>: Pablo Oliveira <span class="op">&lt;</span>pablo.oliveira@uvsq.fr<span class="op">&gt;</span></a>
-<a class="sourceLine" id="cb7-10" title="10"><span class="ex">Date</span>:   Thu Sep 11 22:55:05 2014 +0200</a>
-<a class="sourceLine" id="cb7-11" title="11"></a>
-<a class="sourceLine" id="cb7-12" title="12">    <span class="ex">Initial</span> commit: Hello World program</a></code></pre></div>
-<p>Chaque commit est suivi d’un code hexadecimal unique qui l’identifie. Vous pouvez visualiser les changements entre deux versions avec <code>git diff b35c2b6 66ea53a</code>, ce n’est pas la peine de taper tous les chiffres, les premiers suffisent (sauf en cas de conflit). Essayez !</p>
-<p>Les différentes versions forment un “fil” ou <strong>branche</strong> de versions. Dans git la branche principale s’appelle d’habitude <code>master</code>.</p>
-<p>Git permet de travailler sur plusieurs branches en même temps, mais cela dépasse le cadre de cette introduction.</p>
-<h3 id="visiter-une-version-précédente">Visiter une version précédente</h3>
-<p>Git sauvegarde toutes les versions et permets de revenir à une version précédente.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> diff</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">diff</span> <span class="at">--git</span> a/test.c b/test.c</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="ex">index</span> 69899ec..ad7f9c6 100644</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="ex">---</span> a/test.c</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="ex">+++</span> b/test.c</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="ex">@@</span> <span class="at">-1,4</span> +1,5 @@</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a> <span class="co">#include &lt;stdio.h&gt;</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a> <span class="ex">int</span> main<span class="er">(</span><span class="ex">void</span><span class="kw">)</span> <span class="kw">{</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="ex">-</span>    printf<span class="er">(</span><span class="st">&quot;Hello World!\n&quot;</span><span class="kw">);</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="ex">+</span>    do_segmentation_fault<span class="er">(</span><span class="kw">);</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a> <span class="kw">}</span></span></code></pre></div>
+<p>Maintenant commitez vos changements avec <code>git add test.c</code>
+suivi de <code>git commit</code>.</p>
+<p>Vous pouvez consulter le journal des modifications avec
+<code>git log</code></p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> git log</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="ex">commit</span> 66ea53ab301045fc5a990fac3672f842dc75b2e8</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="ex">Author:</span> Pablo Oliveira <span class="op">&lt;</span>pablo.oliveira@uvsq.fr<span class="op">&gt;</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="ex">Date:</span>   Thu Sep 11 22:59:15 2014 +0200</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    <span class="ex">Harmless</span> modification that makes the program segfault</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="ex">commit</span> b35c2b6551d4b3738170637634702ed4d82aa501</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="ex">Author:</span> Pablo Oliveira <span class="op">&lt;</span>pablo.oliveira@uvsq.fr<span class="op">&gt;</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="ex">Date:</span>   Thu Sep 11 22:55:05 2014 +0200</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>    <span class="ex">Initial</span> commit: Hello World program</span></code></pre></div>
+<p>Chaque commit est suivi d’un code hexadecimal unique qui l’identifie.
+Vous pouvez visualiser les changements entre deux versions avec
+<code>git diff b35c2b6 66ea53a</code>, ce n’est pas la peine de taper
+tous les chiffres, les premiers suffisent (sauf en cas de conflit).
+Essayez !</p>
+<p>Les différentes versions forment un “fil” ou <strong>branche</strong>
+de versions. Dans git la branche principale s’appelle d’habitude
+<code>master</code>.</p>
+<p>Git permet de travailler sur plusieurs branches en même temps, mais
+cela dépasse le cadre de cette introduction.</p>
+<h3 id="visiter-une-version-précédente">Visiter une version
+précédente</h3>
+<p>Git sauvegarde toutes les versions et permets de revenir à une
+version précédente.</p>
 <p>Par exemple pour revenir à la version de base vous pouvez taper:</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb8-1" title="1"> $ <span class="fu">git</span> checkout b35c2b6</a>
-<a class="sourceLine" id="cb8-2" title="2"></a>
-<a class="sourceLine" id="cb8-3" title="3"><span class="ex">You</span> are in <span class="st">&#39;detached HEAD&#39;</span> state. You can look around, make experimental</a>
-<a class="sourceLine" id="cb8-4" title="4"><span class="ex">changes</span> and commit them, and you can discard any commits you make in this</a>
-<a class="sourceLine" id="cb8-5" title="5"><span class="ex">state</span> without impacting any branches by performing another checkout.</a>
-<a class="sourceLine" id="cb8-6" title="6"></a>
-<a class="sourceLine" id="cb8-7" title="7"><span class="ex">If</span> you want to create a new branch to retain commits you create, you may</a>
-<a class="sourceLine" id="cb8-8" title="8"><span class="kw">do</span> <span class="ex">so</span> (now or later) <span class="ex">by</span> using -b with the checkout command again. Example:</a>
-<a class="sourceLine" id="cb8-9" title="9"></a>
-<a class="sourceLine" id="cb8-10" title="10">  <span class="fu">git</span> checkout -b new_branch_name</a>
-<a class="sourceLine" id="cb8-11" title="11"></a>
-<a class="sourceLine" id="cb8-12" title="12"><span class="ex">HEAD</span> is now at b35c2b6... Initial commit: Hello World program</a></code></pre></div>
-<p><code>git</code> nous previens que nous ne sommes plus en tête de la branche master ce qui est normal vu que nous sommes revenus à une vieille version.</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a> <span class="ex">$</span> git checkout b35c2b6</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="ex">You</span> are in <span class="st">&#39;detached HEAD&#39;</span> state. You can look around, make experimental</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="ex">changes</span> and commit them, and you can discard any commits you make in this</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="ex">state</span> without impacting any branches by performing another checkout.</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="ex">If</span> you want to create a new branch to retain commits you create, you may</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="cf">do</span> <span class="ex">so</span> <span class="er">(</span><span class="ex">now</span> or later<span class="kw">)</span> <span class="ex">by</span> using <span class="at">-b</span> with the checkout command again. Example:</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">git</span> checkout <span class="at">-b</span> new_branch_name</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a><span class="ex">HEAD</span> is now at b35c2b6... Initial commit: Hello World program</span></code></pre></div>
+<p><code>git</code> nous previens que nous ne sommes plus en tête de la
+branche master ce qui est normal vu que nous sommes revenus à une
+vieille version.</p>
 <p>Pour revenir à la dernière version vous pouvez taper:</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb9-1" title="1">$ <span class="fu">git</span> checkout master</a>
-<a class="sourceLine" id="cb9-2" title="2"><span class="ex">Previous</span> HEAD position was b35c2b6... Initial commit: Hello World program</a>
-<a class="sourceLine" id="cb9-3" title="3"><span class="ex">Switched</span> to branch <span class="st">&#39;master&#39;</span></a></code></pre></div>
-<h3 id="annuler-les-changements-non-commités">Annuler les changements non commités</h3>
-<p>Parfois vous avez fait des modifications sur un fichier et vous voulez les annuler et revenir à la dernière version commitée.</p>
-<p>Pour cela vous pouvez utiliser <code>git checkout</code> comme sur l’exemple suivant</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb10-1" title="1">$ <span class="fu">rm</span> hello.c</a>
-<a class="sourceLine" id="cb10-2" title="2"></a>
-<a class="sourceLine" id="cb10-3" title="3"><span class="co"># Ooops j&#39;ai effacé hello.c</span></a>
-<a class="sourceLine" id="cb10-4" title="4"></a>
-<a class="sourceLine" id="cb10-5" title="5">$ <span class="fu">git</span> checkout hello.c</a>
-<a class="sourceLine" id="cb10-6" title="6"></a>
-<a class="sourceLine" id="cb10-7" title="7"><span class="co"># tout va bien !</span></a></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> git checkout master</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="ex">Previous</span> HEAD position was b35c2b6... Initial commit: Hello World program</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="ex">Switched</span> to branch <span class="st">&#39;master&#39;</span></span></code></pre></div>
+<h3 id="annuler-les-changements-non-commités">Annuler les changements
+non commités</h3>
+<p>Parfois vous avez fait des modifications sur un fichier et vous
+voulez les annuler et revenir à la dernière version commitée.</p>
+<p>Pour cela vous pouvez utiliser <code>git checkout</code> comme sur
+l’exemple suivant</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> rm hello.c</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Ooops j&#39;ai effacé hello.c</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> git checkout hello.c</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="co"># tout va bien !</span></span></code></pre></div>
 <p>Essayez.</p>
-<h3 id="revenir-à-une-ancienne-version-définitivement">Revenir à une ancienne version définitivement</h3>
-<p>Parfois on veut revenir à une ancienne version pour de bon. La commande suivante vous le permet:</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb11-1" title="1">$ <span class="fu">git</span> reset --hard b35c2b6</a></code></pre></div>
+<h3 id="revenir-à-une-ancienne-version-définitivement">Revenir à une
+ancienne version définitivement</h3>
+<p>Parfois on veut revenir à une ancienne version pour de bon. La
+commande suivante vous le permet:</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> git reset <span class="at">--hard</span> b35c2b6</span></code></pre></div>
 <p>Essayez de revenir à la version sans segfault.</p>
-<h3 id="partager-votre-code-avec-les-autres">Partager votre code avec les autres</h3>
-<p>Pour partager votre code avec un autre dépot, <code>git</code> propose deux commandes:</p>
+<h3 id="partager-votre-code-avec-les-autres">Partager votre code avec
+les autres</h3>
+<p>Pour partager votre code avec un autre dépot, <code>git</code>
+propose deux commandes:</p>
 <ul>
-<li><code>push</code> qui permet d’envoyer (“pousser”) votre code vers un autre dépot</li>
-<li><code>pull</code> qui permet de récupérer (“tirer”) les changements depuis un un autre dépot</li>
+<li><code>push</code> qui permet d’envoyer (“pousser”) votre code vers
+un autre dépot</li>
+<li><code>pull</code> qui permet de récupérer (“tirer”) les changements
+depuis un un autre dépot</li>
 </ul>
-<p>Comme vous avez cloné votre dépôt depuis tahiti.prism.uvsq.fr; ce serveur est déja configuré comme serveur push par défaut.</p>
+<p>Comme vous avez cloné votre dépôt depuis gitlab-chps.ens.uvsq.fr; ce
+serveur est déja configuré comme serveur push par défaut.</p>
 <p>Pour envoyer vos changements sur tahiti faites:</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb12-1" title="1">    $ <span class="fu">git</span> push origin master</a>
-<a class="sourceLine" id="cb12-2" title="2"></a>
-<a class="sourceLine" id="cb12-3" title="3">    <span class="ex">Counting</span> objects: 3, done.</a>
-<a class="sourceLine" id="cb12-4" title="4">    <span class="ex">Delta</span> compression using up to 8 threads.</a>
-<a class="sourceLine" id="cb12-5" title="5">    <span class="ex">Compressing</span> objects: 100% (2/2), <span class="kw">done</span><span class="ex">.</span></a>
-<a class="sourceLine" id="cb12-6" title="6">    <span class="ex">Writing</span> objects: 100% (3/3), <span class="ex">271</span> bytes <span class="kw">|</span> <span class="ex">0</span> bytes/s, done.</a>
-<a class="sourceLine" id="cb12-7" title="7">    <span class="ex">Total</span> 3 (delta 0), <span class="ex">reused</span> 0 (delta 0)</a>
-<a class="sourceLine" id="cb12-8" title="8">    <span class="ex">To</span> http://pablo-oliveira@tahiti.prism.uvsq.fr/sea20/pablo-oliveira.git</a>
-<a class="sourceLine" id="cb12-9" title="9">    <span class="ex">*</span> [new branch]      master -<span class="op">&gt;</span> master</a></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>    <span class="ex">$</span> git push origin master</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    <span class="ex">Counting</span> objects: 3, done.</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    <span class="ex">Delta</span> compression using up to 8 threads.</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>    <span class="ex">Compressing</span> objects: 100% <span class="er">(</span><span class="ex">2/2</span><span class="kw">)</span><span class="ex">,</span> done.</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>    <span class="ex">Writing</span> objects: 100% <span class="er">(</span><span class="ex">3/3</span><span class="kw">)</span><span class="ex">,</span> 271 bytes <span class="kw">|</span> <span class="ex">0</span> bytes/s, done.</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>    <span class="ex">Total</span> 3 <span class="er">(</span><span class="ex">delta</span> 0<span class="kw">)</span><span class="ex">,</span> reused 0 <span class="er">(</span><span class="ex">delta</span> 0<span class="kw">)</span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>    <span class="ex">To</span> http://pablo-oliveira@gitlab-chps.ens.uvsq.fr/sea20/pablo-oliveira.git</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>    <span class="ex">*</span> [new branch]      master <span class="at">-</span><span class="op">&gt;</span> master</span></code></pre></div>
 <h2 id="partie-ii-appels-système">Partie II: Appels Système</h2>
-<p>Le but de cette partie est de manipuler les appels systèmes basiques: <code>fork</code>, <code>wait</code>, <code>open</code>, etc. Si vous voulez consulter la documentation d’une appel système, par exemple <code>fork</code> vous pouvez utiliser la commande <code>man 2 fork</code>. Cette partie est adapté à partir d’exercices proposés par Juliusz Chroboczek et Khouloud Zine Elabidine.</p>
-<p>Utilisez git pour commiter les programmes que vous aurez à écrire. Faites au moins un commit par question.</p>
+<p>Le but de cette partie est de manipuler les appels systèmes basiques:
+<code>fork</code>, <code>wait</code>, <code>open</code>, etc. Si vous
+voulez consulter la documentation d’une appel système, par exemple
+<code>fork</code> vous pouvez utiliser la commande
+<code>man 2 fork</code>. Cette partie est adapté à partir d’exercices
+proposés par Juliusz Chroboczek et Khouloud Zine Elabidine.</p>
+<p>Utilisez git pour commiter les programmes que vous aurez à écrire.
+Faites au moins un commit par question.</p>
 <p>Si vous avez besoin de gdb vous pouvez l’installer avec</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb13-1" title="1">  $ <span class="fu">sudo</span> apt-get update</a>
-<a class="sourceLine" id="cb13-2" title="2">  $ <span class="fu">sudo</span> apt-get install gdb</a></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>  <span class="ex">$</span> sudo apt-get update</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="ex">$</span> sudo apt-get install gdb</span></code></pre></div>
 <ol start="6" class="example" type="1">
-<li><p>Écrivez un programme qui crée deux processus, un père qui affiche à l’aide de l’appel système write la chaîne <code>&quot;Je suis le père\n&quot;</code>, et un fils qui affiche la chaîne <code>&quot;Je suis le fils\n&quot;</code>. (Vous n’omettrez pas d’attendre la mort du fils à l’aide de wait.) Quel est l’ordre des chaînes affichées ? Un autre résultat est-il possible ?</p></li>
-<li><p>Écrivez un programme qui crée deux processus, un père qui affiche à l’aide de l’appel système write la chaîne “a” 10 000 fois, et un fils qui affiche la chaîne “b” 10 000 fois. (Comme d’habitude, pensez à wait.) Que constatez-vous ?</p></li>
-<li><p>Combien de processus existent au maximun durant l’exécution du programme suivant ?</p></li>
+<li><p>Écrivez un programme qui crée deux processus, un père qui affiche
+à l’aide de l’appel système write la chaîne
+<code>&quot;Je suis le père\n&quot;</code>, et un fils qui affiche la chaîne
+<code>&quot;Je suis le fils\n&quot;</code>. (Vous n’omettrez pas d’attendre la
+mort du fils à l’aide de wait.) Quel est l’ordre des chaînes affichées ?
+Un autre résultat est-il possible ?</p></li>
+<li><p>Écrivez un programme qui crée deux processus, un père qui affiche
+à l’aide de l’appel système write la chaîne “a” 10 000 fois, et un fils
+qui affiche la chaîne “b” 10 000 fois. (Comme d’habitude, pensez à
+wait.) Que constatez-vous ?</p></li>
+<li><p>Combien de processus existent au maximun durant l’exécution du
+programme suivant ?</p></li>
 </ol>
-<div class="sourceCode" id="cb14"><pre class="sourceCode c"><code class="sourceCode c"><a class="sourceLine" id="cb14-1" title="1"><span class="dt">int</span> main(<span class="dt">int</span> argc, <span class="dt">char</span> *argv[]) {</a>
-<a class="sourceLine" id="cb14-2" title="2">    fork();</a>
-<a class="sourceLine" id="cb14-3" title="3">    fork();</a>
-<a class="sourceLine" id="cb14-4" title="4">    fork();</a>
-<a class="sourceLine" id="cb14-5" title="5">    sleep(<span class="dv">10</span>);</a>
-<a class="sourceLine" id="cb14-6" title="6">    exit(<span class="dv">0</span>);</a>
-<a class="sourceLine" id="cb14-7" title="7">}</a></code></pre></div>
-<p>Dessinez l’arbre des processus crées. Vérifiez votre hypothèse à l’aide de la commande pstree.</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> main<span class="op">(</span><span class="dt">int</span> argc<span class="op">,</span> <span class="dt">char</span> <span class="op">*</span>argv<span class="op">[])</span> <span class="op">{</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>    fork<span class="op">();</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>    fork<span class="op">();</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>    fork<span class="op">();</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>    sleep<span class="op">(</span><span class="dv">10</span><span class="op">);</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>    exit<span class="op">(</span><span class="dv">0</span><span class="op">);</span></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<p>Dessinez l’arbre des processus crées. Vérifiez votre hypothèse à
+l’aide de la commande pstree.</p>
 <h3 id="calcul-parallèle">Calcul Parallèle</h3>
 <ol start="9" class="example" type="1">
-<li>Écrivez un programme qui génère un tableau de 10 000 entiers tirés au hasard entre 0 et 1000 puis affiche tous les indices des cases de ce tableau dont la valeur est 42. (Vous pouvez utiliser la fonction random.)</li>
-<li>Modifiez votre programme pour qu’il utilise deux processus, le père qui parcourt la première moitié du tableau, et le fils qui parcourt la seconde.</li>
-<li>Même question avec un nombre de processus donné sur la ligne de commande.</li>
+<li>Écrivez un programme qui génère un tableau de 10 000 entiers tirés
+au hasard entre 0 et 1000 puis affiche tous les indices des cases de ce
+tableau dont la valeur est 42. (Vous pouvez utiliser la fonction
+random.)</li>
+<li>Modifiez votre programme pour qu’il utilise deux processus, le père
+qui parcourt la première moitié du tableau, et le fils qui parcourt la
+seconde.</li>
+<li>Même question avec un nombre de processus donné sur la ligne de
+commande.</li>
 </ol>
 </body>
 </html>

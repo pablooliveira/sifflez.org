@@ -1,137 +1,484 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<html xmlns="http://www.w3.org/1999/xhtml" lang xml:lang>
 <head>
   <meta charset="utf-8" />
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
   <title>T3</title>
-  <style type="text/css">
-      code{white-space: pre-wrap;}
-      span.smallcaps{font-variant: small-caps;}
-      span.underline{text-decoration: underline;}
-      div.column{display: inline-block; vertical-align: top; width: 50%;}
-  </style>
-  <style type="text/css">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; }
+  <style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+
+ul.task-list[class]{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+font-size: inherit;
+width: 0.8em;
+margin: 0 0.8em 0.2em -1.6em;
+vertical-align: middle;
+}
+
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
 div.sourceCode { margin: 1em 0; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
-pre.numberSource a.sourceLine
-  { position: relative; left: -4em; }
-pre.numberSource a.sourceLine::before
-  { content: attr(title);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-    color: #aaaaaa;
-  }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+pre.numberSource code
+{ counter-reset: source-line 0; }
+pre.numberSource code > span
+{ position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+{ content: counter(source-line);
+position: relative; left: -1em; text-align: right; vertical-align: baseline;
+border: none; display: inline-block;
+-webkit-touch-callout: none; -webkit-user-select: none;
+-khtml-user-select: none; -moz-user-select: none;
+-ms-user-select: none; user-select: none;
+padding: 0 4px; width: 4em;
+color: #aaaaaa;
+}
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa; padding-left: 4px; }
 div.sourceCode
-  {  }
+{ }
 @media screen {
-a.sourceLine::before { text-decoration: underline; }
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-  </style>
-  <link rel="stylesheet" href="pandoc.css" />
+code span.al { color: #ff0000; font-weight: bold; } 
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.at { color: #7d9029; } 
+code span.bn { color: #40a070; } 
+code span.bu { color: #008000; } 
+code span.cf { color: #007020; font-weight: bold; } 
+code span.ch { color: #4070a0; } 
+code span.cn { color: #880000; } 
+code span.co { color: #60a0b0; font-style: italic; } 
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.do { color: #ba2121; font-style: italic; } 
+code span.dt { color: #902000; } 
+code span.dv { color: #40a070; } 
+code span.er { color: #ff0000; font-weight: bold; } 
+code span.ex { } 
+code span.fl { color: #40a070; } 
+code span.fu { color: #06287e; } 
+code span.im { color: #008000; font-weight: bold; } 
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.kw { color: #007020; font-weight: bold; } 
+code span.op { color: #666666; } 
+code span.ot { color: #007020; } 
+code span.pp { color: #bc7a00; } 
+code span.sc { color: #4070a0; } 
+code span.ss { color: #bb6688; } 
+code span.st { color: #4070a0; } 
+code span.va { color: #19177c; } 
+code span.vs { color: #4070a0; } 
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } 
+</style>
+  <style type="text/css">
+
+
+
+div#header, header
+{
+
+border-bottom: 1px solid #aaa;
+margin-bottom: 0.5em;
+}
+.title 
+{
+text-align: center;
+}
+.author, .date 
+{
+text-align: center;
+}
+
+div#TOC, nav#TOC
+{
+
+border-bottom: 1px solid #aaa;
+margin-bottom: 0.5em;
+}
+@media print
+{
+div#TOC, nav#TOC
+{
+
+display: none;
+}
+}
+
+h1, h2, h3, h4, h5, h6
+{
+font-family: "Helvetica Neue", Helvetica, "Liberation Sans", Calibri, Arial, sans-serif; 
+
+page-break-after: avoid; 
+}
+
+div div, section section 
+{
+margin-left: 2em; 
+}
+p {}
+blockquote
+{ font-style: italic;
+}
+li 
+{
+}
+li > p 
+{
+margin-top: 1em; 
+}
+ul 
+{
+}
+ul li 
+{
+}
+ol 
+{
+}
+ol li 
+{
+}
+hr {}
+
+sub 
+{
+}
+sup 
+{
+}
+em 
+{
+}
+em > em 
+{
+font-style: normal;
+}
+strong 
+{
+}
+
+a 
+{
+
+text-decoration: none;
+}
+@media screen
+{
+a:hover
+{
+
+text-decoration: underline;
+}
+}
+@media print
+{
+a {
+
+color: black;
+background: transparent;
+}
+a[href^="http://"]:after, a[href^="https://"]:after
+{
+
+content: " (" attr(href) ") ";
+font-size: 90%;
+}
+}
+
+img
+{
+
+vertical-align: middle;
+}
+div.figure 
+{
+
+margin-left: auto;
+margin-right: auto;
+text-align: center;
+font-style: italic;
+}
+p.caption 
+{
+
+}
+
+pre, code {
+background-color: #fdf7ee;
+
+
+
+white-space: pre-wrap; 
+white-space: -moz-pre-wrap !important; 
+white-space: -pre-wrap; 
+white-space: -o-pre-wrap; 
+word-wrap: break-word; 
+
+}
+pre 
+{
+
+padding: 0.5em; 
+border-radius: 5px; 
+
+border: 1px solid #aaa;
+
+margin-left: 0.5em;
+margin-right: 0.5em;
+}
+@media screen
+{
+pre
+{
+
+white-space: pre;
+overflow: auto;
+
+border: 1px dotted #777;
+}
+}
+code 
+{
+}
+p > code, li > code 
+{
+
+padding-left: 2px;
+padding-right: 2px;
+}
+li > p code 
+{
+
+padding: 2px;
+}
+
+span.math 
+{
+
+}
+div.math 
+{
+}
+span.LaTeX 
+{
+} eq 
+{
+} 
+
+table
+{
+border-collapse: collapse;
+border-spacing: 0; 
+border-bottom: 2pt solid #000;
+border-top: 2pt solid #000; 
+
+margin-left: auto;
+margin-right: auto;
+}
+thead 
+{
+border-bottom: 1pt solid #000;
+background-color: #eee; 
+}
+tr.header 
+{
+} tbody 
+{
+}
+
+tr {
+}
+tr.odd:hover, tr.even:hover 
+{
+background-color: #eee;
+}
+
+tr.odd {}
+tr.even {}
+td, th 
+{ vertical-align: top; 
+vertical-align: baseline; 
+padding-left: 0.5em;
+padding-right: 0.5em;
+padding-top: 0.2em;
+padding-bottom: 0.2em;
+}
+
+
+th 
+{
+font-weight: bold; }
+tfoot 
+{
+}
+caption 
+{
+caption-side: top;
+border: none;
+font-size: 0.9em;
+font-style: italic;
+text-align: center;
+margin-bottom: 0.3em; 
+padding-bottom: 0.2em;
+}
+
+dl 
+{
+border-top: 2pt solid black;
+padding-top: 0.5em;
+border-bottom: 2pt solid black;
+}
+dt 
+{
+font-weight: bold;
+}
+dd+dt 
+{
+border-top: 1pt solid black;
+padding-top: 0.5em;
+}
+dd 
+{
+margin-bottom: 0.5em;
+}
+dd+dd 
+{
+border-top: 1px solid black; 
+}
+
+a.footnote, a.footnoteRef { 
+font-size: small; vertical-align: text-top;
+}
+a[href^="#fnref"], a.reversefootnote 
+{
+}
+@media print
+{
+a[href^="#fnref"], a.reversefootnote 
+{
+
+display: none;
+}
+}
+div.footnotes 
+{
+}
+div.footnotes li[id^="fn"] 
+{
+}
+
+@media print
+{
+.noprint
+{
+display:none;
+}
+}
+</style>
 </head>
 <body>
-<nav id="TOC">
+<nav id="TOC" role="doc-toc">
 <ul>
-<li><a href="#systèmes-dexploitation-tp-3---threads-et-synchronisation">Systèmes d’Exploitation: TP 3 - Threads et synchronisation</a><ul>
-<li><a href="#utilisation-de-git">Utilisation de Git</a></li>
-<li><a href="#partie-i-threads-et-problèmes-de-concurrence">Partie I: Threads et problèmes de concurrence</a></li>
-<li><a href="#partie-ii-problème-producteur-consommateur">Partie II: Problème Producteur Consommateur</a></li>
+<li><a href="#systèmes-dexploitation-tp-3---threads-et-synchronisation" id="toc-systèmes-dexploitation-tp-3---threads-et-synchronisation">Systèmes
+d’Exploitation: TP 3 - Threads et synchronisation</a>
+<ul>
+<li><a href="#utilisation-de-git" id="toc-utilisation-de-git">Utilisation de Git</a></li>
+<li><a href="#partie-i-threads-et-problèmes-de-concurrence" id="toc-partie-i-threads-et-problèmes-de-concurrence">Partie I: Threads
+et problèmes de concurrence</a></li>
+<li><a href="#partie-ii-problème-producteur-consommateur" id="toc-partie-ii-problème-producteur-consommateur">Partie II: Problème
+Producteur Consommateur</a></li>
 </ul></li>
 </ul>
 </nav>
-<h1 id="systèmes-dexploitation-tp-3---threads-et-synchronisation">Systèmes d’Exploitation: TP 3 - Threads et synchronisation</h1>
+<h1 id="systèmes-dexploitation-tp-3---threads-et-synchronisation">Systèmes
+d’Exploitation: TP 3 - Threads et synchronisation</h1>
 <h2 id="utilisation-de-git">Utilisation de Git</h2>
-<p>Le rendu du TP se fera avec GIT. Pour ce TP il faut travailler sur le répertoire <code>TP3</code>. Après chaque question il faut faire un commit avec le code C demandé et éventuellement les réponses aux questions dans un fichier texte.</p>
-<h2 id="partie-i-threads-et-problèmes-de-concurrence">Partie I: Threads et problèmes de concurrence</h2>
+<p>Le rendu du TP se fera avec GIT. Pour ce TP il faut travailler sur le
+répertoire <code>TP3</code>. Après chaque question il faut faire un
+commit avec le code C demandé et éventuellement les réponses aux
+questions dans un fichier texte.</p>
+<h2 id="partie-i-threads-et-problèmes-de-concurrence">Partie I: Threads
+et problèmes de concurrence</h2>
 <ol class="example" type="1">
-<li>Écrivez un programme C qui prends un entier <code>N</code> en paramètre et crée <code>N</code> threads. À la création vous attribuerez à chaque thread un numéro unique. Chaque thread imprimera le message <em>“Bonjour, je suis le thread numéro ???”</em>.</li>
+<li>Écrivez un programme C qui prends un entier <code>N</code> en
+paramètre et crée <code>N</code> threads. À la création vous attribuerez
+à chaque thread un numéro unique. Chaque thread imprimera le message
+<em>“Bonjour, je suis le thread numéro ???”</em>.</li>
 </ol>
-<p>Vous pouvez vous servir des appels de bibliothèque suivants: <code>pthread_create</code> et <code>pthread_join</code>.</p>
+<p>Vous pouvez vous servir des appels de bibliothèque suivants:
+<code>pthread_create</code> et <code>pthread_join</code>.</p>
 <p>Exemple d’exécution attendue:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb1-1" title="1">$ <span class="ex">./exo1</span> 10</a>
-<a class="sourceLine" id="cb1-2" title="2"><span class="ex">Bonjour</span> je suis le thread numéro 1</a>
-<a class="sourceLine" id="cb1-3" title="3"><span class="ex">Bonjour</span> je suis le thread numéro 4</a>
-<a class="sourceLine" id="cb1-4" title="4"><span class="ex">Bonjour</span> je suis le thread numéro 0</a>
-<a class="sourceLine" id="cb1-5" title="5"><span class="ex">Bonjour</span> je suis le thread numéro 3</a>
-<a class="sourceLine" id="cb1-6" title="6"><span class="ex">Bonjour</span> je suis le thread numéro 2</a>
-<a class="sourceLine" id="cb1-7" title="7"><span class="ex">Bonjour</span> je suis le thread numéro 5</a>
-<a class="sourceLine" id="cb1-8" title="8"><span class="ex">Bonjour</span> je suis le thread numéro 7</a>
-<a class="sourceLine" id="cb1-9" title="9"><span class="ex">Bonjour</span> je suis le thread numéro 6</a>
-<a class="sourceLine" id="cb1-10" title="10"><span class="ex">Bonjour</span> je suis le thread numéro 9</a>
-<a class="sourceLine" id="cb1-11" title="11"><span class="ex">Bonjour</span> je suis le thread numéro 8</a></code></pre></div>
-<p>Exécutez votre programme plusieurs fois, que constatez vous ? Que se passe-t-il si vous omettez l’appel à <code>pthread_join</code> en fin de programme ?</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> ./exo1 10</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="ex">Bonjour</span> je suis le thread numéro 1</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="ex">Bonjour</span> je suis le thread numéro 4</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="ex">Bonjour</span> je suis le thread numéro 0</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="ex">Bonjour</span> je suis le thread numéro 3</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="ex">Bonjour</span> je suis le thread numéro 2</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="ex">Bonjour</span> je suis le thread numéro 5</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="ex">Bonjour</span> je suis le thread numéro 7</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="ex">Bonjour</span> je suis le thread numéro 6</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="ex">Bonjour</span> je suis le thread numéro 9</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="ex">Bonjour</span> je suis le thread numéro 8</span></code></pre></div>
+<p>Exécutez votre programme plusieurs fois, que constatez vous ? Que se
+passe-t-il si vous omettez l’appel à <code>pthread_join</code> en fin de
+programme ?</p>
 <ol start="2" class="example" type="1">
-<li>Dans cet exercice on va reprendre le programme précédent et rajouter une variable globale <code>int compteur</code>. Modifiez le code de chaque thread pour qu’il incrémente et affiche la variable <code>compteur</code>. Enfin, imprimez la valeur finale de <code>compteur</code> dans le main après avoir attendu la terminaison de tous les threads avec <code>pthread_join</code>.</li>
+<li>Dans cet exercice on va reprendre le programme précédent et rajouter
+une variable globale <code>int compteur</code>. Modifiez le code de
+chaque thread pour qu’il incrémente et affiche la variable
+<code>compteur</code>. Enfin, imprimez la valeur finale de
+<code>compteur</code> dans le main après avoir attendu la terminaison de
+tous les threads avec <code>pthread_join</code>.</li>
 </ol>
 <p>Exemple d’exécution attendue:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb2-1" title="1">$ <span class="ex">./exo2</span> 10</a>
-<a class="sourceLine" id="cb2-2" title="2"><span class="ex">1</span></a>
-<a class="sourceLine" id="cb2-3" title="3"><span class="ex">5</span></a>
-<a class="sourceLine" id="cb2-4" title="4"><span class="ex">3</span></a>
-<a class="sourceLine" id="cb2-5" title="5"><span class="ex">4</span></a>
-<a class="sourceLine" id="cb2-6" title="6"><span class="ex">2</span></a>
-<a class="sourceLine" id="cb2-7" title="7"><span class="ex">6</span></a>
-<a class="sourceLine" id="cb2-8" title="8"><span class="ex">7</span></a>
-<a class="sourceLine" id="cb2-9" title="9"><span class="ex">8</span></a>
-<a class="sourceLine" id="cb2-10" title="10"><span class="ex">9</span></a>
-<a class="sourceLine" id="cb2-11" title="11"><span class="ex">10</span></a>
-<a class="sourceLine" id="cb2-12" title="12"><span class="ex">Le</span> compteur vaut 10</a></code></pre></div>
-<p>Augmentez progressivement le nombre de threads crées ? Qu’observez vous ? Comment expliquez vous ce phénomène ?</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> ./exo2 10</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="ex">1</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="ex">5</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="ex">3</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="ex">4</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="ex">2</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="ex">6</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="ex">7</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="ex">8</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="ex">9</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="ex">10</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="ex">Le</span> compteur vaut 10</span></code></pre></div>
+<p>Augmentez progressivement le nombre de threads crées ? Qu’observez
+vous ? Comment expliquez vous ce phénomène ?</p>
 <ol start="3" class="example" type="1">
-<li>Utilisez les fonction <code>pthread_mutex_init</code>, <code>pthread_mutex_lock</code>, <code>pthread_mutex_unlock</code> et <code>pthread_mutex_destroy</code> pour protéger l’accès à la section critique (incrément du compteur partagé) dans le programme précédent.</li>
+<li>Utilisez les fonction <code>pthread_mutex_init</code>,
+<code>pthread_mutex_lock</code>, <code>pthread_mutex_unlock</code> et
+<code>pthread_mutex_destroy</code> pour protéger l’accès à la section
+critique (incrément du compteur partagé) dans le programme
+précédent.</li>
 </ol>
-<p>Comparez le temps d’exécution entre la version avec et sans mutex (vous pouvez utiliser <code>/usr/bin/time</code>).</p>
-<h2 id="partie-ii-problème-producteur-consommateur">Partie II: Problème Producteur Consommateur</h2>
-<p>Soit un programme avec deux types de threads. Des threads <em>producteurs</em> et des threads <em>consommateurs</em>.</p>
-<p>Ici les objets à produire sont des numéros uniques allant de <code>0</code> à <code>MAX_OBJETS-1</code>.</p>
-<p>Les producteurs et consommateurs communiquent uniquement à travers une pile <code>LIFO</code> (last-in-first-out) partagée par tous les threads du programme. La pile aura une taille paramétrable <code>LIFO_SIZE</code>. La pile sera implémentée à l’aide d’un tableau d’entiers.</p>
+<p>Comparez le temps d’exécution entre la version avec et sans mutex
+(vous pouvez utiliser <code>/usr/bin/time</code>).</p>
+<h2 id="partie-ii-problème-producteur-consommateur">Partie II: Problème
+Producteur Consommateur</h2>
+<p>Soit un programme avec deux types de threads. Des threads
+<em>producteurs</em> et des threads <em>consommateurs</em>.</p>
+<p>Ici les objets à produire sont des numéros uniques allant de
+<code>0</code> à <code>MAX_OBJETS-1</code>.</p>
+<p>Les producteurs et consommateurs communiquent uniquement à travers
+une pile <code>LIFO</code> (last-in-first-out) partagée par tous les
+threads du programme. La pile aura une taille paramétrable
+<code>LIFO_SIZE</code>. La pile sera implémentée à l’aide d’un tableau
+d’entiers.</p>
 <p>Le programme prends trois arguments:</p>
 <ul>
 <li>Le nombre total d’objets à produire (<code>MAX_OBJETS</code>)</li>
@@ -140,70 +487,85 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 <p>Chaque thread producteur a la mission suivante:</p>
 <ul>
-<li>si le nombre total d’objets à produire est atteint je me termine</li>
-<li>si la pile est pleine j’attends, sinon je produit l’objet <code>i</code> (<code>i</code> étant un numéro d’objet pas encore utilisé) et j’affiche un message avec mon numéro de thread et l’objet produit.</li>
+<li>si le nombre total d’objets à produire est atteint je me
+termine</li>
+<li>si la pile est pleine j’attends, sinon je produit l’objet
+<code>i</code> (<code>i</code> étant un numéro d’objet pas encore
+utilisé) et j’affiche un message avec mon numéro de thread et l’objet
+produit.</li>
 </ul>
 <p>Chaque threads consommateurs a la mission suivante:</p>
 <ul>
-<li>si le nombre total d’objets à produire est atteint et tous les objets produits ont été consommés, je m’arrête</li>
-<li>si la pile est vide j’attends, sinon je consomme l’objet en haut de la pile et j’affiche un message avec mon numéro de thread et l’objet consommé.</li>
+<li>si le nombre total d’objets à produire est atteint et tous les
+objets produits ont été consommés, je m’arrête</li>
+<li>si la pile est vide j’attends, sinon je consomme l’objet en haut de
+la pile et j’affiche un message avec mon numéro de thread et l’objet
+consommé.</li>
 </ul>
-<p>Pour cet exercice vous utiliserez uniquement les primitives de synchronisation définies dans <code>semaphore.h</code>.</p>
+<p>Pour cet exercice vous utiliserez uniquement les primitives de
+synchronisation définies dans <code>semaphore.h</code>.</p>
 <ol start="4" class="example" type="1">
-<li><p>Écrire une version du programme simplifié qui marche avec 1 consommateur et 1 producteur. Montrez que votre programme marche dans tous les cas de figure et qu’il termine normalement.</p></li>
-<li><p>Généralisez votre programme pour qu’il marche avec <code>N</code> consommateur et <code>M</code> producteurs. Montrez que votre programme marche dans tous les cas de figure et qu’il termine normalement.</p></li>
+<li><p>Écrire une version du programme simplifié qui marche avec 1
+consommateur et 1 producteur. Montrez que votre programme marche dans
+tous les cas de figure et qu’il termine normalement.</p></li>
+<li><p>Généralisez votre programme pour qu’il marche avec <code>N</code>
+consommateur et <code>M</code> producteurs. Montrez que votre programme
+marche dans tous les cas de figure et qu’il termine
+normalement.</p></li>
 </ol>
-<p>Voici un exemple d’exécution avec 3 producteurs et 2 consommateurs:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb3-1" title="1"></a>
-<a class="sourceLine" id="cb3-2" title="2">$ <span class="ex">./prodcons</span> 20 3 2</a>
-<a class="sourceLine" id="cb3-3" title="3"><span class="ex">Consommateur</span> 1 crée</a>
-<a class="sourceLine" id="cb3-4" title="4"><span class="ex">Producteur</span> 0 crée</a>
-<a class="sourceLine" id="cb3-5" title="5"><span class="kw">(</span><span class="ex">0</span><span class="kw">)</span> <span class="ex">Produit</span> [19]</a>
-<a class="sourceLine" id="cb3-6" title="6"><span class="kw">(</span><span class="ex">0</span><span class="kw">)</span> <span class="ex">Produit</span> [18]</a>
-<a class="sourceLine" id="cb3-7" title="7"><span class="kw">(</span><span class="ex">0</span><span class="kw">)</span> <span class="ex">Produit</span> [17]</a>
-<a class="sourceLine" id="cb3-8" title="8"><span class="kw">(</span><span class="ex">0</span><span class="kw">)</span> <span class="ex">Produit</span> [16]</a>
-<a class="sourceLine" id="cb3-9" title="9"><span class="kw">(</span><span class="ex">0</span><span class="kw">)</span> <span class="ex">Produit</span> [15]</a>
-<a class="sourceLine" id="cb3-10" title="10"><span class="kw">(</span><span class="ex">0</span><span class="kw">)</span> <span class="ex">Produit</span> [14]</a>
-<a class="sourceLine" id="cb3-11" title="11"><span class="ex">Consommateur</span> 0 crée</a>
-<a class="sourceLine" id="cb3-12" title="12"><span class="ex">Producteur</span> 1 crée</a>
-<a class="sourceLine" id="cb3-13" title="13"><span class="ex">Producteur</span> 2 crée</a>
-<a class="sourceLine" id="cb3-14" title="14"><span class="kw">(</span><span class="ex">0</span><span class="kw">)</span> <span class="ex">Produit</span> [13]</a>
-<a class="sourceLine" id="cb3-15" title="15"><span class="kw">(</span><span class="ex">0</span><span class="kw">)</span> <span class="ex">Produit</span> [12]</a>
-<a class="sourceLine" id="cb3-16" title="16"><span class="kw">(</span><span class="ex">0</span><span class="kw">)</span> <span class="ex">Produit</span> [11]</a>
-<a class="sourceLine" id="cb3-17" title="17"><span class="kw">(</span><span class="ex">0</span><span class="kw">)</span> <span class="ex">Produit</span> [10]</a>
-<a class="sourceLine" id="cb3-18" title="18"><span class="kw">(</span><span class="ex">1</span><span class="kw">)</span> <span class="ex">Produit</span> [9]</a>
-<a class="sourceLine" id="cb3-19" title="19"><span class="kw">(</span><span class="ex">0</span><span class="kw">)</span> <span class="ex">Consomme</span> [9]</a>
-<a class="sourceLine" id="cb3-20" title="20"><span class="kw">(</span><span class="ex">0</span><span class="kw">)</span> <span class="ex">Consomme</span> [10]</a>
-<a class="sourceLine" id="cb3-21" title="21"><span class="kw">(</span><span class="ex">1</span><span class="kw">)</span> <span class="ex">Consomme</span> [11]</a>
-<a class="sourceLine" id="cb3-22" title="22"><span class="kw">(</span><span class="ex">1</span><span class="kw">)</span> <span class="ex">Produit</span> [8]</a>
-<a class="sourceLine" id="cb3-23" title="23"><span class="kw">(</span><span class="ex">1</span><span class="kw">)</span> <span class="ex">Produit</span> [7]</a>
-<a class="sourceLine" id="cb3-24" title="24"><span class="kw">(</span><span class="ex">1</span><span class="kw">)</span> <span class="ex">Produit</span> [6]</a>
-<a class="sourceLine" id="cb3-25" title="25"><span class="kw">(</span><span class="ex">1</span><span class="kw">)</span> <span class="ex">Produit</span> [5]</a>
-<a class="sourceLine" id="cb3-26" title="26"><span class="kw">(</span><span class="ex">1</span><span class="kw">)</span> <span class="ex">Produit</span> [4]</a>
-<a class="sourceLine" id="cb3-27" title="27"><span class="kw">(</span><span class="ex">1</span><span class="kw">)</span> <span class="ex">Produit</span> [3]</a>
-<a class="sourceLine" id="cb3-28" title="28"><span class="kw">(</span><span class="ex">1</span><span class="kw">)</span> <span class="ex">Produit</span> [2]</a>
-<a class="sourceLine" id="cb3-29" title="29"><span class="kw">(</span><span class="ex">1</span><span class="kw">)</span> <span class="ex">Produit</span> [1]</a>
-<a class="sourceLine" id="cb3-30" title="30"><span class="kw">(</span><span class="ex">1</span><span class="kw">)</span> <span class="ex">Produit</span> [0]</a>
-<a class="sourceLine" id="cb3-31" title="31"><span class="kw">(</span><span class="ex">0</span><span class="kw">)</span> <span class="ex">Consomme</span> [0]</a>
-<a class="sourceLine" id="cb3-32" title="32"><span class="kw">(</span><span class="ex">0</span><span class="kw">)</span> <span class="ex">Consomme</span> [1]</a>
-<a class="sourceLine" id="cb3-33" title="33"><span class="kw">(</span><span class="ex">0</span><span class="kw">)</span> <span class="ex">Consomme</span> [2]</a>
-<a class="sourceLine" id="cb3-34" title="34"><span class="kw">(</span><span class="ex">0</span><span class="kw">)</span> <span class="ex">Consomme</span> [3]</a>
-<a class="sourceLine" id="cb3-35" title="35"><span class="kw">(</span><span class="ex">1</span><span class="kw">)</span> <span class="ex">Consomme</span> [4]</a>
-<a class="sourceLine" id="cb3-36" title="36"><span class="kw">(</span><span class="ex">1</span><span class="kw">)</span> <span class="ex">Consomme</span> [5]</a>
-<a class="sourceLine" id="cb3-37" title="37"><span class="kw">(</span><span class="ex">1</span><span class="kw">)</span> <span class="ex">Consomme</span> [6]</a>
-<a class="sourceLine" id="cb3-38" title="38"><span class="kw">(</span><span class="ex">1</span><span class="kw">)</span> <span class="ex">Consomme</span> [7]</a>
-<a class="sourceLine" id="cb3-39" title="39"><span class="kw">(</span><span class="ex">1</span><span class="kw">)</span> <span class="ex">Consomme</span> [8]</a>
-<a class="sourceLine" id="cb3-40" title="40"><span class="kw">(</span><span class="ex">1</span><span class="kw">)</span> <span class="ex">Consomme</span> [12]</a>
-<a class="sourceLine" id="cb3-41" title="41"><span class="kw">(</span><span class="ex">1</span><span class="kw">)</span> <span class="ex">Consomme</span> [13]</a>
-<a class="sourceLine" id="cb3-42" title="42"><span class="kw">(</span><span class="ex">1</span><span class="kw">)</span> <span class="ex">Consomme</span> [14]</a>
-<a class="sourceLine" id="cb3-43" title="43"><span class="kw">(</span><span class="ex">1</span><span class="kw">)</span> <span class="ex">Consomme</span> [15]</a>
-<a class="sourceLine" id="cb3-44" title="44"><span class="kw">(</span><span class="ex">1</span><span class="kw">)</span> <span class="ex">Consomme</span> [16]</a>
-<a class="sourceLine" id="cb3-45" title="45"><span class="kw">(</span><span class="ex">1</span><span class="kw">)</span> <span class="ex">Consomme</span> [17]</a>
-<a class="sourceLine" id="cb3-46" title="46"><span class="kw">(</span><span class="ex">1</span><span class="kw">)</span> <span class="ex">Consomme</span> [18]</a>
-<a class="sourceLine" id="cb3-47" title="47"><span class="kw">(</span><span class="ex">1</span><span class="kw">)</span> <span class="ex">Consomme</span> [19]</a>
-<a class="sourceLine" id="cb3-48" title="48"><span class="kw">(</span><span class="ex">0</span><span class="kw">)</span> <span class="ex">Consomme</span> [0]</a></code></pre></div>
+<p>Voici un exemple d’exécution avec 3 producteurs et 2
+consommateurs:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> ./prodcons 20 3 2</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="ex">Consommateur</span> 1 crée</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="ex">Producteur</span> 0 crée</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="kw">(</span><span class="ex">0</span><span class="kw">)</span> <span class="ex">Produit</span> <span class="pp">[</span><span class="ss">19</span><span class="pp">]</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="kw">(</span><span class="ex">0</span><span class="kw">)</span> <span class="ex">Produit</span> <span class="pp">[</span><span class="ss">18</span><span class="pp">]</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="kw">(</span><span class="ex">0</span><span class="kw">)</span> <span class="ex">Produit</span> <span class="pp">[</span><span class="ss">17</span><span class="pp">]</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="kw">(</span><span class="ex">0</span><span class="kw">)</span> <span class="ex">Produit</span> <span class="pp">[</span><span class="ss">16</span><span class="pp">]</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="kw">(</span><span class="ex">0</span><span class="kw">)</span> <span class="ex">Produit</span> <span class="pp">[</span><span class="ss">15</span><span class="pp">]</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="kw">(</span><span class="ex">0</span><span class="kw">)</span> <span class="ex">Produit</span> <span class="pp">[</span><span class="ss">14</span><span class="pp">]</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="ex">Consommateur</span> 0 crée</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="ex">Producteur</span> 1 crée</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="ex">Producteur</span> 2 crée</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="kw">(</span><span class="ex">0</span><span class="kw">)</span> <span class="ex">Produit</span> <span class="pp">[</span><span class="ss">13</span><span class="pp">]</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a><span class="kw">(</span><span class="ex">0</span><span class="kw">)</span> <span class="ex">Produit</span> <span class="pp">[</span><span class="ss">12</span><span class="pp">]</span></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a><span class="kw">(</span><span class="ex">0</span><span class="kw">)</span> <span class="ex">Produit</span> <span class="pp">[</span><span class="ss">11</span><span class="pp">]</span></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a><span class="kw">(</span><span class="ex">0</span><span class="kw">)</span> <span class="ex">Produit</span> <span class="pp">[</span><span class="ss">10</span><span class="pp">]</span></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a><span class="kw">(</span><span class="ex">1</span><span class="kw">)</span> <span class="ex">Produit</span> <span class="pp">[</span><span class="ss">9</span><span class="pp">]</span></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a><span class="kw">(</span><span class="ex">0</span><span class="kw">)</span> <span class="ex">Consomme</span> <span class="pp">[</span><span class="ss">9</span><span class="pp">]</span></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a><span class="kw">(</span><span class="ex">0</span><span class="kw">)</span> <span class="ex">Consomme</span> <span class="pp">[</span><span class="ss">10</span><span class="pp">]</span></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a><span class="kw">(</span><span class="ex">1</span><span class="kw">)</span> <span class="ex">Consomme</span> <span class="pp">[</span><span class="ss">11</span><span class="pp">]</span></span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a><span class="kw">(</span><span class="ex">1</span><span class="kw">)</span> <span class="ex">Produit</span> <span class="pp">[</span><span class="ss">8</span><span class="pp">]</span></span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a><span class="kw">(</span><span class="ex">1</span><span class="kw">)</span> <span class="ex">Produit</span> <span class="pp">[</span><span class="ss">7</span><span class="pp">]</span></span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a><span class="kw">(</span><span class="ex">1</span><span class="kw">)</span> <span class="ex">Produit</span> <span class="pp">[</span><span class="ss">6</span><span class="pp">]</span></span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a><span class="kw">(</span><span class="ex">1</span><span class="kw">)</span> <span class="ex">Produit</span> <span class="pp">[</span><span class="ss">5</span><span class="pp">]</span></span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a><span class="kw">(</span><span class="ex">1</span><span class="kw">)</span> <span class="ex">Produit</span> <span class="pp">[</span><span class="ss">4</span><span class="pp">]</span></span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a><span class="kw">(</span><span class="ex">1</span><span class="kw">)</span> <span class="ex">Produit</span> <span class="pp">[</span><span class="ss">3</span><span class="pp">]</span></span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a><span class="kw">(</span><span class="ex">1</span><span class="kw">)</span> <span class="ex">Produit</span> <span class="pp">[</span><span class="ss">2</span><span class="pp">]</span></span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a><span class="kw">(</span><span class="ex">1</span><span class="kw">)</span> <span class="ex">Produit</span> <span class="pp">[</span><span class="ss">1</span><span class="pp">]</span></span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a><span class="kw">(</span><span class="ex">1</span><span class="kw">)</span> <span class="ex">Produit</span> <span class="pp">[</span><span class="ss">0</span><span class="pp">]</span></span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a><span class="kw">(</span><span class="ex">0</span><span class="kw">)</span> <span class="ex">Consomme</span> <span class="pp">[</span><span class="ss">0</span><span class="pp">]</span></span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a><span class="kw">(</span><span class="ex">0</span><span class="kw">)</span> <span class="ex">Consomme</span> <span class="pp">[</span><span class="ss">1</span><span class="pp">]</span></span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a><span class="kw">(</span><span class="ex">0</span><span class="kw">)</span> <span class="ex">Consomme</span> <span class="pp">[</span><span class="ss">2</span><span class="pp">]</span></span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a><span class="kw">(</span><span class="ex">0</span><span class="kw">)</span> <span class="ex">Consomme</span> <span class="pp">[</span><span class="ss">3</span><span class="pp">]</span></span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a><span class="kw">(</span><span class="ex">1</span><span class="kw">)</span> <span class="ex">Consomme</span> <span class="pp">[</span><span class="ss">4</span><span class="pp">]</span></span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a><span class="kw">(</span><span class="ex">1</span><span class="kw">)</span> <span class="ex">Consomme</span> <span class="pp">[</span><span class="ss">5</span><span class="pp">]</span></span>
+<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a><span class="kw">(</span><span class="ex">1</span><span class="kw">)</span> <span class="ex">Consomme</span> <span class="pp">[</span><span class="ss">6</span><span class="pp">]</span></span>
+<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a><span class="kw">(</span><span class="ex">1</span><span class="kw">)</span> <span class="ex">Consomme</span> <span class="pp">[</span><span class="ss">7</span><span class="pp">]</span></span>
+<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a><span class="kw">(</span><span class="ex">1</span><span class="kw">)</span> <span class="ex">Consomme</span> <span class="pp">[</span><span class="ss">8</span><span class="pp">]</span></span>
+<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a><span class="kw">(</span><span class="ex">1</span><span class="kw">)</span> <span class="ex">Consomme</span> <span class="pp">[</span><span class="ss">12</span><span class="pp">]</span></span>
+<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a><span class="kw">(</span><span class="ex">1</span><span class="kw">)</span> <span class="ex">Consomme</span> <span class="pp">[</span><span class="ss">13</span><span class="pp">]</span></span>
+<span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a><span class="kw">(</span><span class="ex">1</span><span class="kw">)</span> <span class="ex">Consomme</span> <span class="pp">[</span><span class="ss">14</span><span class="pp">]</span></span>
+<span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a><span class="kw">(</span><span class="ex">1</span><span class="kw">)</span> <span class="ex">Consomme</span> <span class="pp">[</span><span class="ss">15</span><span class="pp">]</span></span>
+<span id="cb3-44"><a href="#cb3-44" aria-hidden="true" tabindex="-1"></a><span class="kw">(</span><span class="ex">1</span><span class="kw">)</span> <span class="ex">Consomme</span> <span class="pp">[</span><span class="ss">16</span><span class="pp">]</span></span>
+<span id="cb3-45"><a href="#cb3-45" aria-hidden="true" tabindex="-1"></a><span class="kw">(</span><span class="ex">1</span><span class="kw">)</span> <span class="ex">Consomme</span> <span class="pp">[</span><span class="ss">17</span><span class="pp">]</span></span>
+<span id="cb3-46"><a href="#cb3-46" aria-hidden="true" tabindex="-1"></a><span class="kw">(</span><span class="ex">1</span><span class="kw">)</span> <span class="ex">Consomme</span> <span class="pp">[</span><span class="ss">18</span><span class="pp">]</span></span>
+<span id="cb3-47"><a href="#cb3-47" aria-hidden="true" tabindex="-1"></a><span class="kw">(</span><span class="ex">1</span><span class="kw">)</span> <span class="ex">Consomme</span> <span class="pp">[</span><span class="ss">19</span><span class="pp">]</span></span>
+<span id="cb3-48"><a href="#cb3-48" aria-hidden="true" tabindex="-1"></a><span class="kw">(</span><span class="ex">0</span><span class="kw">)</span> <span class="ex">Consomme</span> <span class="pp">[</span><span class="ss">0</span><span class="pp">]</span></span></code></pre></div>
 <ol start="6" class="example" type="1">
-<li>Donnez un exemple de “vrai” programme qui utilise le modèle producteur-consommateur que vous venez d’écrire.</li>
+<li>Donnez un exemple de “vrai” programme qui utilise le modèle
+producteur-consommateur que vous venez d’écrire.</li>
 </ol>
 </body>
 </html>

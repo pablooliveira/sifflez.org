@@ -1,69 +1,420 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang xml:lang>
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta charset="utf-8" />
   <meta name="generator" content="pandoc" />
-  <title></title>
-  <style type="text/css">code{white-space: pre;}</style>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>T2</title>
+  <style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+
+ul.task-list[class]{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+font-size: inherit;
+width: 0.8em;
+margin: 0 0.8em 0.2em -1.6em;
+vertical-align: middle;
+}
+
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+{ counter-reset: source-line 0; }
+pre.numberSource code > span
+{ position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+{ content: counter(source-line);
+position: relative; left: -1em; text-align: right; vertical-align: baseline;
+border: none; display: inline-block;
+-webkit-touch-callout: none; -webkit-user-select: none;
+-khtml-user-select: none; -moz-user-select: none;
+-ms-user-select: none; user-select: none;
+padding: 0 4px; width: 4em;
+color: #aaaaaa;
+}
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa; padding-left: 4px; }
+div.sourceCode
+{ }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } 
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.at { color: #7d9029; } 
+code span.bn { color: #40a070; } 
+code span.bu { color: #008000; } 
+code span.cf { color: #007020; font-weight: bold; } 
+code span.ch { color: #4070a0; } 
+code span.cn { color: #880000; } 
+code span.co { color: #60a0b0; font-style: italic; } 
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.do { color: #ba2121; font-style: italic; } 
+code span.dt { color: #902000; } 
+code span.dv { color: #40a070; } 
+code span.er { color: #ff0000; font-weight: bold; } 
+code span.ex { } 
+code span.fl { color: #40a070; } 
+code span.fu { color: #06287e; } 
+code span.im { color: #008000; font-weight: bold; } 
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.kw { color: #007020; font-weight: bold; } 
+code span.op { color: #666666; } 
+code span.ot { color: #007020; } 
+code span.pp { color: #bc7a00; } 
+code span.sc { color: #4070a0; } 
+code span.ss { color: #bb6688; } 
+code span.st { color: #4070a0; } 
+code span.va { color: #19177c; } 
+code span.vs { color: #4070a0; } 
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } 
+</style>
   <style type="text/css">
-div.sourceCode { overflow-x: auto; }
-table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-  margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { width: 100%; line-height: 100%; }
-td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
-td.sourceCode { padding-left: 5px; }
-code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code > span.dt { color: #902000; } /* DataType */
-code > span.dv { color: #40a070; } /* DecVal */
-code > span.bn { color: #40a070; } /* BaseN */
-code > span.fl { color: #40a070; } /* Float */
-code > span.ch { color: #4070a0; } /* Char */
-code > span.st { color: #4070a0; } /* String */
-code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code > span.ot { color: #007020; } /* Other */
-code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code > span.fu { color: #06287e; } /* Function */
-code > span.er { color: #ff0000; font-weight: bold; } /* Error */
-code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-code > span.cn { color: #880000; } /* Constant */
-code > span.sc { color: #4070a0; } /* SpecialChar */
-code > span.vs { color: #4070a0; } /* VerbatimString */
-code > span.ss { color: #bb6688; } /* SpecialString */
-code > span.im { } /* Import */
-code > span.va { color: #19177c; } /* Variable */
-code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code > span.op { color: #666666; } /* Operator */
-code > span.bu { } /* BuiltIn */
-code > span.ex { } /* Extension */
-code > span.pp { color: #bc7a00; } /* Preprocessor */
-code > span.at { color: #7d9029; } /* Attribute */
-code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-  </style>
-  <link rel="stylesheet" href="pandoc.css" type="text/css" />
+
+
+
+div#header, header
+{
+
+border-bottom: 1px solid #aaa;
+margin-bottom: 0.5em;
+}
+.title 
+{
+text-align: center;
+}
+.author, .date 
+{
+text-align: center;
+}
+
+div#TOC, nav#TOC
+{
+
+border-bottom: 1px solid #aaa;
+margin-bottom: 0.5em;
+}
+@media print
+{
+div#TOC, nav#TOC
+{
+
+display: none;
+}
+}
+
+h1, h2, h3, h4, h5, h6
+{
+font-family: "Helvetica Neue", Helvetica, "Liberation Sans", Calibri, Arial, sans-serif; 
+
+page-break-after: avoid; 
+}
+
+div div, section section 
+{
+margin-left: 2em; 
+}
+p {}
+blockquote
+{ font-style: italic;
+}
+li 
+{
+}
+li > p 
+{
+margin-top: 1em; 
+}
+ul 
+{
+}
+ul li 
+{
+}
+ol 
+{
+}
+ol li 
+{
+}
+hr {}
+
+sub 
+{
+}
+sup 
+{
+}
+em 
+{
+}
+em > em 
+{
+font-style: normal;
+}
+strong 
+{
+}
+
+a 
+{
+
+text-decoration: none;
+}
+@media screen
+{
+a:hover
+{
+
+text-decoration: underline;
+}
+}
+@media print
+{
+a {
+
+color: black;
+background: transparent;
+}
+a[href^="http://"]:after, a[href^="https://"]:after
+{
+
+content: " (" attr(href) ") ";
+font-size: 90%;
+}
+}
+
+img
+{
+
+vertical-align: middle;
+}
+div.figure 
+{
+
+margin-left: auto;
+margin-right: auto;
+text-align: center;
+font-style: italic;
+}
+p.caption 
+{
+
+}
+
+pre, code {
+background-color: #fdf7ee;
+
+
+
+white-space: pre-wrap; 
+white-space: -moz-pre-wrap !important; 
+white-space: -pre-wrap; 
+white-space: -o-pre-wrap; 
+word-wrap: break-word; 
+
+}
+pre 
+{
+
+padding: 0.5em; 
+border-radius: 5px; 
+
+border: 1px solid #aaa;
+
+margin-left: 0.5em;
+margin-right: 0.5em;
+}
+@media screen
+{
+pre
+{
+
+white-space: pre;
+overflow: auto;
+
+border: 1px dotted #777;
+}
+}
+code 
+{
+}
+p > code, li > code 
+{
+
+padding-left: 2px;
+padding-right: 2px;
+}
+li > p code 
+{
+
+padding: 2px;
+}
+
+span.math 
+{
+
+}
+div.math 
+{
+}
+span.LaTeX 
+{
+} eq 
+{
+} 
+
+table
+{
+border-collapse: collapse;
+border-spacing: 0; 
+border-bottom: 2pt solid #000;
+border-top: 2pt solid #000; 
+
+margin-left: auto;
+margin-right: auto;
+}
+thead 
+{
+border-bottom: 1pt solid #000;
+background-color: #eee; 
+}
+tr.header 
+{
+} tbody 
+{
+}
+
+tr {
+}
+tr.odd:hover, tr.even:hover 
+{
+background-color: #eee;
+}
+
+tr.odd {}
+tr.even {}
+td, th 
+{ vertical-align: top; 
+vertical-align: baseline; 
+padding-left: 0.5em;
+padding-right: 0.5em;
+padding-top: 0.2em;
+padding-bottom: 0.2em;
+}
+
+
+th 
+{
+font-weight: bold; }
+tfoot 
+{
+}
+caption 
+{
+caption-side: top;
+border: none;
+font-size: 0.9em;
+font-style: italic;
+text-align: center;
+margin-bottom: 0.3em; 
+padding-bottom: 0.2em;
+}
+
+dl 
+{
+border-top: 2pt solid black;
+padding-top: 0.5em;
+border-bottom: 2pt solid black;
+}
+dt 
+{
+font-weight: bold;
+}
+dd+dt 
+{
+border-top: 1pt solid black;
+padding-top: 0.5em;
+}
+dd 
+{
+margin-bottom: 0.5em;
+}
+dd+dd 
+{
+border-top: 1px solid black; 
+}
+
+a.footnote, a.footnoteRef { 
+font-size: small; vertical-align: text-top;
+}
+a[href^="#fnref"], a.reversefootnote 
+{
+}
+@media print
+{
+a[href^="#fnref"], a.reversefootnote 
+{
+
+display: none;
+}
+}
+div.footnotes 
+{
+}
+div.footnotes li[id^="fn"] 
+{
+}
+
+@media print
+{
+.noprint
+{
+display:none;
+}
+}
+</style>
 </head>
 <body>
-<div id="TOC">
+<nav id="TOC" role="doc-toc">
 <ul>
-<li><a href="#systèmes-dexploitation-tp-2---le-format-elf-les-segments-mémoire">Systèmes d’Exploitation: TP 2 - Le Format Elf, Les segments mémoire</a><ul>
-<li><a href="#utilisation-de-git">Utilisation de Git</a></li>
+<li><a href="#systèmes-dexploitation-tp-2---le-format-elf-les-segments-mémoire" id="toc-systèmes-dexploitation-tp-2---le-format-elf-les-segments-mémoire">Systèmes
+d’Exploitation: TP 2 - Le Format Elf, Les segments mémoire</a>
+<ul>
+<li><a href="#utilisation-de-git" id="toc-utilisation-de-git">Utilisation de Git</a></li>
 </ul></li>
-<li><a href="#partie-i-reverse-engineering">Partie I: Reverse Engineering</a><ul>
-<li><a href="#niveau-1">Niveau 1</a></li>
-<li><a href="#niveau-2">Niveau 2</a></li>
-<li><a href="#niveau-3">Niveau 3</a></li>
+<li><a href="#partie-i-reverse-engineering" id="toc-partie-i-reverse-engineering">Partie I: Reverse Engineering</a>
+<ul>
+<li><a href="#niveau-1" id="toc-niveau-1">Niveau 1</a></li>
+<li><a href="#niveau-2" id="toc-niveau-2">Niveau 2</a></li>
+<li><a href="#niveau-3" id="toc-niveau-3">Niveau 3</a></li>
 </ul></li>
-<li><a href="#partie-ii-débordements-de-pile">Partie II: Débordements de Pile</a><ul>
-<li><a href="#niveau-4">Niveau 4</a></li>
-<li><a href="#niveau-5">Niveau 5</a></li>
-<li><a href="#bonus">Bonus</a></li>
+<li><a href="#partie-ii-débordements-de-pile" id="toc-partie-ii-débordements-de-pile">Partie II: Débordements de
+Pile</a>
+<ul>
+<li><a href="#niveau-4" id="toc-niveau-4">Niveau 4</a></li>
+<li><a href="#niveau-5" id="toc-niveau-5">Niveau 5</a></li>
+<li><a href="#bonus" id="toc-bonus">Bonus</a></li>
 </ul></li>
 </ul>
-</div>
-<h1 id="systèmes-dexploitation-tp-2---le-format-elf-les-segments-mémoire">Systèmes d’Exploitation: TP 2 - Le Format Elf, Les segments mémoire</h1>
+</nav>
+<h1 id="systèmes-dexploitation-tp-2---le-format-elf-les-segments-mémoire">Systèmes
+d’Exploitation: TP 2 - Le Format Elf, Les segments mémoire</h1>
 <pre><code>Our civil rights – including free speech and privacy – must be preserved on the electronic 
 frontier. At the same time, we must respect each other’s rights to privacy and free speech. 
 This means not writing viruses, breaking into another’s computer, or posting messages certain
@@ -71,109 +422,153 @@ to cause flame wars. Just as important, it means treating each other with civili
 and tolerance.
 
 Cliff Stoll, 1992</code></pre>
-<p>Ce TP est constitué de 5 niveaux. Pour chaque niveau un binaire est fourni, qui contient une fonction <code>win()</code>. Pour passer le niveau il faut réussir a trouver une faille pour appeler la fonction <code>win()</code>.</p>
-<p>Les cinq binaires peuvent être récupérés avec la commande suivante</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">    $ <span class="kw">wget</span> https://www.sifflez.org/lectures/SEA/tp2-binaires.tar.gz</code></pre></div>
-<p>Le but de ce TP est d’explorer le format Elf ainsi que les mécanismes d’allocation mémoire et d’appel de fonctions. Néanmoins ces aspects sont explorés à travers des techniques très basiques de désassemblage, <em>reverse engineering</em>, et à travers l’exploitation de vulnérabilités informatiques.</p>
+<p>Ce TP est constitué de 5 niveaux. Pour chaque niveau un binaire est
+fourni, qui contient une fonction <code>win()</code>. Pour passer le
+niveau il faut réussir a trouver une faille pour appeler la fonction
+<code>win()</code>.</p>
+<p>Les cinq binaires peuvent être récupérés avec la commande
+suivante</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>    <span class="ex">$</span> wget https://www.sifflez.org/lectures/SEA/tp2-binaires.tar.gz</span></code></pre></div>
+<p>Le but de ce TP est d’explorer le format Elf ainsi que les mécanismes
+d’allocation mémoire et d’appel de fonctions. Néanmoins ces aspects sont
+explorés à travers des techniques très basiques de désassemblage,
+<em>reverse engineering</em>, et à travers l’exploitation de
+vulnérabilités informatiques.</p>
 <h2 id="utilisation-de-git">Utilisation de Git</h2>
-<p>Le rendu du TP se fera avec GIT. Pour ce TP il faut travailler sur le répertoire <code>TP2</code> que vous devez créer.</p>
-<p>Pour ce TP il faut répondre à une série de questions et écrire un peu de code C.</p>
-<p>Pour chaque niveau la procédure est la même, je prends ici l’exemple du niveau 1:</p>
+<p>Le rendu du TP se fera avec GIT. Pour ce TP il faut travailler sur le
+répertoire <code>TP2</code> que vous devez créer.</p>
+<p>Pour ce TP il faut répondre à une série de questions et écrire un peu
+de code C.</p>
+<p>Pour chaque niveau la procédure est la même, je prends ici l’exemple
+du niveau 1:</p>
 <ul>
 <li><p>créer un fichier <code>niveau01.txt</code></p></li>
 <li><p>répondre aux questions à l’intérieur de ce fichier</p></li>
-<li><p>Si des codes C sont demandés, tapez les dans des fichiers avec l’extension <code>.c</code> et précisez dans le fichier <code>niveau01.txt</code> le nom des fichiers <code>.c</code> correspondants.</p></li>
+<li><p>Si des codes C sont demandés, tapez les dans des fichiers avec
+l’extension <code>.c</code> et précisez dans le fichier
+<code>niveau01.txt</code> le nom des fichiers <code>.c</code>
+correspondants.</p></li>
 </ul>
 <p>Après chaque niveau il faut faire un commit.</p>
 <h1 id="partie-i-reverse-engineering">Partie I: Reverse Engineering</h1>
 <h2 id="niveau-1">Niveau 1</h2>
-<p>Le binaire <code>niveau1</code> a été compilé à partir du code C suivant:</p>
-<div class="sourceCode"><pre class="sourceCode c"><code class="sourceCode c"><span class="ot">#include &lt;stdlib.h&gt;</span>
-<span class="ot">#include &lt;stdio.h&gt;</span>
-<span class="ot">#include &lt;string.h&gt;</span>
-
-<span class="kw">extern</span> <span class="dt">char</span> secret[];
-
-<span class="dt">void</span> fail() {
-  fprintf(stderr, <span class="st">&quot;password not valid</span><span class="ch">\n</span><span class="st">&quot;</span>);
-  exit(<span class="dv">1</span>);
-}
-
-<span class="dt">void</span> win() {
-  printf(<span class="st">&quot;You Win!</span><span class="ch">\n</span><span class="st">&quot;</span>);
-}
-
-<span class="dt">int</span> main(<span class="dt">int</span> argc, <span class="dt">char</span> **argv) {
-  <span class="kw">if</span> (argc != <span class="dv">2</span>) fail();
-  <span class="kw">if</span> (strcmp(argv[<span class="dv">1</span>], secret) != <span class="dv">0</span>) fail();
-  win();
-}</code></pre></div>
-<ol class="example" style="list-style-type: decimal">
-<li>Dans quelle section ELF est stockée la chaîne <code>secret</code> (vous pouvez utiliser <code>readelf</code> ou <code>objdump</code>) ?</li>
-<li>Quel est le contenu de la chaîne <code>secret</code> ? Décrivez en un court paragraphe comment vous l’avez trouvé.</li>
-<li>Vérifiez votre réponse en appelant le programme de manière à afficher le message “You Win!”.</li>
+<p>Le binaire <code>niveau1</code> a été compilé à partir du code C
+suivant:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;stdlib.h&gt;</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;string.h&gt;</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="kw">extern</span> <span class="dt">char</span> secret<span class="op">[];</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> fail<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  fprintf<span class="op">(</span>stderr<span class="op">,</span> <span class="st">&quot;password not valid</span><span class="sc">\n</span><span class="st">&quot;</span><span class="op">);</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>  exit<span class="op">(</span><span class="dv">1</span><span class="op">);</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> win<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>  printf<span class="op">(</span><span class="st">&quot;You Win!</span><span class="sc">\n</span><span class="st">&quot;</span><span class="op">);</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> main<span class="op">(</span><span class="dt">int</span> argc<span class="op">,</span> <span class="dt">char</span> <span class="op">**</span>argv<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> <span class="op">(</span>argc <span class="op">!=</span> <span class="dv">2</span><span class="op">)</span> fail<span class="op">();</span></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> <span class="op">(</span>strcmp<span class="op">(</span>argv<span class="op">[</span><span class="dv">1</span><span class="op">],</span> secret<span class="op">)</span> <span class="op">!=</span> <span class="dv">0</span><span class="op">)</span> fail<span class="op">();</span></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>  win<span class="op">();</span></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<ol class="example" type="1">
+<li>Dans quelle section ELF est stockée la chaîne <code>secret</code>
+(vous pouvez utiliser <code>readelf</code> ou <code>objdump</code>)
+?</li>
+<li>Quel est le contenu de la chaîne <code>secret</code> ? Décrivez en
+un court paragraphe comment vous l’avez trouvé.</li>
+<li>Vérifiez votre réponse en appelant le programme de manière à
+afficher le message “You Win!”.</li>
 </ol>
 <h2 id="niveau-2">Niveau 2</h2>
-<p>Le binaire <code>niveau2</code> a été compilé à partir du même code que <code>secret1</code>, seul le secret est différent.</p>
-<p>Pour passer ce niveau, trouvez le contenu de la chaîne <code>secret</code> avec la méthode suivante:</p>
-<ol start="4" class="example" style="list-style-type: decimal">
-<li><p>À quelle adresse l’objet <code>secret</code> sera chargé à l’exécution ? Quelle est sa taille en octets ? Comment avez vous trouvé ?</p></li>
-<li><p>Utiliser <code>readelf</code> pour obtenir la table des sections. Quelle section contient l’objet <code>secret</code> ? À quelle adresse la section sera elle chargée en mémoire ? À quelle position dans le binaire peut-on lire le contenu de la section ?</p></li>
-<li><p>À quelle position dans le binaire est stocké le contenu de l’objet <code>secret</code> ?</p></li>
+<p>Le binaire <code>niveau2</code> a été compilé à partir du même code
+que <code>secret1</code>, seul le secret est différent.</p>
+<p>Pour passer ce niveau, trouvez le contenu de la chaîne
+<code>secret</code> avec la méthode suivante:</p>
+<ol start="4" class="example" type="1">
+<li><p>À quelle adresse l’objet <code>secret</code> sera chargé à
+l’exécution ? Quelle est sa taille en octets ? Comment avez vous trouvé
+?</p></li>
+<li><p>Utiliser <code>readelf</code> pour obtenir la table des sections.
+Quelle section contient l’objet <code>secret</code> ? À quelle adresse
+la section sera elle chargée en mémoire ? À quelle position dans le
+binaire peut-on lire le contenu de la section ?</p></li>
+<li><p>À quelle position dans le binaire est stocké le contenu de
+l’objet <code>secret</code> ?</p></li>
 <li><p>Quel est le contenu de l’objet <code>secret</code> ?</p></li>
 </ol>
-<p>Comme vous l’avez remarqué le contenu de l’objet <code>secret</code> ne peut pas être saisi facilement au clavier. Pour appeler le programme <code>niveau2</code> et obtenir le message “You Win!” vous pouvez utiliser la technique suivante:</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="co"># Si le contenu de secret est la valeur héxadécimale 0xba9876 vous pouvez faire</span>
-$ <span class="ot">SECRET=$(</span><span class="kw">echo</span> -e <span class="st">&quot;\xba\x98\x76&quot;</span><span class="ot">)</span>
-$ <span class="kw">./niveau2</span> <span class="ot">$SECRET</span></code></pre></div>
-<ol start="8" class="example" style="list-style-type: decimal">
-<li>Voyez vous une méthode plus rapide pour trouver le contenu de <code>secret</code> ?</li>
+<p>Comme vous l’avez remarqué le contenu de l’objet <code>secret</code>
+ne peut pas être saisi facilement au clavier. Pour appeler le programme
+<code>niveau2</code> et obtenir le message “You Win!” vous pouvez
+utiliser la technique suivante:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Si le contenu de secret est la valeur héxadécimale 0xba9876 vous pouvez faire</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> SECRET=<span class="va">$(</span><span class="bu">echo</span> <span class="at">-e</span> <span class="st">&quot;\xba\x98\x76&quot;</span><span class="va">)</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> ./niveau2 <span class="va">$SECRET</span></span></code></pre></div>
+<ol start="8" class="example" type="1">
+<li>Voyez vous une méthode plus rapide pour trouver le contenu de
+<code>secret</code> ?</li>
 </ol>
 <h2 id="niveau-3">Niveau 3</h2>
-<p>Le binaire <code>niveau3</code> a été compilé à partir du code suivant:</p>
-<div class="sourceCode"><pre class="sourceCode c"><code class="sourceCode c"><span class="ot">#include &lt;stdlib.h&gt;</span>
-<span class="ot">#include &lt;stdio.h&gt;</span>
-<span class="ot">#include &lt;string.h&gt;</span>
-
-<span class="dt">char</span>* getsecret() {
-  <span class="dt">char</span>* secret = malloc(<span class="dv">7</span>*<span class="kw">sizeof</span>(<span class="dt">char</span>));
-  <span class="co">// Code très secret et obfusqué qui remplit secret</span>
-  <span class="kw">return</span> secret;
-}
-
-<span class="dt">void</span> fail() {
-  fprintf(stderr, <span class="st">&quot;password not valid</span><span class="ch">\n</span><span class="st">&quot;</span>);
-  exit(<span class="dv">1</span>);
-}
-
-<span class="dt">void</span> win() {
-  printf(<span class="st">&quot;You Win!</span><span class="ch">\n</span><span class="st">&quot;</span>);
-}
-
-<span class="dt">int</span> main(<span class="dt">int</span> argc, <span class="dt">char</span> **argv) {
-  <span class="kw">if</span> (argc != <span class="dv">2</span>) fail();
-  <span class="kw">if</span> (strcmp(argv[<span class="dv">1</span>], getsecret()) != <span class="dv">0</span>) fail();
-  win();
-}</code></pre></div>
-<ol start="9" class="example" style="list-style-type: decimal">
-<li><p>La fonction <code>strcmp</code> est elle chargée dynamiquement ou statiquement ?</p></li>
-<li><p>Utilisez l’outil <code>ldd</code> pour trouver depuis quel fichier est chargé le code de <code>strcmp</code>.</p></li>
+<p>Le binaire <code>niveau3</code> a été compilé à partir du code
+suivant:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;stdlib.h&gt;</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;string.h&gt;</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="dt">char</span><span class="op">*</span> getsecret<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  <span class="dt">char</span><span class="op">*</span> secret <span class="op">=</span> malloc<span class="op">(</span><span class="dv">7</span><span class="op">*</span><span class="kw">sizeof</span><span class="op">(</span><span class="dt">char</span><span class="op">));</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Code très secret et obfusqué qui remplit secret</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> secret<span class="op">;</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> fail<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>  fprintf<span class="op">(</span>stderr<span class="op">,</span> <span class="st">&quot;password not valid</span><span class="sc">\n</span><span class="st">&quot;</span><span class="op">);</span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>  exit<span class="op">(</span><span class="dv">1</span><span class="op">);</span></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> win<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>  printf<span class="op">(</span><span class="st">&quot;You Win!</span><span class="sc">\n</span><span class="st">&quot;</span><span class="op">);</span></span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> main<span class="op">(</span><span class="dt">int</span> argc<span class="op">,</span> <span class="dt">char</span> <span class="op">**</span>argv<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> <span class="op">(</span>argc <span class="op">!=</span> <span class="dv">2</span><span class="op">)</span> fail<span class="op">();</span></span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> <span class="op">(</span>strcmp<span class="op">(</span>argv<span class="op">[</span><span class="dv">1</span><span class="op">],</span> getsecret<span class="op">())</span> <span class="op">!=</span> <span class="dv">0</span><span class="op">)</span> fail<span class="op">();</span></span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>  win<span class="op">();</span></span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<ol start="9" class="example" type="1">
+<li><p>La fonction <code>strcmp</code> est elle chargée dynamiquement ou
+statiquement ?</p></li>
+<li><p>Utilisez l’outil <code>ldd</code> pour trouver depuis quel
+fichier est chargé le code de <code>strcmp</code>.</p></li>
 </ol>
-<p>On va utiliser une attaque connue sous le nom de <em>LD_PRELOAD trick</em> pour charger une autre version de <code>strcmp</code>…</p>
-<ol start="11" class="example" style="list-style-type: decimal">
-<li>Créez un fichier source C et écrivez une version de <code>strcmp</code> qui vous permettrait de récupérer le secret. Soyez créatifs :)</li>
+<p>On va utiliser une attaque connue sous le nom de <em>LD_PRELOAD
+trick</em> pour charger une autre version de <code>strcmp</code>…</p>
+<ol start="11" class="example" type="1">
+<li>Créez un fichier source C et écrivez une version de
+<code>strcmp</code> qui vous permettrait de récupérer le secret. Soyez
+créatifs :)</li>
 </ol>
-<p>Compilez votre fonction dans une bibliothèque dynamique en utilisant les commandes suivantes:</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"> $ <span class="kw">gcc</span> -fPIC -c evil_strcmp.c -o evil_strcmp.o
- $ <span class="kw">gcc</span> -shared -o evil_strcmp.so evil_strcmp.o</code></pre></div>
-<ol start="12" class="example" style="list-style-type: decimal">
-<li>À quoi sert l’option <code>-shared</code> dans la commande ci-dessus ? Pourquoi est-elle nécessaire ?</li>
-<li><p>À quoi sert l’option <code>-fPIC</code> dans la commande ci-dessus ? Pourquoi est-elle nécessaire ?</p></li>
-<li><p>Utilisez la variable d’environnement <code>LD_PRELOAD</code> pour charger votre version de <code>strcmp</code> et récupérez le secret.</p></li>
+<p>Compilez votre fonction dans une bibliothèque dynamique en utilisant
+les commandes suivantes:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a> <span class="ex">$</span> gcc <span class="at">-fPIC</span> <span class="at">-c</span> evil_strcmp.c <span class="at">-o</span> evil_strcmp.o</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a> <span class="ex">$</span> gcc <span class="at">-shared</span> <span class="at">-o</span> evil_strcmp.so evil_strcmp.o</span></code></pre></div>
+<ol start="12" class="example" type="1">
+<li><p>À quoi sert l’option <code>-shared</code> dans la commande
+ci-dessus ? Pourquoi est-elle nécessaire ?</p></li>
+<li><p>À quoi sert l’option <code>-fPIC</code> dans la commande
+ci-dessus ? Pourquoi est-elle nécessaire ?</p></li>
+<li><p>Utilisez la variable d’environnement <code>LD_PRELOAD</code> pour
+charger votre version de <code>strcmp</code> et récupérez le
+secret.</p></li>
 </ol>
-<h1 id="partie-ii-débordements-de-pile">Partie II: Débordements de Pile</h1>
+<h1 id="partie-ii-débordements-de-pile">Partie II: Débordements de
+Pile</h1>
 <h2 id="niveau-4">Niveau 4</h2>
-<p>Le binaire <code>niveau4</code> a été compilé à partir du code suivant:</p>
+<p>Le binaire <code>niveau4</code> a été compilé à partir du code
+suivant:</p>
 <pre><code>#include &lt;stdlib.h&gt;
 #include &lt;unistd.h&gt;
 #include &lt;stdio.h&gt;
@@ -191,9 +586,10 @@ void check_credentials() {
 int main(int argc, char **argv) { 
   check_credentials(); 
 }</code></pre>
-<ol start="15" class="example" style="list-style-type: decimal">
+<ol start="15" class="example" type="1">
 <li>Où est stockée l’adresse de retour d’une fonction ?</li>
-<li>Utilisez <code>gdb</code> pour tracer une exécution normale de ce programme. Suivez l’exemple ci-dessous:</li>
+<li>Utilisez <code>gdb</code> pour tracer une exécution normale de ce
+programme. Suivez l’exemple ci-dessous:</li>
 </ol>
 <pre><code>echo &quot;mon entree&quot; &gt; input
 
@@ -257,30 +653,44 @@ Il existe également des commandes plus haut-niveau dans gdb comme,
 (gdb) info stack                                                                               
 #0  0x0000000000400562 in check_credentials ()                                                 
 #1  0x000000000040057c in main ()     </code></pre>
-<ol start="17" class="example" style="list-style-type: decimal">
+<ol start="17" class="example" type="1">
 <li><p>À quoi correspond le premier mot sur la pile ?</p></li>
 <li><p>Où est alloué le tableau <code>buffer</code> ?</p></li>
-<li><p>Existe-t-il une entrée qui provoque une faute de segmentation pour ce programme ? Expliquez pourquoi ?</p></li>
-<li><p>Pouvez vous changer la première valeur sur la pile à autre chose que 0x0040057c (la valeur peut-être différente sur votre machine) en changeant uniquement l’entrée du programme ?</p></li>
-<li><p>À quelle adresse est chargé le code de la fonction <code>win()</code> ?</p></li>
-<li><p>Pouvez vous exécuter la fonction <code>win</code> en changeant uniquement l’entrée du programme ?</p></li>
+<li><p>Existe-t-il une entrée qui provoque une faute de segmentation
+pour ce programme ? Expliquez pourquoi ?</p></li>
+<li><p>Pouvez vous changer la première valeur sur la pile à autre chose
+que 0x0040057c (la valeur peut-être différente sur votre machine) en
+changeant uniquement l’entrée du programme ?</p></li>
+<li><p>À quelle adresse est chargé le code de la fonction
+<code>win()</code> ?</p></li>
+<li><p>Pouvez vous exécuter la fonction <code>win</code> en changeant
+uniquement l’entrée du programme ?</p></li>
 </ol>
 <h2 id="niveau-5">Niveau 5</h2>
-<p>Le binaire <code>niveau5</code> est compilé à partir du même code source que <code>niveau4</code>. Néanmoins il existe une petite différence au niveau des sections.</p>
-<ol start="23" class="example" style="list-style-type: decimal">
-<li><p>Quelle est cette différence (<code>readelf -l</code> peut vous aider) ?</p></li>
+<p>Le binaire <code>niveau5</code> est compilé à partir du même code
+source que <code>niveau4</code>. Néanmoins il existe une petite
+différence au niveau des sections.</p>
+<ol start="23" class="example" type="1">
+<li><p>Quelle est cette différence (<code>readelf -l</code> peut vous
+aider) ?</p></li>
 <li><p>Qu’implique cette différence en termes de sécurité ?</p></li>
-<li><p>Pouvez vous proposer (pas la peine de l’implémenter) une attaque vous permettant d’exécuter du code arbitraire en passant une entrée bien choisie à <code>niveau5</code> ?</p></li>
+<li><p>Pouvez vous proposer (pas la peine de l’implémenter) une attaque
+vous permettant d’exécuter du code arbitraire en passant une entrée bien
+choisie à <code>niveau5</code> ?</p></li>
 </ol>
 <h2 id="bonus">Bonus</h2>
-<ol start="26" class="example" style="list-style-type: decimal">
-<li>(Moyen) Lisez l’article fondateur d’Aleph 1 en 1996 (http://insecure.org/stf/smashstack.html)</li>
-<li>(Moyen) Investiguez les techniques modernes de protection de pile: canari de pile, NX bit et ASLR.</li>
-<li>(Dur) Implémentez la solution du Niveau 5 de manière à forker un shell système juste en changeant l’entrée du binaire.</li>
+<ol start="26" class="example" type="1">
+<li>(Moyen) Lisez l’article fondateur d’Aleph 1 en 1996
+(http://insecure.org/stf/smashstack.html)</li>
+<li>(Moyen) Investiguez les techniques modernes de protection de pile:
+canari de pile, NX bit et ASLR.</li>
+<li>(Dur) Implémentez la solution du Niveau 5 de manière à forker un
+shell système juste en changeant l’entrée du binaire.</li>
 </ol>
-<div class="figure">
-<img src="Aybabtu.png" alt="All your base are belong to us" />
-<p class="caption">All your base are belong to us</p>
-</div>
+<figure>
+<img src="data:image/png;base64,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" alt="All your base are belong to us" />
+<figcaption aria-hidden="true">All your base are belong to
+us</figcaption>
+</figure>
 </body>
 </html>
