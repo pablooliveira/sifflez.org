@@ -52,7 +52,130 @@ Finally, we examine the challenge of reducing the power consumption of HPC throu
 
 <h2 id="recent-papers">Recent papers</h2>
 
-<p>bibjekyll error: bibtex2html invocation failed</p>
+<dl>
+
+<dt>
+<a name="delval2025Noise">&nbsp;</a>
+</dt>
+<dd>
+<b>Noise injection for performance bottleneck analysis</b>.
+ Aurélien Delval, Pablo de&nbsp;Oliveira&nbsp;Castro, William Jalby, and
+  Etienne Renault.
+ In <em>Euro-Par 2025 31st International Conference on Parallel and
+  Distributed Computing</em>. Springer, August 2025.
+ (to appear).
+[&nbsp;<a href="recent_bib.html#delval2025Noise">bib</a>&nbsp;| 
+<a href="https://easychair.org/smart-program/EURO-PAR2025/2025-08-28.html#session:97092">http</a>&nbsp;]
+<blockquote><font size="-1">
+Bottleneck evaluation is a crucial part of performance tuning of HPC applications, as it directly influences the search for optimizations and the selection of the best hardware for a given code. In this paper, we introduce a new model-agnostic, instruction-accurate framework for bottleneck analysis based on performance noise injection. This method provides a precise analysis that complements existing techniques, particularly in quantifying unused resource slack. Specifically, we classify programs based on whether they are limited by computation, data access bandwidth, or latency by injecting additional noise instructions that target specific bottleneck sources. Our approach is built on the LLVM compiler toolchain, ensuring easy portability across different architectures and microarchitectures, which constitutes an improvement over many state-of-the-art tools. We validate our framework on a range of hardware benchmarks and kernels, including a detailed study of a sparse-matrix–vector product (SPMXV) kernel, where we successfully detect distinct performance regimes. These insights further inform hardware selection, as demonstrated by our comparative evaluation between HBM and DDR memory systems.
+</font></blockquote>
+
+</dd>
+
+
+<dt>
+<a name="jam2025MLKAPS">&nbsp;</a>
+</dt>
+<dd>
+<b>MLKAPS: Machine Learning and Adaptive Sampling for HPC Kernel
+  Auto-tuning</b>.
+ Mathys Jam, Eric Petit, Pablo de&nbsp;Oliveira&nbsp;Castro, David Defour, Greg
+  Henry, and William Jalby.
+ working paper or preprint, January 2025.
+[&nbsp;<a href="recent_bib.html#jam2025MLKAPS">bib</a>&nbsp;| 
+<a href="https://arxiv.org/pdf/2501.05811">http</a>&nbsp;]
+<blockquote><font size="-1">
+Many High-Performance Computing (HPC) libraries rely on decision trees to select the best kernel hyperparameters at runtime,depending on the input and environment. However, finding optimized configurations for each input and environment is challengingand requires significant manual effort and computational resources. This paper presents MLKAPS, a tool that automates this task usingmachine learning and adaptive sampling techniques. MLKAPS generates decision trees that tune HPC kernels' design parameters toachieve efficient performance for any user input. MLKAPS scales to large input and design spaces, outperforming similar state-of-the-artauto-tuning tools in tuning time and mean speedup. We demonstrate the benefits of MLKAPS on the highly optimized Intel MKLdgetrf LU kernel and show that MLKAPS finds blindspots in the manual tuning of HPC experts. It improves over 85% of the inputswith a geomean speedup of x1.30. On the Intel MKL dgeqrf QR kernel, MLKAPS improves performance on 85% of the inputs with ageomean speedup of x1.18.
+</font></blockquote>
+
+</dd>
+
+
+<dt>
+<a name="chen2024enabling">&nbsp;</a>
+</dt>
+<dd>
+<b>Enabling Mixed-Precision with the Help of Tools: A Nekbone Case
+  Study</b>.
+ Yanxiang Chen, Pablo de&nbsp;Oliveira&nbsp;Castro, Paolo Bientinesi, and Roman
+  Iakymchuk.
+ In <em>Parallel Processing and Applied Mathematics</em>, pages 34--50.
+  Springer Nature, 2025.
+[&nbsp;<a href="recent_bib.html#chen2024enabling">bib</a>&nbsp;| 
+<a href="http://dx.doi.org/10.1007/978-3-031-85697-6_3">DOI</a>&nbsp;]
+<blockquote><font size="-1">
+Mixed-precision computing has the potential to significantly reduce the cost of exascale computations, but determining when and how to implement it in programs can be challenging. In this article, we consider Nekbone, a mini-application for the Computational Fluid Dynamics (CFD) solver Nek5000, as a case study, and propose a methodology for enabling mixed-precision with the help of computer arithmetic tools and roofline model. We evaluate the derived mixed-precision program by combining metrics in three dimensions: accuracy, time-to-solution, and energy-to-solution. Notably, the introduction of mixed-precision in Nekbone, reducing time-to-solution by 40.7% and energy-to-solution by 47% on 128 MPI ranks without sacrificing the accuracy.
+</font></blockquote>
+
+</dd>
+
+
+<dt>
+<a name="deoliveiracastro2024error">&nbsp;</a>
+</dt>
+<dd>
+<b>Error Analysis of sum-product algorithms under stochastic rounding</b>.
+ Pablo de&nbsp;Oliveira&nbsp;Castro, El-Mehdi El&nbsp;Arar, Eric Petit, and Devan
+  Sohier.
+ working paper or preprint, November 2024.
+[&nbsp;<a href="recent_bib.html#deoliveiracastro2024error">bib</a>&nbsp;| 
+<a href="https://hal.science/hal-04787542v1/file/main.pdf">.pdf</a>&nbsp;]
+<blockquote><font size="-1">
+The quality of numerical computations can be measured through their forward error, for which finding good error bounds is challenging in general. For several algorithms and using stochastic rounding (SR), probabilistic analysis has been shown to be an effective alternative for obtaining tight error bounds. This analysis considers the distribution of errors and evaluates the algorithm's performance on average. Using martingales and the Azuma-Hoeffding inequality, it provides error bounds that are valid with a certain probability and in O(n√u) instead of deterministic worst-case bounds in O(nu), where n is the number of operations and u is the unit roundoff. In this paper, we present a general method that automatically constructs a martingale for any computation scheme with multi-linear errors based on additions, subtractions, and multiplications. We apply this generalization to algorithms previously studied with SR, such as pairwise summation and the Horner algorithm, and prove equivalent results. We also analyze a previously unstudied algorithm, Karatsuba polynomial multiplication, which illustrates that the method can handle reused intermediate computations.
+</font></blockquote>
+
+</dd>
+
+
+<dt>
+<a name="delval2024verificarloCI">&nbsp;</a>
+</dt>
+<dd>
+<b>Verificarlo CI: Continuous Integration for Numerical
+  Optimization and Debugging</b>.
+ Aurélien Delval, François Coppens, Eric Petit, Roman Iakymchuk, and
+  Pablo de&nbsp;Oliveira&nbsp;Castro.
+ In <em>Proceedings of the 35th Parallel CFD International Conference
+  2024</em>, volume&nbsp;69 of <em>Schriften des Forschungszentrums Jülich IAS
+  Series</em>, pages 104 -- 107, Jülich, Sep 2025. Forschungszentrum Jülich GmbH
+  Zentralbibliothek, Verlag.
+[&nbsp;<a href="recent_bib.html#delval2024verificarloCI">bib</a>&nbsp;| 
+<a href="http://dx.doi.org/10.34734/FZJ-2025-02465">DOI</a>&nbsp;| 
+<a href="https://juser.fz-juelich.de/record/1041833">http</a>&nbsp;| 
+<a href="https://juser.fz-juelich.de/record/1041833/files/106.pdf">.pdf</a>&nbsp;]
+<blockquote><font size="-1">
+Floating-point accuracy is an important concern when
+                  developing numerical simulations or other compute-intensive
+                  codes. Tracking the introduction of numerical regression is
+                  often delayed until it provokes unexpected bug for the
+                  end-user. In this paper, we introduce Verificarlo CI, a
+                  continuous integration workflow for the numerical
+                  optimization and debugging of a code over the course of its
+                  development. We demonstrate applicability of Verificarlo CI
+                  on two test-case applications.
+</font></blockquote>
+
+</dd>
+
+
+<dt>
+<a name="elarar2024bounds">&nbsp;</a>
+</dt>
+<dd>
+<b>Bounds on non-linear errors for variance computation with stochastic
+  rounding</b>.
+ El-Mehdi El&nbsp;Arar, Devan Sohier, Pablo de&nbsp;Oliveira&nbsp;Castro, and Eric
+  Petit.
+ <em>SIAM Journal on Scientific Computing</em>, 46(5):B579--B599, 2024.
+[&nbsp;<a href="recent_bib.html#elarar2024bounds">bib</a>&nbsp;| 
+<a href="http://dx.doi.org/10.1137/23M1563001">DOI</a>&nbsp;| 
+<a href="https://hal.science/hal-04056057/file/main.pdf">.pdf</a>&nbsp;]
+<blockquote><font size="-1">
+ Abstract. The main objective of this work is to investigate nonlinear errors and pairwise summation using stochastic rounding (SR) in variance computation algorithms. We estimate the forward error of computations under SR through two methods: the first is based on a bound of the variance and the Bienaymé–Chebyshev inequality, while the second is based on martingales and the Azuma–Hoeffding inequality. The study shows that for pairwise summation, using SR results in a probabilistic bound of the forward error proportional to <i>sqrt(log (n))u</i> rather than the deterministic bound in <i>O(log (n)u)</i> when using the default rounding mode. We examine two algorithms that compute the variance, one called “textbook” and the other “two-pass,” which both exhibit nonlinear errors. Using the two methods mentioned above, we show that the forward errors of these algorithms have probabilistic bounds under SR in <i>O(sqrt(n)u)</i> instead of <i>nu</i> for the deterministic bounds. We show that this advantage holds using pairwise summation for both textbook and two-pass, with probabilistic bounds of the forward error proportional to <i>sqrt(log (n))u</i>. 
+</font></blockquote>
+
+</dd>
+</dl>
 
 <h2 id="environmental-impact-of-computation">Environmental impact of computation</h2>
 
