@@ -1,4 +1,15 @@
-<h1>recent.bib</h1><a name="delval2025Noise"></a><pre>
+<h1>recent.bib</h1><a name="chen2025enablingmixedprecisionspectralelement"></a><pre>
+@unpublished{<a href="/publications/#chen2025enablingmixedprecisionspectralelement">chen2025enablingmixedprecisionspectralelement</a>,
+  title = {Enabling mixed-precision in spectral element codes},
+  author = {Yanxiang Chen and Pablo de Oliveira Castro and Paolo Bientinesi and Niclas Jansson and Roman Iakymchuk},
+  note = {(accepted for publication in Journal of Future Generation Computer Systems)},
+  year = {2025},
+  abstract = {Mixed-precision computing has the potential to significantly reduce the cost of exascale computations, but determining when and how to implement it in programs can be challenging. In this article, we propose a methodology for enabling mixed-precision with the help of computer arithmetic tools, roofline model, and computer arithmetic techniques. As case studies, we consider Nekbone, a mini-application for the Computational Fluid Dynamics (CFD) solver Nek5000, and a modern Neko CFD application. With the help of the Verificarlo tool and computer arithmetic techniques, we introduce a strategy to address stagnation issues in the preconditioned Conjugate Gradient method in Nekbone and apply these insights to implement a mixed-precision version of Neko. We evaluate the derived mixed-precision versions of these codes by combining metrics in three dimensions: accuracy, time-to-solution, and energy-to-solution. Notably, mixed-precision in Nekbone reduces time-to-solution by roughly 1.62x and energy-to-solution by 2.43x on MareNostrum 5, while in the real-world Neko application, the gain is up to 1.3x in both time and energy, with the accuracy that matches double-precision results.},
+  url = {https://arxiv.org/abs/2503.02134}
+}
+</pre>
+
+<a name="delval2025Noise"></a><pre>
 @inproceedings{<a href="/publications/#delval2025Noise">delval2025Noise</a>,
   title = {{Noise injection for performance bottleneck analysis}},
   author = {Delval, Aurélien and de Oliveira Castro, Pablo and Jalby, William and Renault, Etienne},
@@ -21,20 +32,6 @@
   month = jan,
   pdf = {https://arxiv.org/pdf/2501.05811},
   abstract = {Many High-Performance Computing (HPC) libraries rely on decision trees to select the best kernel hyperparameters at runtime,depending on the input and environment. However, finding optimized configurations for each input and environment is challengingand requires significant manual effort and computational resources. This paper presents MLKAPS, a tool that automates this task usingmachine learning and adaptive sampling techniques. MLKAPS generates decision trees that tune HPC kernels' design parameters toachieve efficient performance for any user input. MLKAPS scales to large input and design spaces, outperforming similar state-of-the-artauto-tuning tools in tuning time and mean speedup. We demonstrate the benefits of MLKAPS on the highly optimized Intel MKLdgetrf LU kernel and show that MLKAPS finds blindspots in the manual tuning of HPC experts. It improves over 85\% of the inputswith a geomean speedup of x1.30. On the Intel MKL dgeqrf QR kernel, MLKAPS improves performance on 85\% of the inputs with ageomean speedup of x1.18.}
-}
-</pre>
-
-<a name="chen2024enabling"></a><pre>
-@inproceedings{<a href="/publications/#chen2024enabling">chen2024enabling</a>,
-  title = {{Enabling Mixed-Precision with the Help of Tools: A Nekbone Case Study}},
-  author = {Chen, Yanxiang and de Oliveira Castro, Pablo and Bientinesi, Paolo and Iakymchuk, Roman},
-  year = 2025,
-  booktitle = {Parallel Processing and Applied Mathematics},
-  publisher = {Springer Nature},
-  pages = {34--50},
-  doi = {10.1007/978-3-031-85697-6_3},
-  isbn = {978-3-031-85697-6},
-  abstract = {Mixed-precision computing has the potential to significantly reduce the cost of exascale computations, but determining when and how to implement it in programs can be challenging. In this article, we consider Nekbone, a mini-application for the Computational Fluid Dynamics (CFD) solver Nek5000, as a case study, and propose a methodology for enabling mixed-precision with the help of computer arithmetic tools and roofline model. We evaluate the derived mixed-precision program by combining metrics in three dimensions: accuracy, time-to-solution, and energy-to-solution. Notably, the introduction of mixed-precision in Nekbone, reducing time-to-solution by 40.7\% and energy-to-solution by 47\% on 128 MPI ranks without sacrificing the accuracy.}
 }
 </pre>
 
