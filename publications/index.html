@@ -774,23 +774,15 @@ Characterizing performance is essential to optimize programs
 <a name="Oliveira12DSL">&nbsp;</a>
 </dt>
 <dd>
-<b>DSL Stream Programming on Multicore Architectures</b>.
- Pablo de&nbsp;Oliveira&nbsp;Castro, St&eacute;phane Louise, and Denis Barthou.
- In Sabri Pllana and Fatos Xhafa, editors, <em>Programming Multi-core
-  and Many-core Computing Systems</em>, to appear. John Wiley and Sons, 2012.
+<em>DSL Stream Programming on Multicore Architectures</em>.
+ Pablo de&nbsp;Oliveira&nbsp;Castro, Stéphane Louise, and Denis Barthou,
+  chapter&nbsp;7, pages 143--163.
+ John Wiley &amp; Sons, Ltd, 2017.
 [&nbsp;<a href="dataflow_bib.html#Oliveira12DSL">bib</a>&nbsp;| 
-<a href="dsl-preprint11.pdf">.pdf</a>&nbsp;]
+<a href="https://doi.org/10.1002/9781119332015.ch7">DOI</a>&nbsp;| 
+<a href="https://hal.science/hal-00952318/document">http</a>&nbsp;]
 <blockquote><font size="-1">
-
-    To effectively program parallel architectures it is important to combine a
-    simple expression of the parallelism with efficient compiler optimizations. We
-    propose a novel stream programming framework based on two domain specific
-    languages that separate these two issues. A high-level declarative language
-    allows to describe data dependencies between filters while an intermediate
-    language enables powerful optimizations through a set of stream graph
-    transformations. This two level approach offers a clean separation between the
-    issue of programming complexity and the issue of target specific optimization.
-    
+Summary The challenge for stream programming on multicore architectures is to describe stream manipulation, dependent on the application, and adapt this stream to complex and changing multicore architectures. Stream languages are a powerful alternative to program multicore processors for two main reasons: they offer a deterministic execution based on a sound mathematical formalism - synchronous data flow (SDF) and the expression of the parallelism is implicitly described by the stream structure. So far, research efforts in stream-specific languages have focused on two language categories: languages such as Array-OL and Block Parallel describe streams through dependences between filters, and languages such as StreamIt and Brook explicitly manipulate stream operators. A high-level typed DSL, called SLICES, is used to describe the data dependencies. This chapter introduces a formal framework for building correct transformations of intermediary stream language (SJD) programs and an iterative exploration algorithm to optimize a program according to a metric.
 </font></blockquote>
 
 </dd>
