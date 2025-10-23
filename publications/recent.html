@@ -2,18 +2,35 @@
 <dl>
 
 <dt>
-<a name="chen2025enablingmixedprecisionspectralelement">&nbsp;</a>
+<a name="jam2025MLKAPS">&nbsp;</a>
 </dt>
 <dd>
-<b>Enabling mixed-precision in spectral element codes</b>.
- Yanxiang Chen, Pablo de Oliveira Castro, Paolo Bientinesi, Niclas
-  Jansson, and Roman Iakymchuk.
- <em>Future Generation Computer Systems</em>, 174:107990, 2026.
-[&nbsp;<a href="recent_bib.html#chen2025enablingmixedprecisionspectralelement">bib</a>&nbsp;| 
-<a href="https://doi.org/10.1016/j.future.2025.107990">DOI</a>&nbsp;| 
-<a href="https://www.sciencedirect.com/science/article/pii/S0167739X25002857">http</a>&nbsp;]
+<b>MLKAPS: Machine Learning and Adaptive Sampling for HPC Kernel
+  Auto-tuning</b>.
+ Mathys Jam, Eric Petit, Pablo de&nbsp;Oliveira&nbsp;Castro, David Defour, Greg
+  Henry, and William Jalby.
+ (accepted in ACM TACO), October 2025.
+[&nbsp;<a href="recent_bib.html#jam2025MLKAPS">bib</a>&nbsp;| 
+<a href="https://arxiv.org/pdf/2501.05811">http</a>&nbsp;]
 <blockquote><font size="-1">
-Mixed-precision computing has the potential to significantly reduce the cost of exascale computations, but determining when and how to implement it in programs can be challenging. In this article, we propose a methodology for enabling mixed-precision with the help of computer arithmetic tools, roofline model, and computer arithmetic techniques. As case studies, we consider Nekbone (Nek5000 developers), a mini-application for the Computational Fluid Dynamics (CFD) solver Nek5000 (Fischer et al.), and a modern Neko (Jansson et al., 2024) CFD application. With the help of the Verificarlo (Denis et al., 2016) tool and computer arithmetic techniques, we introduce a strategy to address stagnation issues in the preconditioned Conjugate Gradient method in Nekbone and apply these insights to implement a mixed-precision version of Neko. We evaluate the derived mixed-precision versions of these codes by combining metrics in three dimensions: accuracy, time-to-solution, and energy-to-solution. Notably, mixed-precision in Nekbone reduces time-to-solution by roughly 1.62x and energy-to-solution by 2.43x on MareNostrum 5, while in the real-world Neko application, the gain is up to 1.3x in both time and energy, with the accuracy that matches double-precision results.
+Many High-Performance Computing (HPC) libraries rely on decision trees to select the best kernel hyperparameters at runtime,depending on the input and environment. However, finding optimized configurations for each input and environment is challengingand requires significant manual effort and computational resources. This paper presents MLKAPS, a tool that automates this task usingmachine learning and adaptive sampling techniques. MLKAPS generates decision trees that tune HPC kernels' design parameters toachieve efficient performance for any user input. MLKAPS scales to large input and design spaces, outperforming similar state-of-the-artauto-tuning tools in tuning time and mean speedup. We demonstrate the benefits of MLKAPS on the highly optimized Intel MKLdgetrf LU kernel and show that MLKAPS finds blindspots in the manual tuning of HPC experts. It improves over 85% of the inputswith a geomean speedup of x1.30. On the Intel MKL dgeqrf QR kernel, MLKAPS improves performance on 85% of the inputs with ageomean speedup of x1.18.
+</font></blockquote>
+
+</dd>
+
+
+<dt>
+<a name="deoliveiracastro2025error">&nbsp;</a>
+</dt>
+<dd>
+<b>Error Analysis of sum-product algorithms under stochastic rounding</b>.
+ Pablo de&nbsp;Oliveira&nbsp;Castro, El-Mehdi El&nbsp;Arar, Eric Petit, and Devan
+  Sohier.
+ (accepted in SIAM JSC), October 2025.
+[&nbsp;<a href="recent_bib.html#deoliveiracastro2025error">bib</a>&nbsp;| 
+<a href="https://hal.science/hal-04787542v1/file/main.pdf">.pdf</a>&nbsp;]
+<blockquote><font size="-1">
+The quality of numerical computations can be measured through their forward error, for which finding good error bounds is challenging in general. For several algorithms and using stochastic rounding (SR), probabilistic analysis has been shown to be an effective alternative for obtaining tight error bounds. This analysis considers the distribution of errors and evaluates the algorithm's performance on average. Using martingales and the Azuma-Hoeffding inequality, it provides error bounds that are valid with a certain probability and in O(n√u) instead of deterministic worst-case bounds in O(nu), where n is the number of operations and u is the unit roundoff. In this paper, we present a general method that automatically constructs a martingale for any computation scheme with multi-linear errors based on additions, subtractions, and multiplications. We apply this generalization to algorithms previously studied with SR, such as pairwise summation and the Horner algorithm, and prove equivalent results. We also analyze a previously unstudied algorithm, Karatsuba polynomial multiplication, which illustrates that the method can handle reused intermediate computations.
 </font></blockquote>
 
 </dd>
@@ -41,35 +58,18 @@ Bottleneck evaluation is a crucial part of performance tuning of HPC application
 
 
 <dt>
-<a name="jam2025MLKAPS">&nbsp;</a>
+<a name="chen2025enablingmixedprecisionspectralelement">&nbsp;</a>
 </dt>
 <dd>
-<b>MLKAPS: Machine Learning and Adaptive Sampling for HPC Kernel
-  Auto-tuning</b>.
- Mathys Jam, Eric Petit, Pablo de&nbsp;Oliveira&nbsp;Castro, David Defour, Greg
-  Henry, and William Jalby.
- working paper or preprint, January 2025.
-[&nbsp;<a href="recent_bib.html#jam2025MLKAPS">bib</a>&nbsp;| 
-<a href="https://arxiv.org/pdf/2501.05811">http</a>&nbsp;]
+<b>Enabling mixed-precision in spectral element codes</b>.
+ Yanxiang Chen, Pablo de Oliveira Castro, Paolo Bientinesi, Niclas
+  Jansson, and Roman Iakymchuk.
+ <em>Future Generation Computer Systems</em>, 174:107990, 2025.
+[&nbsp;<a href="recent_bib.html#chen2025enablingmixedprecisionspectralelement">bib</a>&nbsp;| 
+<a href="https://doi.org/10.1016/j.future.2025.107990">DOI</a>&nbsp;| 
+<a href="https://www.sciencedirect.com/science/article/pii/S0167739X25002857">http</a>&nbsp;]
 <blockquote><font size="-1">
-Many High-Performance Computing (HPC) libraries rely on decision trees to select the best kernel hyperparameters at runtime,depending on the input and environment. However, finding optimized configurations for each input and environment is challengingand requires significant manual effort and computational resources. This paper presents MLKAPS, a tool that automates this task usingmachine learning and adaptive sampling techniques. MLKAPS generates decision trees that tune HPC kernels' design parameters toachieve efficient performance for any user input. MLKAPS scales to large input and design spaces, outperforming similar state-of-the-artauto-tuning tools in tuning time and mean speedup. We demonstrate the benefits of MLKAPS on the highly optimized Intel MKLdgetrf LU kernel and show that MLKAPS finds blindspots in the manual tuning of HPC experts. It improves over 85% of the inputswith a geomean speedup of x1.30. On the Intel MKL dgeqrf QR kernel, MLKAPS improves performance on 85% of the inputs with ageomean speedup of x1.18.
-</font></blockquote>
-
-</dd>
-
-
-<dt>
-<a name="deoliveiracastro2024error">&nbsp;</a>
-</dt>
-<dd>
-<b>Error Analysis of sum-product algorithms under stochastic rounding</b>.
- Pablo de&nbsp;Oliveira&nbsp;Castro, El-Mehdi El&nbsp;Arar, Eric Petit, and Devan
-  Sohier.
- working paper or preprint, November 2024.
-[&nbsp;<a href="recent_bib.html#deoliveiracastro2024error">bib</a>&nbsp;| 
-<a href="https://hal.science/hal-04787542v1/file/main.pdf">.pdf</a>&nbsp;]
-<blockquote><font size="-1">
-The quality of numerical computations can be measured through their forward error, for which finding good error bounds is challenging in general. For several algorithms and using stochastic rounding (SR), probabilistic analysis has been shown to be an effective alternative for obtaining tight error bounds. This analysis considers the distribution of errors and evaluates the algorithm's performance on average. Using martingales and the Azuma-Hoeffding inequality, it provides error bounds that are valid with a certain probability and in O(n√u) instead of deterministic worst-case bounds in O(nu), where n is the number of operations and u is the unit roundoff. In this paper, we present a general method that automatically constructs a martingale for any computation scheme with multi-linear errors based on additions, subtractions, and multiplications. We apply this generalization to algorithms previously studied with SR, such as pairwise summation and the Horner algorithm, and prove equivalent results. We also analyze a previously unstudied algorithm, Karatsuba polynomial multiplication, which illustrates that the method can handle reused intermediate computations.
+Mixed-precision computing has the potential to significantly reduce the cost of exascale computations, but determining when and how to implement it in programs can be challenging. In this article, we propose a methodology for enabling mixed-precision with the help of computer arithmetic tools, roofline model, and computer arithmetic techniques. As case studies, we consider Nekbone (Nek5000 developers), a mini-application for the Computational Fluid Dynamics (CFD) solver Nek5000 (Fischer et al.), and a modern Neko (Jansson et al., 2024) CFD application. With the help of the Verificarlo (Denis et al., 2016) tool and computer arithmetic techniques, we introduce a strategy to address stagnation issues in the preconditioned Conjugate Gradient method in Nekbone and apply these insights to implement a mixed-precision version of Neko. We evaluate the derived mixed-precision versions of these codes by combining metrics in three dimensions: accuracy, time-to-solution, and energy-to-solution. Notably, mixed-precision in Nekbone reduces time-to-solution by roughly 1.62x and energy-to-solution by 2.43x on MareNostrum 5, while in the real-world Neko application, the gain is up to 1.3x in both time and energy, with the accuracy that matches double-precision results.
 </font></blockquote>
 
 </dd>
