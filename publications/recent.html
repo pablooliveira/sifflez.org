@@ -7,10 +7,13 @@
 <dd>
 <b>MLKAPS: Machine Learning and Adaptive Sampling for HPC Kernel
   Auto-tuning</b>.
- Mathys Jam, Eric Petit, Pablo de&nbsp;Oliveira&nbsp;Castro, David Defour, Greg
-  Henry, and William Jalby.
- (accepted in ACM TACO), October 2025.
+ Mathys&nbsp;Eliott Jam, Eric Petit, Pablo de&nbsp;Oliveira&nbsp;Castro, David
+  Defour, Greg Henry, and William Jalby.
+ <em>ACM Transactions on Architecture Code Optimization (TACO)</em>,
+  November 2025.
 [&nbsp;<a href="recent_bib.html#jam2025MLKAPS">bib</a>&nbsp;| 
+<a href="http://dx.doi.org/10.1145/3774418">DOI</a>&nbsp;| 
+<a href="https://doi.org/10.1145/3774418">http</a>&nbsp;| 
 <a href="https://arxiv.org/pdf/2501.05811">http</a>&nbsp;]
 <blockquote><font size="-1">
 Many High-Performance Computing (HPC) libraries rely on decision trees to select the best kernel hyperparameters at runtime,depending on the input and environment. However, finding optimized configurations for each input and environment is challengingand requires significant manual effort and computational resources. This paper presents MLKAPS, a tool that automates this task usingmachine learning and adaptive sampling techniques. MLKAPS generates decision trees that tune HPC kernels' design parameters toachieve efficient performance for any user input. MLKAPS scales to large input and design spaces, outperforming similar state-of-the-artauto-tuning tools in tuning time and mean speedup. We demonstrate the benefits of MLKAPS on the highly optimized Intel MKLdgetrf LU kernel and show that MLKAPS finds blindspots in the manual tuning of HPC experts. It improves over 85% of the inputswith a geomean speedup of x1.30. On the Intel MKL dgeqrf QR kernel, MLKAPS improves performance on 85% of the inputs with ageomean speedup of x1.18.
