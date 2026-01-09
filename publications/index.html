@@ -76,14 +76,15 @@ Many High-Performance Computing (HPC) libraries rely on decision trees to select
 
 
 <dt>
-<a name="deoliveiracastro2025error">&nbsp;</a>
+<a name="deOliveiraCastroError2025">&nbsp;</a>
 </dt>
 <dd>
 <b>Error Analysis of sum-product algorithms under stochastic rounding</b>.
  Pablo de&nbsp;Oliveira&nbsp;Castro, El-Mehdi El&nbsp;Arar, Eric Petit, and Devan
   Sohier.
- (accepted in SIAM JSC), October 2025.
-[&nbsp;<a href="recent_bib.html#deoliveiracastro2025error">bib</a>&nbsp;| 
+ <em>SIAM Journal on Scientific Computing</em>, 47(6):B1481--B1502, 2025.
+[&nbsp;<a href="recent_bib.html#deOliveiraCastroError2025">bib</a>&nbsp;| 
+<a href="http://dx.doi.org/10.1137/24M1710966">DOI</a>&nbsp;| 
 <a href="https://hal.science/hal-04787542v1/file/main.pdf">.pdf</a>&nbsp;]
 <blockquote><font size="-1">
 The quality of numerical computations can be measured through their forward error, for which finding good error bounds is challenging in general. For several algorithms and using stochastic rounding (SR), probabilistic analysis has been shown to be an effective alternative for obtaining tight error bounds. This analysis considers the distribution of errors and evaluates the algorithm's performance on average. Using martingales and the Azuma-Hoeffding inequality, it provides error bounds that are valid with a certain probability and in O(n√u) instead of deterministic worst-case bounds in O(nu), where n is the number of operations and u is the unit roundoff. In this paper, we present a general method that automatically constructs a martingale for any computation scheme with multi-linear errors based on additions, subtractions, and multiplications. We apply this generalization to algorithms previously studied with SR, such as pairwise summation and the Horner algorithm, and prove equivalent results. We also analyze a previously unstudied algorithm, Karatsuba polynomial multiplication, which illustrates that the method can handle reused intermediate computations.
