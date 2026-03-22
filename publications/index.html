@@ -202,25 +202,6 @@ Floating-point accuracy is an important concern when
 </font></blockquote>
 
 </dd>
-
-
-<dt>
-<a name="elarar2024bounds">&nbsp;</a>
-</dt>
-<dd>
-<b>Bounds on non-linear errors for variance computation with stochastic
-  rounding</b>.
- El-Mehdi El&nbsp;Arar, Devan Sohier, Pablo de&nbsp;Oliveira&nbsp;Castro, and Eric
-  Petit.
- <em>SIAM Journal on Scientific Computing</em>, 46(5):B579--B599, 2024.
-[&nbsp;<a href="recent_bib.html#elarar2024bounds">bib</a>&nbsp;| 
-<a href="http://dx.doi.org/10.1137/23M1563001">DOI</a>&nbsp;| 
-<a href="https://hal.science/hal-04056057/file/main.pdf">.pdf</a>&nbsp;]
-<blockquote><font size="-1">
- Abstract. The main objective of this work is to investigate nonlinear errors and pairwise summation using stochastic rounding (SR) in variance computation algorithms. We estimate the forward error of computations under SR through two methods: the first is based on a bound of the variance and the Bienaymé–Chebyshev inequality, while the second is based on martingales and the Azuma–Hoeffding inequality. The study shows that for pairwise summation, using SR results in a probabilistic bound of the forward error proportional to <i>sqrt(log (n))u</i> rather than the deterministic bound in <i>O(log (n)u)</i> when using the default rounding mode. We examine two algorithms that compute the variance, one called “textbook” and the other “two-pass,” which both exhibit nonlinear errors. Using the two methods mentioned above, we show that the forward errors of these algorithms have probabilistic bounds under SR in <i>O(sqrt(n)u)</i> instead of <i>nu</i> for the deterministic bounds. We show that this advantage holds using pairwise summation for both textbook and two-pass, with probabilistic bounds of the forward error proportional to <i>sqrt(log (n))u</i>. 
-</font></blockquote>
-
-</dd>
 </dl>
 
 <h2 id="environmental-impact-of-computation">Environmental impact of computation</h2>
@@ -236,7 +217,7 @@ Floating-point accuracy is an important concern when
 <dl>
 
 <dt>
-<a name="chen2024enabling">&nbsp;</a>
+<a name="chen2025enabling">&nbsp;</a>
 </dt>
 <dd>
 <b>Enabling Mixed-Precision with the Help of Tools: A Nekbone Case
@@ -245,10 +226,29 @@ Floating-point accuracy is an important concern when
   Iakymchuk.
  In <em>Parallel Processing and Applied Mathematics</em>, pages 34--50.
   Springer Nature, 2025.
-[&nbsp;<a href="arithmetic_bib.html#chen2024enabling">bib</a>&nbsp;| 
+[&nbsp;<a href="arithmetic_bib.html#chen2025enabling">bib</a>&nbsp;| 
 <a href="http://dx.doi.org/10.1007/978-3-031-85697-6_3">DOI</a>&nbsp;]
 <blockquote><font size="-1">
 Mixed-precision computing has the potential to significantly reduce the cost of exascale computations, but determining when and how to implement it in programs can be challenging. In this article, we consider Nekbone, a mini-application for the Computational Fluid Dynamics (CFD) solver Nek5000, as a case study, and propose a methodology for enabling mixed-precision with the help of computer arithmetic tools and roofline model. We evaluate the derived mixed-precision program by combining metrics in three dimensions: accuracy, time-to-solution, and energy-to-solution. Notably, the introduction of mixed-precision in Nekbone, reducing time-to-solution by 40.7% and energy-to-solution by 47% on 128 MPI ranks without sacrificing the accuracy.
+</font></blockquote>
+
+</dd>
+
+
+<dt>
+<a name="elarar2024bounds">&nbsp;</a>
+</dt>
+<dd>
+<b>Bounds on non-linear errors for variance computation with stochastic
+  rounding</b>.
+ El-Mehdi El&nbsp;Arar, Devan Sohier, Pablo de&nbsp;Oliveira&nbsp;Castro, and Eric
+  Petit.
+ <em>SIAM Journal on Scientific Computing</em>, 46(5):B579--B599, 2024.
+[&nbsp;<a href="arithmetic_bib.html#elarar2024bounds">bib</a>&nbsp;| 
+<a href="http://dx.doi.org/10.1137/23M1563001">DOI</a>&nbsp;| 
+<a href="https://hal.science/hal-04056057/file/main.pdf">.pdf</a>&nbsp;]
+<blockquote><font size="-1">
+ Abstract. The main objective of this work is to investigate nonlinear errors and pairwise summation using stochastic rounding (SR) in variance computation algorithms. We estimate the forward error of computations under SR through two methods: the first is based on a bound of the variance and the Bienaymé–Chebyshev inequality, while the second is based on martingales and the Azuma–Hoeffding inequality. The study shows that for pairwise summation, using SR results in a probabilistic bound of the forward error proportional to <i>sqrt(log (n))u</i> rather than the deterministic bound in <i>O(log (n)u)</i> when using the default rounding mode. We examine two algorithms that compute the variance, one called “textbook” and the other “two-pass,” which both exhibit nonlinear errors. Using the two methods mentioned above, we show that the forward errors of these algorithms have probabilistic bounds under SR in <i>O(sqrt(n)u)</i> instead of <i>nu</i> for the deterministic bounds. We show that this advantage holds using pairwise summation for both textbook and two-pass, with probabilistic bounds of the forward error proportional to <i>sqrt(log (n))u</i>. 
 </font></blockquote>
 
 </dd>
