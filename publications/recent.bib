@@ -9,6 +9,18 @@
   abstract = {Should low-precision transformer inference use stochastic rounding (SR) or round-to-nearest (RN)? The answer depends on where in the network you look. We isolate this effect by holding the numerical format fixed and varying only the rounding rule at individual operation sites. To enable experiments at freely chosen precisions, we extend the PRISM vectorized rounding library to arbitrary virtual precision via a variable-precision stochastic rounding (VPSR) algorithm, proving that the rounding decision is evaluated exactly in hardware floating point. We develop two analyses providing complementary insight into this site-level trade-off. First, a probabilistic forward-error bound for linear projections shows that SR's error envelope grows as $O(\sqrt{n} u)$ in reduction length $n$, versus $O(n u)$ for RN, a gap that widens rapidly at low precision and is most pronounced in the long multilayer perceptron (MLP) down-projection. Second, a second-order decomposition of expected cross-entropy loss change at the output softmax into signed drift, drift curvature, and a Fisher-weighted variance penalty reveals why the two sites behave oppositely: MLP noise is predominantly a uniform logit shift to which softmax is invariant, so SR's variance is largely discounted; head noise is non-uniform across the vocabulary and is not. On DistilGPT-2 at $t=6$ significand bits, observations match theory: SR in the MLP raises perplexity to 1.15x the full-precision reference, versus 2.21x for RN. At the language-model head, the ordering reverses because SR introduces non-uniform variance, whereas deterministic RN carries none. In a mixed-precision configuration (MLP output at $t=6$), assigning SR to the MLP and RN to the head brings perplexity within 1.10x of the full-precision reference, a 28\% reduction over matched-bit RN.}
 }
 
+@unpublished{deOliveiraCastro2026Probabilistic,
+  title = {{A Probabilistic Error Analysis of Exponentiation Algorithms}},
+  author = {de Oliveira Castro, Pablo and El Arar, El-Mehdi and Sohier, Devan},
+  url = {https://hal.science/hal-05653338},
+  note = {(preprint)},
+  year = {2026},
+  month = Jun,
+  keywords = {Error Analysis, Low precision, Stochastic Rounding, Floating-point Arithmetic, Numerical Stability, Exponentiation Algorithms},
+  pdf = {https://hal.science/hal-05653338v1/file/main.pdf},
+  abstract = {The accumulation of rounding errors is a fundamental source of inaccuracy in floating-point computations, in particular, in low precision formats. In this work, we investigate the statistical behavior of rounding errors arising from both stochastic rounding (SR) and round-to-nearest (RN) modes in two exponentiation algorithms: naive iterative multiplication and exponentiation by squaring. For both modes and both algorithms, we derive probabilistic characterizations of the accumulated error. We show that the error converges to a normal distribution when the precision is high enough. We derive a precise estimation of the distribution parameters under the classical model in which mantissas are assumed to be log-uniformly distributed. For both algorithms, we derive theoretical expressions describing the propagation of rounding errors and compare the resulting error distributions under SR and RN. Numerical experiments assess the accuracy of the proposed models and validate the theoretical predictions.}
+}
+
 @inproceedings{auville2026harnessing,
   author = {Auville, Asia and Jammer, Tim and Petit, Eric and de Oliveira Castro, Pablo and Saillard, Emmanuelle and Popov, Mihail},
   title = {{Harnessing MPI mutations for AI error detection}},
@@ -27,25 +39,15 @@
   series = {ICS '26}
 }
 
-@unpublished{deOliveiraCastro2026Probabilistic,
-  title = {{A Probabilistic Error Analysis of Exponentiation Algorithms}},
-  author = {de Oliveira Castro, Pablo and El Arar, El-Mehdi and Sohier, Devan},
-  url = {https://hal.science/hal-05653338},
-  note = {(preprint)},
-  year = {2026},
-  month = Jun,
-  keywords = {Error Analysis, Low precision, Stochastic Rounding, Floating-point Arithmetic, Numerical Stability, Exponentiation Algorithms},
-  pdf = {https://hal.science/hal-05653338v1/file/main.pdf},
-  abstract = {The accumulation of rounding errors is a fundamental source of inaccuracy in floating-point computations, in particular, in low precision formats. In this work, we investigate the statistical behavior of rounding errors arising from both stochastic rounding (SR) and round-to-nearest (RN) modes in two exponentiation algorithms: naive iterative multiplication and exponentiation by squaring. For both modes and both algorithms, we derive probabilistic characterizations of the accumulated error. We show that the error converges to a normal distribution when the precision is high enough. We derive a precise estimation of the distribution parameters under the classical model in which mantissas are assumed to be log-uniformly distributed. For both algorithms, we derive theoretical expressions describing the propagation of rounding errors and compare the resulting error distributions under SR and RN. Numerical experiments assess the accuracy of the proposed models and validate the theoretical predictions.}
-}
-
-@unpublished{taldir2026benchmarking,
+@inproceedings{taldir2026benchmarking,
   title = {{Benchmarking Large Language Models on Floating-Point Error Classification}},
   author = {Taldir, Lisa and Saeed, Muhammad Ahmad and Defour, David and de Oliveira Castro, Pablo and Petit, Eric},
-  url = {https://hal.science/hal-05560550},
-  note = {(preprint)},
+  booktitle = {Parallel Processing and Applied Mathematics},
+  series = {Lecture Notes in Computer Science},
+  publisher = {Springer},
+  note = {(to appear)},
   year = {2026},
-  month = Mar,
+  url = {https://link.springer.com/conference/ppam},
   pdf = {https://hal.science/hal-05560550v1/file/Benchmarking_LLMs_on_Floating-Point_Error_Classification.pdf},
   abstract = {This paper investigates the capability of Large Language Models (LLMs) to detect and classify floating-point errors statically in software code. We introduce InterFLOPBench, a benchmark of 90 C kernels with 1 130 test samples designed to evaluate LLMs across six categories of floating-point error: cancellation, comparison, division by zero, overflow, underflow and NaN, compared across 14 LLMs. The evaluation framework treats floating-point error detection as a multi-label classification problem and employs the F1-score metric to measure performance. Results demonstrate that latest models (Qwen 3 32b, Gemini 2.5 Flash, Phi 4 Reasoning, DeepSeek R1T2, and gpt-oss 20b and 120b) achieve a performance greater than 0.88 overall F1-score. Performance varies between error categories, between explicit operations such as division by zero (Average F1-score: 0.8479) and more subtle numerical phenomena such as underflow (Average F1-score: 0.6059) and cancellation (Average F1-score: 0.6164).}
 }

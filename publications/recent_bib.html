@@ -11,6 +11,20 @@
 }
 </pre>
 
+<a name="deOliveiraCastro2026Probabilistic"></a><pre>
+@unpublished{<a href="/publications/#deOliveiraCastro2026Probabilistic">deOliveiraCastro2026Probabilistic</a>,
+  title = {{A Probabilistic Error Analysis of Exponentiation Algorithms}},
+  author = {de Oliveira Castro, Pablo and El Arar, El-Mehdi and Sohier, Devan},
+  url = {https://hal.science/hal-05653338},
+  note = {(preprint)},
+  year = {2026},
+  month = jun,
+  keywords = {Error Analysis, Low precision, Stochastic Rounding, Floating-point Arithmetic, Numerical Stability, Exponentiation Algorithms},
+  pdf = {https://hal.science/hal-05653338v1/file/main.pdf},
+  abstract = {The accumulation of rounding errors is a fundamental source of inaccuracy in floating-point computations, in particular, in low precision formats. In this work, we investigate the statistical behavior of rounding errors arising from both stochastic rounding (SR) and round-to-nearest (RN) modes in two exponentiation algorithms: naive iterative multiplication and exponentiation by squaring. For both modes and both algorithms, we derive probabilistic characterizations of the accumulated error. We show that the error converges to a normal distribution when the precision is high enough. We derive a precise estimation of the distribution parameters under the classical model in which mantissas are assumed to be log-uniformly distributed. For both algorithms, we derive theoretical expressions describing the propagation of rounding errors and compare the resulting error distributions under SR and RN. Numerical experiments assess the accuracy of the proposed models and validate the theoretical predictions.}
+}
+</pre>
+
 <a name="auville2026harnessing"></a><pre>
 @inproceedings{<a href="/publications/#auville2026harnessing">auville2026harnessing</a>,
   author = {Auville, Asia and Jammer, Tim and Petit, Eric and de Oliveira Castro, Pablo and Saillard, Emmanuelle and Popov, Mihail},
@@ -31,28 +45,16 @@
 }
 </pre>
 
-<a name="deOliveiraCastro2026Probabilistic"></a><pre>
-@unpublished{<a href="/publications/#deOliveiraCastro2026Probabilistic">deOliveiraCastro2026Probabilistic</a>,
-  title = {{A Probabilistic Error Analysis of Exponentiation Algorithms}},
-  author = {de Oliveira Castro, Pablo and El Arar, El-Mehdi and Sohier, Devan},
-  url = {https://hal.science/hal-05653338},
-  note = {(preprint)},
-  year = {2026},
-  month = jun,
-  keywords = {Error Analysis, Low precision, Stochastic Rounding, Floating-point Arithmetic, Numerical Stability, Exponentiation Algorithms},
-  pdf = {https://hal.science/hal-05653338v1/file/main.pdf},
-  abstract = {The accumulation of rounding errors is a fundamental source of inaccuracy in floating-point computations, in particular, in low precision formats. In this work, we investigate the statistical behavior of rounding errors arising from both stochastic rounding (SR) and round-to-nearest (RN) modes in two exponentiation algorithms: naive iterative multiplication and exponentiation by squaring. For both modes and both algorithms, we derive probabilistic characterizations of the accumulated error. We show that the error converges to a normal distribution when the precision is high enough. We derive a precise estimation of the distribution parameters under the classical model in which mantissas are assumed to be log-uniformly distributed. For both algorithms, we derive theoretical expressions describing the propagation of rounding errors and compare the resulting error distributions under SR and RN. Numerical experiments assess the accuracy of the proposed models and validate the theoretical predictions.}
-}
-</pre>
-
 <a name="taldir2026benchmarking"></a><pre>
-@unpublished{<a href="/publications/#taldir2026benchmarking">taldir2026benchmarking</a>,
+@inproceedings{<a href="/publications/#taldir2026benchmarking">taldir2026benchmarking</a>,
   title = {{Benchmarking Large Language Models on Floating-Point Error Classification}},
   author = {Taldir, Lisa and Saeed, Muhammad Ahmad and Defour, David and de Oliveira Castro, Pablo and Petit, Eric},
-  url = {https://hal.science/hal-05560550},
-  note = {(preprint)},
+  booktitle = {Parallel Processing and Applied Mathematics},
+  series = {Lecture Notes in Computer Science},
+  publisher = {Springer},
+  note = {(to appear)},
   year = {2026},
-  month = mar,
+  url = {https://link.springer.com/conference/ppam},
   pdf = {https://hal.science/hal-05560550v1/file/Benchmarking_LLMs_on_Floating-Point_Error_Classification.pdf},
   abstract = {This paper investigates the capability of Large Language Models (LLMs) to detect and classify floating-point errors statically in software code. We introduce InterFLOPBench, a benchmark of 90 C kernels with 1 130 test samples designed to evaluate LLMs across six categories of floating-point error: cancellation, comparison, division by zero, overflow, underflow and NaN, compared across 14 LLMs. The evaluation framework treats floating-point error detection as a multi-label classification problem and employs the F1-score metric to measure performance. Results demonstrate that latest models (Qwen 3 32b, Gemini 2.5 Flash, Phi 4 Reasoning, DeepSeek R1T2, and gpt-oss 20b and 120b) achieve a performance greater than 0.88 overall F1-score. Performance varies between error categories, between explicit operations such as division by zero (Average F1-score: 0.8479) and more subtle numerical phenomena such as underflow (Average F1-score: 0.6059) and cancellation (Average F1-score: 0.6164).}
 }
